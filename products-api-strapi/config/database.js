@@ -1,4 +1,3 @@
-console.log("hola");
 module.exports = ({ env }) => ({
   defaultConnection: "default",
   connections: {
