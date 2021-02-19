@@ -1,0 +1,48 @@
+import { IProduct } from '@/shared';
+
+export const Products: IProduct[] = [
+  {
+    unitsInStock: 2,
+    _id: '5fe76bf3240ea4000e0522c2',
+    name: 'normal',
+    published_at: '2020-12-26T16:59:33.975Z',
+    createdAt: '2020-12-26T16:59:31.765Z',
+    updatedAt: '2020-12-28T18:26:28.541Z',
+    __v: 0,
+    Imagen: {
+      name: 'black-check.png',
+      hash: 'black_check_3eba7d6b29',
+      ext: '.png',
+      mime: 'image/png',
+      size: 10.29,
+      width: 1024,
+      height: 1024,
+      url:
+        'https://delivery-app-tur.s3.amazonaws.com/black_check_3eba7d6b29.png',
+      provider: 'aws-s3',
+      related: ['5fe76bf3240ea4000e0522c2'],
+      createdAt: '2020-12-26T03:51:32.090Z',
+      updatedAt: '2020-12-26T16:59:31.798Z',
+      __v: 0,
+      id: '5fe6b3444b86bb000e077523',
+    },
+    price: 2000,
+    discount: 10,
+    id: '5fe76bf3240ea4000e0522c2',
+    finalPrice: 1800,
+    discountValue: 200,
+  },
+  {
+    unitsInStock: 2,
+    _id: '5fe76c03240ea4000e0522c4',
+    name: 'GENERAL',
+    published_at: '2020-12-26T16:59:50.826Z',
+    createdAt: '2020-12-26T16:59:47.736Z',
+    updatedAt: '2020-12-26T16:59:50.846Z',
+    __v: 0,
+    id: '5fe76c03240ea4000e0522c4',
+    price: 2000,
+    finalPrice: 2000,
+    discountValue: 0,
+  },
+];

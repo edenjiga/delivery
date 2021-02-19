@@ -1,0 +1,29 @@
+version: '3.1'
+services:
+  mongo:
+    image: flqw/docker-mongo-local-replicaset
+    environment:
+      - MONGO_INITDB_DATABASE=delivery
+    ports:
+      - '27001:27001'
+      - '27002:27002'
+      - '27003:27003'
+    volumes:
+      - mongo_data:/data/db
+  api:
+    build:
+      dockerfile: Dockerfile_Dev
+      context: .
+    depends_on:
+      - mongo
+    environment:
+      NODE_ENV: local
+      MONGO_URL: mongodb://mongo:27001,mongo:27002,mongo:27003
+      MONGO_DB_NAME: delivery
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+volumes:
+  mongo_data: ~

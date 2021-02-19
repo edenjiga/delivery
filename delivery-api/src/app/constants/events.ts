@@ -1,0 +1,6 @@
+enum EVENTS {
+  ORDER_UPDATED = 'ORDER_UPDATED',
+  ORDER_CREATED = 'ORDER_CREATED',
+}
+
+export default EVENTS;

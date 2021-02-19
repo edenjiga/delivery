@@ -1,18 +1,18 @@
-name: deploy-producs-api:qa
+name: deploy-delivery-api:qa
 
 on:
   push:
     branches:
       - develop
     paths:
-      - 'products-api-strapi/**'
+      - 'delivery-api/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd products-api-strapi/ && docker build -t registry.digitalocean.com/delivery/products-api:qa .
+      - run: cd delivery-api/ && docker build -t registry.digitalocean.com/delivery/delivery-api:qa .
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
         with:
@@ -22,10 +22,10 @@ jobs:
         run: doctl registry login --expiry-seconds 600
 
       - name: Push image to DigitalOcean Container Registry
-        run: docker push registry.digitalocean.com/delivery/products-api:qa
+        run: docker push registry.digitalocean.com/delivery/delivery-api:qa
 
       - name: Add DigitalOcean Cluster
         run: doctl kubernetes cluster kubeconfig save ${{ secrets.DIGITALOCEAN_QA_CLUSTER }}
 
       - name: Restar the service
-        run: kubectl rollout restart deployment products-depl
+        run: kubectl rollout restart deployment delivery-api-depl

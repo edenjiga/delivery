@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: delivery-api-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: delivery-api
+  template:
+    metadata:
+      labels:
+        app: delivery-api
+    spec:
+      containers:
+        - name: delivery-api
+          image: registry.digitalocean.com/delivery/delivery-api:qa
+          env:
+            - name: PRODUCT_API_URL
+              value: products-srv
+            - name: MONGO_URL
+              value: mongodb://mongo-0.mongo,mongo-1.mongo:27017/?replicaSet=rs0
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: AWS_REGION
+            - name: AWS_CREDENTIALS
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: AWS_CREDENTIALS
+            - name: AWS_SHARED_CREDENTIALS_FILE
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: AWS_SHARED_CREDENTIALS_FILE
+            - name: AWS_PINPOINT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: AWS_PINPOINT_ID
+            - name: PRODUCT_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: PRODUCT_API_TOKEN
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: JWT_SECRET_KEY
+            - name: WOMPI_URL
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: WOMPI_URL
+            - name: WOMPI_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: WOMPI_PUBLIC_KEY
+            - name: WOMPI_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: WOMPI_PRIVATE_KEY
+            - name: WOMPI_EVENTS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: WOMPI_EVENTS_KEY
+            - name: HASH_SALT
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: HASH_SALT
+      imagePullSecrets:
+        - name: delivery
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: delivery-api-srv
+spec:
+  selector:
+    app: delivery-api
+  ports:
+    - name: delivery-api
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
