@@ -17,7 +17,7 @@ spec:
           image: registry.digitalocean.com/delivery/delivery-api:qa
           env:
             - name: PRODUCT_API_URL
-              value: products-srv
+              value: http://products-srv:1337
             - name: MONGO_URL
               value: mongodb://mongo-0.mongo,mongo-1.mongo:27017/?replicaSet=rs0
             - name: AWS_REGION

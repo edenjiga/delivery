@@ -5,13 +5,22 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+
 spec:
   tls:
     - secretName: edgarjimenezg-com-tls
       hosts:
         - qa.edgarjimenezg.com
+        - qa.strapi.edgarjimenezg.com
   rules:
     - host: qa.edgarjimenezg.com
+      http:
+        paths:
+          - backend:
+              serviceName: delivery-api-srv
+              servicePort: 8000
+    - host: qa.strapi.edgarjimenezg.com
       http:
         paths:
           - backend:
