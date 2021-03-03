@@ -1,6 +1,7 @@
 import { Injectable, HttpService } from '@nestjs/common';
 import environment from '@/environment';
-import { IProduct, ProductToBeSoldBody } from '@/shared';
+import { ProductToBeSoldBody } from '@/shared';
+import { Product } from '@edenjiga/delivery-common';
 
 @Injectable()
 export class ProductsDataSource {
@@ -11,9 +12,9 @@ export class ProductsDataSource {
   /**
    * getProducts
    */
-  public async getProducts(params = {}): Promise<IProduct[]> {
+  public async getProducts(params = {}): Promise<Product[]> {
     const { data } = await this.httpService
-      .get<IProduct[]>(`${this.API_URL}/products`, { params })
+      .get<Product[]>(`${this.API_URL}/products`, { params })
       .toPromise();
 
     return data;

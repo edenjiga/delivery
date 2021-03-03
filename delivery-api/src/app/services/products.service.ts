@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { ProductsDataSource } from '@/data';
-import { IProduct, ProductToBeSoldBody } from '@/shared';
+import { ProductToBeSoldBody } from '@/shared';
+import { Product } from '@edenjiga/delivery-common';
 
 @Injectable()
 export class ProductsService {
   constructor(private productsDataSource: ProductsDataSource) {}
 
-  public findByQuery(params?): Promise<IProduct[]> {
+  public findByQuery(params?): Promise<Product[]> {
     return this.productsDataSource.getProducts(params);
   }
 
