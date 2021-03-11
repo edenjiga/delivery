@@ -2,13 +2,14 @@ import * as React from "react";
 import { StyleSheet } from "react-native";
 
 import { View } from "@/components/Themed";
-import { PopularProducts, SpecialOffers } from "./components";
+import { PopularProducts, SpecialOffers, SearchProduct } from "./components";
 import { ScrollView } from "react-native-gesture-handler";
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
       <ScrollView>
+        <SearchProduct />
         <SpecialOffers />
         <PopularProducts />
       </ScrollView>

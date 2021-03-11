@@ -17,13 +17,27 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "bundleIdentifier": "com.edenjiga.delivery.mobile",
+      "config": {
+        "googleMapsApiKey": "AIzaSyBg2X6DoC78VR_1Q-u7UxCgzKhPLmAom3k"
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses the location to suggest an address to the user."
+      },
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBg2X6DoC78VR_1Q-u7UxCgzKhPLmAom3k"
+        }
+      },
+      "package": "com.edenjiga.delivery.mobile",
+      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"]
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

@@ -1,4 +1,7 @@
 import { Product } from "@edenjiga/delivery-common";
+import screenNames from "@/constants/screenNames";
+
+const { LOCATION, ROOT } = screenNames;
 
 export interface ICartState {
   [key: string]: {
@@ -15,7 +18,8 @@ export type ProductsWithQuantity = {
 };
 
 export type RootStackParamList = {
-  Root: undefined;
+  [ROOT]: undefined;
+  [LOCATION]: undefined;
   NotFound: undefined;
 };
 
