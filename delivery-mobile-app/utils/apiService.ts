@@ -1,5 +1,6 @@
-import { omit } from "lodash";
-import storageService from "./storageService";
+import { omit } from 'lodash';
+import storageService from './storageService';
+import { loaderService } from './loader';
 const FETCH_TIMEOUT = 10000;
 
 interface IRequestInit extends RequestInit {
@@ -13,7 +14,7 @@ const apiService = (url: string) => {
     options: IRequestInit,
     timeout?: number
   ): Promise<T> => {
-    const optionsFormater: RequestInit = omit(options, "body");
+    const optionsFormater: RequestInit = omit(options, 'body');
 
     if (options.params) {
       endpoint = `${endpoint}?${new URLSearchParams(
@@ -24,7 +25,13 @@ const apiService = (url: string) => {
     if (options.body) {
       optionsFormater.body = JSON.stringify(options.body);
     }
-    return fetchWithTimeout(endpoint, optionsFormater, timeout);
+
+    try {
+      loaderService.show();
+      return fetchWithTimeout(endpoint, optionsFormater, timeout);
+    } finally {
+      loaderService.hide()
+    }
   };
 
   const fetchWithTimeout = async <T>(
@@ -39,13 +46,13 @@ const apiService = (url: string) => {
     const timeOutPromise = new Promise((_, reject) => {
       timeoutId = setTimeout(() => {
         abortController.abort();
-        reject(new Error("fetch request timeout"));
+        reject(new Error('fetch request timeout'));
       }, timeout);
     });
 
     try {
       const headers: HeadersInit = {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       };
 
       const userToken = storageService.getToken();
@@ -71,8 +78,8 @@ const apiService = (url: string) => {
       return response;
     } catch (error) {
       if (
-        (error.message === "fetch request timeout" ||
-          error.message === "Network request failed") &&
+        (error.message === 'fetch request timeout' ||
+          error.message === 'Network request failed') &&
         attempt < 3
       ) {
         return await fetchWithTimeout(url, options, timeout, ++attempt);
@@ -80,15 +87,14 @@ const apiService = (url: string) => {
         throw error;
       }
     }
-    // return
   };
 
   function get<T>(endpoint: string, options?: IRequestInit, timeout?: number) {
-    return request<T>(endpoint, { ...options, method: "GET" }, timeout);
+    return request<T>(endpoint, { ...options, method: 'GET' }, timeout);
   }
 
   function post<T>(endpoint: string, options?: IRequestInit, timeout?: number) {
-    return request<T>(endpoint, { ...options, method: "POST" }, timeout);
+    return request<T>(endpoint, { ...options, method: 'POST' }, timeout);
   }
 
   //   function patch(endpoint, config) {

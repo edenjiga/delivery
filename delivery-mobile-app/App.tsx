@@ -7,6 +7,7 @@ import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import { store } from "./store";
+import Loader from './components/Loader'
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -20,6 +21,7 @@ export default function App() {
         <SafeAreaProvider>
           <Navigation colorScheme={colorScheme} />
           <StatusBar />
+          <Loader />
         </SafeAreaProvider>
       </Provider>
     );

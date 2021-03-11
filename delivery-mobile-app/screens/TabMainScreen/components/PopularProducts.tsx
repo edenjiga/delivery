@@ -19,9 +19,8 @@ export default () => {
           _sort: "unitsInStock:desc",
         });
         setProductState(popular);
-        console.log(popular.map(({ _id }) => _id));
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     };
 
