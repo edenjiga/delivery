@@ -4,15 +4,18 @@ import { StyleSheet } from "react-native";
 import { View } from "@/components/Themed";
 import { PopularProducts, SpecialOffers, SearchProduct } from "./components";
 import { ScrollView } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <SearchProduct />
-        <SpecialOffers />
-        <PopularProducts />
-      </ScrollView>
+      <SafeAreaView>
+        <ScrollView>
+          {/* <SearchProduct /> */}
+          <SpecialOffers />
+          <PopularProducts />
+        </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }

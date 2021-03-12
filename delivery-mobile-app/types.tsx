@@ -27,10 +27,7 @@ export type BottomTabParamList = {
   TabCart: undefined;
   TabMain: undefined;
   TabThree: undefined;
-};
-
-export type TabOneParamList = {
-  TabOneScreen: undefined;
+  TabSearch: undefined;
 };
 
 export type TabTwoParamList = {

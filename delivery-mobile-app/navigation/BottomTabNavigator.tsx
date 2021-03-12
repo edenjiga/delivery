@@ -6,8 +6,8 @@ import * as React from "react";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import TabTwoScreen from "../screens/TabTwoScreen";
-import { TabCartScreen, TabMainScreen } from "../screens";
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from "../types";
+import { TabCartScreen, TabMainScreen, TabSearchScreen } from "../screens";
+import { BottomTabParamList, TabTwoParamList } from "../types";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -31,6 +31,16 @@ export default function BottomTabNavigator() {
       <BottomTab.Screen
         name="TabCart"
         component={TabCartScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
+
+      <BottomTab.Screen
+        name="TabSearch"
+        component={TabSearchScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-code" color={color} />
