@@ -36,6 +36,9 @@
       "type": "integer",
       "required": true,
       "min": 1
+    },
+    "description": {
+      "type": "string"
     }
   }
 }
