@@ -20,7 +20,7 @@ type FormValues = {
 };
 
 interface Props {
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: StackNavigationProp<RootStackParamList, SCREEN_NAMES.LOCATION>;
 }
 
 interface IState {

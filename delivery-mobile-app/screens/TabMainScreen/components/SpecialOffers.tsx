@@ -2,15 +2,13 @@ import React, { useEffect, useState } from "react";
 import { View, Text } from "@/components/Themed";
 import { getProducts } from "@/api/products";
 import { Product } from "@edenjiga/delivery-common";
-import { StyleSheet, Image, Button } from "react-native";
+import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "@/constants/Colors";
-import { useDispatch } from "react-redux";
-import { addProductAction } from "@/store/actions/cart";
+import { ProductCardVertical } from "@/components";
 
 export default () => {
-  const dispatch = useDispatch();
   const [products, setProductState] = useState<Product[]>([]);
   useEffect(() => {
     const getProductsInPromotion = async () => {
@@ -19,6 +17,7 @@ export default () => {
           discount_null: false,
           _limit: 5,
         });
+
         setProductState(productsInOffers);
       } catch (e) {
         //TODO: handle error
@@ -32,24 +31,13 @@ export default () => {
     <SafeAreaView>
       <Text>Ofertas especiales</Text>
       <View style={{ height: 143 }}>
-        <ScrollView horizontal={true} style={styles.container}>
+        <ScrollView
+          horizontal={true}
+          style={styles.container}
+          showsHorizontalScrollIndicator={false}
+        >
           {products.map((product) => (
-            <View style={styles.products} key={`special-${product._id}`}>
-              {!!product.Imagen && (
-                <Image
-                  style={styles.productImage}
-                  source={{
-                    uri: product.Imagen.url,
-                  }}
-                />
-              )}
-              <Text>{product.name}</Text>
-              <Text>{product.price}</Text>
-              <Button
-                title="Add"
-                onPress={() => dispatch(addProductAction(product))}
-              />
-            </View>
+            <ProductCardVertical product={product} key={product._id} />
           ))}
         </ScrollView>
       </View>

@@ -26,35 +26,38 @@ const TabSearchScreenContainer = () => {
 
   const { isLoading, products, text, timer }: State = state;
 
-  const onChangeText = useCallback((value) => {
-    clearTimeout(timer);
+  const onChangeText = useCallback(
+    (value) => {
+      clearTimeout(timer);
 
-    const newTimer = setTimeout(async () => {
-      setState({ isLoading: true });
+      const newTimer = setTimeout(async () => {
+        setState({ isLoading: true });
 
-      if (value) {
-        const products = await getProducts({
-          name_contains: value,
-        });
+        if (value) {
+          const products = await getProducts({
+            name_contains: value,
+          });
 
-        return setState({
+          return setState({
+            isLoading: false,
+            products,
+            text: value,
+          });
+        }
+
+        setState({
           isLoading: false,
-          products,
+          products: [],
           text: value,
         });
-      }
+      }, 1000);
 
       setState({
-        isLoading: false,
-        products: [],
-        text: value,
+        timer: newTimer,
       });
-    }, 1000);
-
-    setState({
-      timer: newTimer,
-    });
-  }, []);
+    },
+    [timer]
+  );
 
   return (
     <TabSearchScreen
