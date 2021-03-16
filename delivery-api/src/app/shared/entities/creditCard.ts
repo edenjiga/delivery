@@ -1,4 +1,4 @@
-import CREDIT_CARD_STATUS from '@/constants/creditCardStatus';
+import {CREDIT_CARD_STATUS} from '@edenjiga/delivery-common'
 
 export class CreditCard {
   name: string;

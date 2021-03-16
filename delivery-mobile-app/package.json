@@ -12,7 +12,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@edenjiga/delivery-common": "^1.0.5",
+    "@edenjiga/delivery-common": "^1.0.7",
     "@expo/vector-icons": "12.0.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "5.11.2",

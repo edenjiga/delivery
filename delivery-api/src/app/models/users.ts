@@ -2,8 +2,8 @@ import { Schema, Document } from 'mongoose';
 import isEmail from 'validator/lib/isEmail';
 import * as _ from 'lodash';
 import { USER_ROLES } from '@/constants';
-import CREDIT_CARD_STATUS from '@/constants/creditCardStatus';
 import { IUser } from '@/shared/entities/users';
+import { CREDIT_CARD_STATUS } from '@edenjiga/delivery-common';
 
 export interface IUserDoc extends IUser, Document {}
 
