@@ -12,7 +12,7 @@ interface ProductImageFormat {
 
 export interface Product {
   unitsInStock: number;
-  description: number;
+  description: string;
   _id: string;
   name: string;
   published_at: string;

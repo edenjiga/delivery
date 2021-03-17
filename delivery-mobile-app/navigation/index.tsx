@@ -7,7 +7,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
 
-import { NotFoundScreen, LocationScreen } from "../screens";
+import {
+  NotFoundScreen,
+  LocationScreen,
+  LoginScreen,
+  OrderScreen,
+  VerifyCodeScreen,
+} from "../screens";
 import { RootStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTabNavigator";
 import LinkingConfiguration from "./LinkingConfiguration";
@@ -48,6 +54,12 @@ function RootNavigator() {
     >
       <Stack.Screen name={SCREEN_NAMES.ROOT} component={BottomTabNavigator} />
       <Stack.Screen name={SCREEN_NAMES.LOCATION} component={LocationScreen} />
+      <Stack.Screen name={SCREEN_NAMES.LOGIN} component={LoginScreen} />
+      <Stack.Screen
+        name={SCREEN_NAMES.VERIFY_CODE}
+        component={VerifyCodeScreen}
+      />
+      <Stack.Screen name={SCREEN_NAMES.ORDER} component={OrderScreen} />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}

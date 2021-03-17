@@ -1,6 +1,7 @@
 import { Product } from "@edenjiga/delivery-common";
 
 const product: Product = {
+  description: "some description",
   unitsInStock: 100,
   _id: "60367e196a3b100012c87853",
   name: "Club colombia dorada",

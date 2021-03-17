@@ -1,1 +1,1 @@
-export { default } from "./TabCartScreen";
+export { default } from "./TabCartScreen.container";

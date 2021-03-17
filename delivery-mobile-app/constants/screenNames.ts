@@ -3,6 +3,7 @@ enum SCREEN_NAMES {
   LOCATION = "LOCATION",
   ROOT = "ROOT",
   VERIFY_CODE = "VERIFY_CODE",
+  ORDER = "ORDER",
 }
 
 export default SCREEN_NAMES;

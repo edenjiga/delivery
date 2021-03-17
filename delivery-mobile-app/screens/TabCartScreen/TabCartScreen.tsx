@@ -1,22 +1,31 @@
+import React, { FC } from "react";
 import { View, Text } from "@/components/Themed";
-import { RootState } from "@/store";
-import { ICartState } from "@/types";
-import React from "react";
+import { ProductWithQuantity } from "@/types";
+import { Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useSelector } from "react-redux";
 
-export default () => {
-  const cart = useSelector<RootState, ICartState>((state) => state.cart);
-
-  return (
-    <SafeAreaView>
-      <View>
-        {Object.values(cart).map(({ product, quantity }) => (
-          <Text key={`tabCart-${product._id}`}>
-            {product.name} {quantity}
-          </Text>
-        ))}
-      </View>
-    </SafeAreaView>
-  );
+type Props = {
+  onGoToPay(): void;
+  productWithQuantity: ProductWithQuantity[];
+  total: number;
 };
+
+const TabCartScreen: FC<Props> = ({
+  onGoToPay,
+  productWithQuantity = [],
+  total,
+}) => (
+  <SafeAreaView>
+    <View>
+      {productWithQuantity.map(({ product, quantity }) => (
+        <Text key={`tabCart-${product._id}`}>
+          {product.name} {quantity}
+        </Text>
+      ))}
+
+      <Button title={`go to pay $ ${total}`} onPress={onGoToPay} />
+    </View>
+  </SafeAreaView>
+);
+
+export default TabCartScreen;
