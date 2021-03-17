@@ -12,7 +12,7 @@ export interface ICartState {
 export interface IuserState {
   loadingStatus: REQUEST_STATUS;
   error: {};
-  data: {} | UserPublicFields;
+  data: UserPublicFields;
 }
 
 export type ProductWithQuantity = {

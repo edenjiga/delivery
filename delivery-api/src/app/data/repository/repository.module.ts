@@ -9,7 +9,6 @@ import * as MongoPaginateV2 from 'mongoose-paginate-v2';
 import * as MongoAutopopulate from 'mongoose-autopopulate';
 
 const commonModule = [UsersRepository, OrdersRepository];
-
 @Module({
   imports: [
     MongooseModule.forRoot(environment.mongo.url, {

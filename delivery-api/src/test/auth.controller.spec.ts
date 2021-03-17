@@ -12,16 +12,21 @@ describe('Auth controllers', () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
-
     app = moduleRef.createNestApplication();
-
     app.useGlobalPipes(
       new ValidationPipe({
         transform: true,
       }),
     );
+    try {
+      await app.init();
+    } catch (e) {
+      console.error(e);
+    }
+  });
 
-    await app.init();
+  afterAll(async () => {
+    await app.close();
   });
 
   describe('POST /login', () => {
@@ -31,7 +36,6 @@ describe('Auth controllers', () => {
       const { body, status } = await request(app.getHttpServer())
         .post(URL)
         .send();
-
       expect(status).toEqual(400);
       expect(body.message[0]).toEqual('email must be an email');
     });

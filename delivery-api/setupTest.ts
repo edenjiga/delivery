@@ -3,6 +3,7 @@ import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { MongoMemoryReplSet } from 'mongodb-memory-server';
 import * as mongoose from 'mongoose';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const bcrypt = require('bcrypt');
 
 import modelNames from '@/constants/modelNames';
@@ -59,16 +60,10 @@ beforeAll(async () => {
     await mongod.waitUntilRunning();
     const mongoUri = await mongod.getUri();
 
-    await mongoose.connect(
-      mongoUri,
-      {
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-      },
-      (err) => {
-        if (err) console.error(err, 'err');
-      },
-    );
+    await mongoose.connect(mongoUri, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    });
   } catch (e) {
     console.log(e, 'error');
   }
@@ -76,17 +71,22 @@ beforeAll(async () => {
 
 beforeEach(async () => {
   //delete element in the collection
-  const collections = await mongoose.connection.db?.collections();
-  collections &&
-    (await Promise.all(
-      collections.map(async (collection) => await collection.deleteMany({})),
-    ));
+  try {
+    const collections = await mongoose.connection.db?.collections();
+    collections &&
+      (await Promise.all(
+        collections.map((collection) => collection.deleteMany({})),
+      ));
+  } catch (err) {
+    console.error(err, 'err');
+  }
 });
 
 afterAll(async () => {
+  console.log('DISCONECT AFET ALLL *********');
   await mongoose.disconnect();
   await mongod.stop();
-});
+}, 100000);
 
 global.createUser = async (user = {}) => {
   const password = await bcrypt.hash('123456', process.env.HASH_SALT);

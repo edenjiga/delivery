@@ -1,6 +1,7 @@
 import { USER_ROLES } from "../constants";
 
 export interface UserPublicFields {
+  _id: string;
   code?: string;
   email?: string;
   identification?: string;

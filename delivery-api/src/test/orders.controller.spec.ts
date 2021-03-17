@@ -32,7 +32,7 @@ import {
   PAYMENT_STATUS,
   USER_ROLES,
 } from '@/constants';
-import CREDIT_CARD_STATUS from '@/constants/creditCardStatus';
+import { CREDIT_CARD_STATUS } from '@edenjiga/delivery-common';
 import { Types } from 'mongoose';
 import {
   PaymentError,

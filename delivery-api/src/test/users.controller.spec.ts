@@ -3,7 +3,7 @@ import { Test } from '@nestjs/testing';
 
 import { AppModule } from '@/app.module';
 import { INestApplication } from '@nestjs/common';
-import CREDIT_CARD_STATUS from '@/constants/creditCardStatus';
+import { CREDIT_CARD_STATUS } from '@edenjiga/delivery-common';
 
 describe('User Controller', () => {
   let app: INestApplication;

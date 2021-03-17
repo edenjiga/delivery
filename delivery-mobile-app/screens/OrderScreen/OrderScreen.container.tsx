@@ -15,13 +15,16 @@ interface Props {
 
 export default ({ navigation }: Props) => {
   const { user } = useSelector<RootState, RootState>((state) => state);
-  const { loadingStatus } = user;
+  const { loadingStatus, data: userData } = user;
 
   useEffect(() => {
     if (loadingStatus !== RequestStatus.REQUEST_LOADED) {
       navigation.replace(SCREEN_NAMES.LOGIN, {
         goTo: SCREEN_NAMES.ORDER,
       });
+    }
+
+    if (!userData.name || !userData.email || !userData.identification) {
     }
   }, []);
   return <OrderScreen />;
