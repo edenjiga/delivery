@@ -1,4 +1,5 @@
 import { USER_ROLES } from "../constants";
+import { Address } from "./address";
 
 export interface UserPublicFields {
   _id: string;
@@ -8,6 +9,7 @@ export interface UserPublicFields {
   name?: string;
   phone?: string;
   roles?: [USER_ROLES];
+  address: [Address];
   // creditCards?: CreditCard[];
   password?: string;
 }
