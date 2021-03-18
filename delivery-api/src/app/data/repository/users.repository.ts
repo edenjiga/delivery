@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { MODEL_NAMES } from '@/constants';
 import { IUserDoc } from '@/models';
 import { Model } from 'mongoose';
-import { CreditCard, IUser } from '@/shared';
+import { CreditCard } from '@edenjiga/delivery-common';
 
 @Injectable()
 export class UsersRepository {
@@ -22,7 +22,7 @@ export class UsersRepository {
     });
   }
 
-  public findOneAndUpdate(query, newData: IUser) {
+  public findOneAndUpdate(query, newData) {
     return this.userModel.findOneAndUpdate(query, newData);
   }
 

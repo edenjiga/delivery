@@ -11,16 +11,18 @@ import { IOrderDoc, IUserDoc } from '@/models';
 import { CreateOrderDto } from '@/shared';
 import { Products } from './src/test/remote/products';
 import { PAYMENT_METHODS } from '@/constants';
-import { IUser } from '@/shared/entities/users';
+import { UserPublicFields } from '@edenjiga/delivery-common';
 
 let identification = 0;
 declare global {
   namespace NodeJS {
     interface Global {
-      createUser(user: IUser): Promise<IUserDoc>;
+      createUser(
+        user: Omit<UserPublicFields, '_id' | 'address'>,
+      ): Promise<IUserDoc>;
       createUserAndGenerateJwtToken(
         app: INestApplication,
-        user?: IUser,
+        user?: UserPublicFields,
       ): Promise<{ user: IUserDoc; token: string }>;
       createHeaderWithAuthorization(token: string);
       createOrder(
@@ -29,7 +31,7 @@ declare global {
         order?,
       ): Promise<IOrderDoc>;
       createOrderInDb(order?): Promise<IOrderDoc>;
-      createJwt(app: INestApplication, user: IUser): Promise<string>;
+      createJwt(app: INestApplication, user: IUserDoc): Promise<string>;
     }
   }
 }
@@ -83,14 +85,13 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  console.log('DISCONECT AFET ALLL *********');
   await mongoose.disconnect();
   await mongod.stop();
 }, 100000);
 
 global.createUser = async (user = {}) => {
   const password = await bcrypt.hash('123456', process.env.HASH_SALT);
-  const defaultUser: IUser = {
+  const defaultUser: UserPublicFields = {
     phone: Math.round(Math.random() * 99999999999).toString(),
     code: '0000',
     email: 'email@email.com',
@@ -98,6 +99,7 @@ global.createUser = async (user = {}) => {
     name: 'name',
     password: password,
     ...user,
+    address: [],
   };
 
   identification++;

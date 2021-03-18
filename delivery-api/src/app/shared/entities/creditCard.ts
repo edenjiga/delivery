@@ -1,11 +1,4 @@
-import {CREDIT_CARD_STATUS} from '@edenjiga/delivery-common'
-
-export class CreditCard {
-  name: string;
-  paymentSourceId: string;
-  expiresAt: Date;
-  status: CREDIT_CARD_STATUS;
-}
+import { CreditCard } from '@edenjiga/delivery-common';
 
 export class CreateOrderCreditCard {
   name: CreditCard['name'];

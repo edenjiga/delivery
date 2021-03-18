@@ -1,5 +1,5 @@
 import { USER_ROLES } from '@/constants';
-import { IUser } from '..';
+import { IUserDoc } from '@/models';
 
-export const isUserAdmin = (user: IUser): boolean =>
+export const isUserAdmin = (user: IUserDoc): boolean =>
   user.roles.includes(USER_ROLES.ADMIN);

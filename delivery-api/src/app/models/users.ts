@@ -2,10 +2,12 @@ import { Schema, Document } from 'mongoose';
 import isEmail from 'validator/lib/isEmail';
 import * as _ from 'lodash';
 import { USER_ROLES } from '@/constants';
-import { IUser } from '@/shared/entities/users';
-import { CREDIT_CARD_STATUS } from '@edenjiga/delivery-common';
+import {
+  CREDIT_CARD_STATUS,
+  UserPublicFields,
+} from '@edenjiga/delivery-common';
 
-export interface IUserDoc extends IUser, Document {}
+export interface IUserDoc extends Omit<UserPublicFields, '_id'>, Document {}
 
 const creditCardSchema = new Schema({
   name: { type: String, required: true },
@@ -21,8 +23,25 @@ const creditCardSchema = new Schema({
   },
 });
 
+const addressSchema = new Schema({
+  name: String,
+  note: { type: String, required: true },
+  nomenclature: { type: String, required: true },
+  coordinates: {
+    required: true,
+    type: new Schema({
+      longitude: { type: String, required: true },
+      latitude: { type: String, required: true },
+    }),
+  },
+});
+
 const UsersSchema = new Schema(
   {
+    address: {
+      default: [],
+      type: [addressSchema],
+    },
     code: { type: String, maxlength: 4 },
     email: {
       type: String,

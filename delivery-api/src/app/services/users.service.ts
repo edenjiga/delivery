@@ -1,13 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { UsersRepository } from '@/data';
-import {
-  CreateOrderCreditCard,
-  CreateUserDto,
-  CreditCard,
-  IUser,
-} from '@/shared';
+import { CreateOrderCreditCard, CreateUserDto } from '@/shared';
 import { checkField } from '@/shared/utils/checkField';
 import { bcrypt } from '@/shared/utils';
+import { UserPublicFields, CreditCard } from '@edenjiga/delivery-common';
 
 @Injectable()
 export class UsersService {
@@ -17,7 +13,10 @@ export class UsersService {
     return this.userRepository.save(body);
   }
 
-  public createOrUpdateUserByPhone(phone: string, body: IUser) {
+  public createOrUpdateUserByPhone(
+    phone: string,
+    body: Omit<UserPublicFields, '_id' | 'address'>,
+  ) {
     const query = { phone };
     return this.userRepository.findOneAndUpdateOrCreate(query, body);
   }
@@ -49,7 +48,7 @@ export class UsersService {
     return this.userRepository.findById(id);
   }
 
-  public findByPhoneAndUpdate(phone: string, body: IUser) {
+  public findByPhoneAndUpdate(phone: string, body: UserPublicFields) {
     const query = { phone };
     return this.userRepository.findOneAndUpdate(query, body);
   }
@@ -59,7 +58,7 @@ export class UsersService {
     return this.userRepository.findOne(query);
   }
 
-  public findByIdAndUpdate(id, body: IUser) {
+  public findByIdAndUpdate(id, body: UserPublicFields) {
     return this.userRepository.findByIdAndUpdate(id, body);
   }
 

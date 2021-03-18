@@ -1,40 +1,31 @@
 import { IsEmail, IsOptional, IsString } from 'class-validator';
-import { USER_ROLES } from '@/constants';
-import { CreditCard } from '@/shared';
-
-export interface IUser {
-  code?: string;
-  email?: string;
-  identification?: string;
-  name?: string;
-  phone?: string;
-  roles?: [USER_ROLES];
-  creditCards?: CreditCard[];
-  password?: string;
-}
+import { UserPublicFields } from '@edenjiga/delivery-common';
 
 export class CreateUserDto {
   @IsOptional()
-  readonly identification: IUser['identification'];
+  readonly identification: UserPublicFields['identification'];
   @IsOptional()
-  readonly phone: IUser['phone'];
+  readonly phone: UserPublicFields['phone'];
 
   @IsOptional()
   @IsEmail()
-  readonly email: IUser['email'];
+  readonly email: UserPublicFields['email'];
 
   @IsOptional()
   @IsString()
-  password: IUser['password'];
+  password: UserPublicFields['password'];
 
   readonly roles: [string];
 }
 
 export class IPatchUserDto {
   @IsOptional()
-  readonly identification: IUser['identification'];
+  readonly identification: UserPublicFields['identification'];
   @IsOptional()
-  readonly phone: IUser['phone'];
+  readonly phone: UserPublicFields['phone'];
   @IsOptional()
-  readonly name: IUser['name'];
+  readonly name: UserPublicFields['name'];
+
+  @IsOptional()
+  readonly address: UserPublicFields['address'];
 }
