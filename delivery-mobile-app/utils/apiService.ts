@@ -1,6 +1,6 @@
-import { omit } from 'lodash';
-import storageService from './storageService';
-import { loaderService } from './loader';
+import { omit } from "lodash";
+import storageService from "./storageService";
+import { loaderService } from "./loader";
 const FETCH_TIMEOUT = 10000;
 
 interface IRequestInit extends RequestInit {
@@ -9,12 +9,12 @@ interface IRequestInit extends RequestInit {
 }
 
 const apiService = (url: string) => {
-  const request = <T>(
+  const request = async <T>(
     endpoint: string,
     options: IRequestInit,
     timeout?: number
   ): Promise<T> => {
-    const optionsFormater: RequestInit = omit(options, 'body');
+    const optionsFormater: RequestInit = omit(options, "body");
 
     if (options.params) {
       endpoint = `${endpoint}?${new URLSearchParams(
@@ -28,9 +28,15 @@ const apiService = (url: string) => {
 
     try {
       loaderService.show();
-      return fetchWithTimeout(endpoint, optionsFormater, timeout);
+      const response = await fetchWithTimeout<T>(
+        endpoint,
+        optionsFormater,
+        timeout
+      );
+
+      return response;
     } finally {
-      loaderService.hide()
+      loaderService.hide();
     }
   };
 
@@ -46,13 +52,13 @@ const apiService = (url: string) => {
     const timeOutPromise = new Promise((_, reject) => {
       timeoutId = setTimeout(() => {
         abortController.abort();
-        reject(new Error('fetch request timeout'));
+        reject(new Error("fetch request timeout"));
       }, timeout);
     });
 
     try {
       const headers: HeadersInit = {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       };
 
       const userToken = storageService.getToken();
@@ -75,36 +81,44 @@ const apiService = (url: string) => {
       if (!result.ok) {
         throw response;
       }
+
       return response;
     } catch (error) {
       if (
-        (error.message === 'fetch request timeout' ||
-          error.message === 'Network request failed') &&
+        (error.message === "fetch request timeout" ||
+          error.message === "Network request failed") &&
         attempt < 3
       ) {
         return await fetchWithTimeout(url, options, timeout, ++attempt);
-      } else {
-        throw error;
       }
+
+      // if (error.statusCode === 401) {
+      //   storageService.setToken("");
+      // }
+      throw error;
     }
   };
 
   function get<T>(endpoint: string, options?: IRequestInit, timeout?: number) {
-    return request<T>(endpoint, { ...options, method: 'GET' }, timeout);
+    return request<T>(endpoint, { ...options, method: "GET" }, timeout);
   }
 
   function post<T>(endpoint: string, options?: IRequestInit, timeout?: number) {
-    return request<T>(endpoint, { ...options, method: 'POST' }, timeout);
+    return request<T>(endpoint, { ...options, method: "POST" }, timeout);
   }
 
-  //   function patch(endpoint, config) {
-  //     return request({ method: "PATCH", endpoint, authToken, body });
-  //   }
+  function patch<T>(
+    endpoint: string,
+    options?: IRequestInit,
+    timeout?: number
+  ) {
+    return request<T>(endpoint, { ...options, method: "PATCH" }, timeout);
+  }
 
   return {
     get,
     post,
-    // patch,
+    patch,
   };
 };
 

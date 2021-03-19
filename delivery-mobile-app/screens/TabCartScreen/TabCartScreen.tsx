@@ -23,7 +23,9 @@ const TabCartScreen: FC<Props> = ({
         </Text>
       ))}
 
-      <Button title={`go to pay $ ${total}`} onPress={onGoToPay} />
+      {!!productWithQuantity.length && (
+        <Button title={`go to pay $ ${total}`} onPress={onGoToPay} />
+      )}
     </View>
   </SafeAreaView>
 );

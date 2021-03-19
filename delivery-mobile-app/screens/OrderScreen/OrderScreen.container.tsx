@@ -18,13 +18,17 @@ export default ({ navigation }: Props) => {
   const { loadingStatus, data: userData } = user;
 
   useEffect(() => {
+    const goTo = SCREEN_NAMES.ORDER;
     if (loadingStatus !== RequestStatus.REQUEST_LOADED) {
-      navigation.replace(SCREEN_NAMES.LOGIN, {
-        goTo: SCREEN_NAMES.ORDER,
+      return navigation.replace(SCREEN_NAMES.LOGIN, {
+        goTo,
       });
     }
 
     if (!userData.name || !userData.email || !userData.identification) {
+      return navigation.replace(SCREEN_NAMES.USER_REQUIRED_FIELDS_FORM, {
+        goTo,
+      });
     }
   }, []);
   return <OrderScreen />;

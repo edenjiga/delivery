@@ -2,10 +2,10 @@ import React, { FC, useCallback, useState } from "react";
 import { Alert } from "react-native";
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { sendSms } from "@/api/auth";
 import SCREEN_NAMES from "@/constants/screenNames";
 import { RootStackParamList } from "@/types";
 import LoginScreen from "./LoginScreen";
+import { sendSms } from "@/api/auth";
 
 interface Props {
   navigation: StackNavigationProp<RootStackParamList>;

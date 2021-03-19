@@ -15,6 +15,7 @@ spec:
       containers:
         - name: delivery-api
           image: registry.digitalocean.com/delivery/delivery-api:qa
+          imagePullPolicy: Always
           env:
             - name: PRODUCT_API_URL
               value: http://products-srv:1337

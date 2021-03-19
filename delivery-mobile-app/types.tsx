@@ -3,7 +3,14 @@ import screenNames from "@/constants/screenNames";
 import REQUEST_STATUS from "@/constants/RequestStatus";
 import SCREEN_NAMES from "@/constants/screenNames";
 
-const { LOGIN, LOCATION, ROOT, ORDER, VERIFY_CODE } = screenNames;
+const {
+  LOGIN,
+  LOCATION,
+  ROOT,
+  ORDER,
+  USER_REQUIRED_FIELDS_FORM,
+  VERIFY_CODE,
+} = screenNames;
 
 export interface ICartState {
   [key: string]: ProductWithQuantity;
@@ -24,6 +31,7 @@ export type RootStackParamList = {
   [ROOT]: undefined;
   [LOCATION]: undefined;
   [LOGIN]: { goTo?: SCREEN_NAMES };
+  [USER_REQUIRED_FIELDS_FORM]: { goTo: SCREEN_NAMES };
   [VERIFY_CODE]: {
     phone: string;
     goTo?: SCREEN_NAMES;

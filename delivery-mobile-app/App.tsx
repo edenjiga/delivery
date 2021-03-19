@@ -7,9 +7,9 @@ import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import { store } from "./store";
-import Loader from './components/Loader'
+import Loader from "./components/Loader";
 
-export default function App() {
+function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
@@ -17,13 +17,17 @@ export default function App() {
     return null;
   } else {
     return (
-      <Provider store={store}>
-        <SafeAreaProvider>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-          <Loader />
-        </SafeAreaProvider>
-      </Provider>
+      <SafeAreaProvider>
+        <Navigation colorScheme={colorScheme} />
+        <StatusBar />
+        <Loader />
+      </SafeAreaProvider>
     );
   }
 }
+
+export default () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);

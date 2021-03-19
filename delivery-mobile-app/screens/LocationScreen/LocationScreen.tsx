@@ -1,4 +1,4 @@
-import { View, Text } from "@/components/Themed";
+import { View, Text, KeyboardAvoidingView } from "@/components/Themed";
 import React from "react";
 import MapView, { Region } from "react-native-maps";
 import {
@@ -7,8 +7,6 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
 } from "react-native";
 import Colors from "@/constants/Colors";
 
@@ -28,10 +26,7 @@ export default ({
   onRegionChangeComplete,
   setValue,
 }: Props) => (
-  <KeyboardAvoidingView
-    behavior={Platform.OS === "ios" ? "padding" : "height"}
-    style={styles.container}
-  >
+  <KeyboardAvoidingView>
     <View style={styles.content}>
       <View style={styles.mapBox}>
         <MapView

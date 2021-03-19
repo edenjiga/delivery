@@ -12,6 +12,7 @@ import {
   LocationScreen,
   LoginScreen,
   OrderScreen,
+  UserRequiredFieldFormScreen,
   VerifyCodeScreen,
 } from "../screens";
 import { RootStackParamList } from "../types";
@@ -55,11 +56,15 @@ function RootNavigator() {
       <Stack.Screen name={SCREEN_NAMES.ROOT} component={BottomTabNavigator} />
       <Stack.Screen name={SCREEN_NAMES.LOCATION} component={LocationScreen} />
       <Stack.Screen name={SCREEN_NAMES.LOGIN} component={LoginScreen} />
+      <Stack.Screen name={SCREEN_NAMES.ORDER} component={OrderScreen} />
+      <Stack.Screen
+        name={SCREEN_NAMES.USER_REQUIRED_FIELDS_FORM}
+        component={UserRequiredFieldFormScreen}
+      />
       <Stack.Screen
         name={SCREEN_NAMES.VERIFY_CODE}
         component={VerifyCodeScreen}
       />
-      <Stack.Screen name={SCREEN_NAMES.ORDER} component={OrderScreen} />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
