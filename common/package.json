@@ -1,6 +1,6 @@
 {
   "name": "@edenjiga/delivery-common",
-  "version": "1.0.12",
+  "version": "1.0.15",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -19,5 +19,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "class-transformer": "0.3.1",
+    "class-validator": "0.13.1"
+  }
 }

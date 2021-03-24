@@ -1,4 +1,4 @@
-import { PAYMENT_STATUS } from '@/constants';
+import { PAYMENT_STATUS } from '@edenjiga/delivery-common';
 
 export interface WompiSubmitPayResponse {
   data: {

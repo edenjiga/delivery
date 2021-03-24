@@ -15,10 +15,7 @@ import { UserIncompleteError } from '@/shared/errors/user.error';
 import { ProductsDataSource } from '@/data';
 import {
   BadPriceError,
-  CreateOrderDto,
   InvalidPaymentError,
-  IPayment,
-  IProduct,
   OrderBadStatusUpdateError,
   OrderNotCancellableError,
   OrderNotFoundError,
@@ -26,8 +23,16 @@ import {
 } from '@/shared';
 
 import { Products } from './remote/products';
-import { ORDER_STATUS, PAYMENT_STATUS, USER_ROLES } from '@/constants';
-import { CREDIT_CARD_STATUS, PAYMENT_METHODS } from '@edenjiga/delivery-common';
+import { USER_ROLES } from '@/constants';
+import {
+  CreateOrderDto,
+  CREDIT_CARD_STATUS,
+  IPayment,
+  ORDER_STATUS,
+  PAYMENT_METHODS,
+  PAYMENT_STATUS,
+  Product,
+} from '@edenjiga/delivery-common';
 import { Types } from 'mongoose';
 import {
   PaymentError,
@@ -192,7 +197,7 @@ describe('orders controller', () => {
         address: {
           name: 'name',
           nomenclature: 'address.nomenclature',
-          coordinate: {
+          coordinates: {
             latitude: '-75.444',
             longitude: '14.000',
           },
@@ -279,7 +284,7 @@ describe('orders controller', () => {
     });
 
     it('should return a 400 code if there is not unit disponible', async () => {
-      productsDataSource.getProducts = (): Promise<IProduct[]> => {
+      productsDataSource.getProducts = (): Promise<Product[]> => {
         return Promise.resolve([
           Products[0],
           { ...Products[1], unitsInStock: 0 },

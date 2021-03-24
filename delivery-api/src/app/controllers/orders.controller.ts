@@ -10,7 +10,8 @@ import {
 } from '@nestjs/common';
 import { JwtAuthGuard } from '@/auth';
 import { OrdersUseCases } from '@/useCases';
-import { CreateOrderDto, UpdateOrderDto } from '@/shared';
+import { UpdateOrderDto } from '@/shared';
+import { CreateOrderDto } from '@edenjiga/delivery-common';
 
 @UseGuards(JwtAuthGuard)
 @Controller('orders')

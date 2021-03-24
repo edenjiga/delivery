@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-namespace */
+import 'reflect-metadata';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { MongoMemoryReplSet } from 'mongodb-memory-server';
@@ -8,9 +9,12 @@ const bcrypt = require('bcrypt');
 
 import modelNames from '@/constants/modelNames';
 import { IOrderDoc, IUserDoc } from '@/models';
-import { CreateOrderDto } from '@/shared';
 import { Products } from './src/test/remote/products';
-import { PAYMENT_METHODS, UserPublicFields } from '@edenjiga/delivery-common';
+import {
+  CreateOrderDto,
+  PAYMENT_METHODS,
+  UserPublicFields,
+} from '@edenjiga/delivery-common';
 
 let identification = 0;
 declare global {
@@ -143,7 +147,7 @@ global.createOrder = async (app, token, order?) => {
     address: {
       name: 'name',
       nomenclature: 'address.nomenclature',
-      coordinate: {
+      coordinates: {
         latitude: '-75.444',
         longitude: '14.000',
       },

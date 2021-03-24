@@ -1,9 +1,10 @@
-import { IProduct } from '@/shared';
+import { Product } from '@edenjiga/delivery-common';
 
-export const Products: IProduct[] = [
+export const Products: Product[] = [
   {
     unitsInStock: 2,
     _id: '5fe76bf3240ea4000e0522c2',
+    description: 'some description',
     name: 'normal',
     published_at: '2020-12-26T16:59:33.975Z',
     createdAt: '2020-12-26T16:59:31.765Z',
@@ -25,6 +26,56 @@ export const Products: IProduct[] = [
       updatedAt: '2020-12-26T16:59:31.798Z',
       __v: 0,
       id: '5fe6b3444b86bb000e077523',
+      formats: {
+        thumbnail: {
+          name: 'thumbnail_CLUBCOLDORADA_1_1024x1024.jpg',
+          hash: 'thumbnail_CLUBCOLDORADA_1_1024x1024_3ed763da0f',
+          ext: '.jpg',
+          mime: 'image/jpeg',
+          width: 95,
+          height: 156,
+          size: 2.26,
+          path: null,
+          url:
+            'https://delivery-app-qa.s3.amazonaws.com/thumbnail_CLUBCOLDORADA_1_1024x1024_3ed763da0f.jpg',
+        },
+        medium: {
+          name: 'thumbnail_CLUBCOLDORADA_1_1024x1024.jpg',
+          hash: 'thumbnail_CLUBCOLDORADA_1_1024x1024_3ed763da0f',
+          ext: '.jpg',
+          mime: 'image/jpeg',
+          width: 95,
+          height: 156,
+          size: 2.26,
+          path: null,
+          url:
+            'https://delivery-app-qa.s3.amazonaws.com/thumbnail_CLUBCOLDORADA_1_1024x1024_3ed763da0f.jpg',
+        },
+        large: {
+          name: 'thumbnail_CLUBCOLDORADA_1_1024x1024.jpg',
+          hash: 'thumbnail_CLUBCOLDORADA_1_1024x1024_3ed763da0f',
+          ext: '.jpg',
+          mime: 'image/jpeg',
+          width: 95,
+          height: 156,
+          size: 2.26,
+          path: null,
+          url:
+            'https://delivery-app-qa.s3.amazonaws.com/thumbnail_CLUBCOLDORADA_1_1024x1024_3ed763da0f.jpg',
+        },
+        small: {
+          name: 'thumbnail_CLUBCOLDORADA_1_1024x1024.jpg',
+          hash: 'thumbnail_CLUBCOLDORADA_1_1024x1024_3ed763da0f',
+          ext: '.jpg',
+          mime: 'image/jpeg',
+          width: 95,
+          height: 156,
+          size: 2.26,
+          path: null,
+          url:
+            'https://delivery-app-qa.s3.amazonaws.com/thumbnail_CLUBCOLDORADA_1_1024x1024_3ed763da0f.jpg',
+        },
+      },
     },
     price: 2000,
     discount: 10,
@@ -44,5 +95,6 @@ export const Products: IProduct[] = [
     price: 2000,
     finalPrice: 2000,
     discountValue: 0,
+    description: 'some description 2',
   },
 ];

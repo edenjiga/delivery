@@ -1,5 +1,5 @@
-import { ORDER_STATUS } from '@/constants';
 import { OrdersRepository } from '@/data';
+import { ORDER_STATUS } from '@edenjiga/delivery-common';
 import { Injectable } from '@nestjs/common';
 import { format } from 'date-fns';
 

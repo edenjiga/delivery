@@ -1,4 +1,3 @@
-import { ORDER_STATUS, PAYMENT_STATUS } from '@/constants';
 import { IOrderDoc, IUserDoc } from '@/models';
 import * as _ from 'lodash';
 import {
@@ -9,10 +8,7 @@ import {
 } from '@/services';
 import {
   BadPriceError,
-  CreateOrderDto,
   InvalidPaymentError,
-  IOrder,
-  IProduct,
   OrderNotFoundError,
   OrderNotCancellableError,
   ProductOutStockError,
@@ -30,10 +26,17 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { PAYMENT_METHODS } from '@edenjiga/delivery-common';
+import {
+  CreateOrderDto,
+  IOrder,
+  ORDER_STATUS,
+  PAYMENT_METHODS,
+  PAYMENT_STATUS,
+  Product,
+} from '@edenjiga/delivery-common';
 
 interface IProductWithUnits {
-  product: IProduct;
+  product: Product;
   unitsPurchased: number;
 }
 
@@ -177,7 +180,7 @@ export class OrdersUseCases {
 
   private verifyProductInStock(
     dataProducts: { id: string; unitsPurchased: number }[],
-    products: IProduct[],
+    products: Product[],
   ): IProductWithUnits[] {
     const productsWithQuantity: IProductWithUnits[] = [];
     for (let index = 0; index < dataProducts.length; index++) {

@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { UsersRepository } from '@/data';
-import { CreateOrderCreditCard, CreateUserDto } from '@/shared';
+import { CreateUserDto } from '@/shared';
 import { checkField } from '@/shared/utils/checkField';
 import { bcrypt } from '@/shared/utils';
-import { UserPublicFields, CreditCard } from '@edenjiga/delivery-common';
+import {
+  UserPublicFields,
+  CreditCard,
+  CreateOrderCreditCard,
+} from '@edenjiga/delivery-common';
 
 @Injectable()
 export class UsersService {
