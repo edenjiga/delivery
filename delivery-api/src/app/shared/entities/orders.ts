@@ -1,4 +1,5 @@
-import { ORDER_STATUS, PAYMENT_METHODS, PAYMENT_STATUS } from '@/constants';
+import { ORDER_STATUS, PAYMENT_STATUS } from '@/constants';
+import { PAYMENT_METHODS } from '@edenjiga/delivery-common';
 import { Type } from 'class-transformer';
 import {
   IsArray,

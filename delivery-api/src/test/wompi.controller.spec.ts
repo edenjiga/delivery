@@ -2,7 +2,8 @@ import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { AppModule } from '@/app.module';
 import { INestApplication } from '@nestjs/common';
-import { PAYMENT_METHODS, PAYMENT_STATUS } from '@/constants';
+import { PAYMENT_STATUS } from '@/constants';
+import { PAYMENT_METHODS } from '@edenjiga/delivery-common';
 describe('wompi.controller', () => {
   let app: INestApplication;
 

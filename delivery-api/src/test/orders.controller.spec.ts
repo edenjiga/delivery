@@ -26,13 +26,8 @@ import {
 } from '@/shared';
 
 import { Products } from './remote/products';
-import {
-  ORDER_STATUS,
-  PAYMENT_METHODS,
-  PAYMENT_STATUS,
-  USER_ROLES,
-} from '@/constants';
-import { CREDIT_CARD_STATUS } from '@edenjiga/delivery-common';
+import { ORDER_STATUS, PAYMENT_STATUS, USER_ROLES } from '@/constants';
+import { CREDIT_CARD_STATUS, PAYMENT_METHODS } from '@edenjiga/delivery-common';
 import { Types } from 'mongoose';
 import {
   PaymentError,

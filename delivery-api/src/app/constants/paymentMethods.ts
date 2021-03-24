@@ -1,7 +1,0 @@
-enum PAYMENT_METHODS {
-  DATAPHONE = 'DATAPHONE',
-  CASH = 'CASH',
-  CREDIT_CARD = 'CREDIT_CARD',
-}
-
-export default PAYMENT_METHODS;

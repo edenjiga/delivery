@@ -1,12 +1,8 @@
 import { Schema, Document } from 'mongoose';
-import {
-  MODEL_NAMES,
-  ORDER_STATUS,
-  PAYMENT_METHODS,
-  PAYMENT_STATUS,
-} from '@/constants';
+import { MODEL_NAMES, ORDER_STATUS, PAYMENT_STATUS } from '@/constants';
 import modelNames from '@/constants/modelNames';
 import { IOrder } from '@/shared';
+import { PAYMENT_METHODS } from '@edenjiga/delivery-common';
 
 export interface IOrderDoc extends IOrder, Document {}
 

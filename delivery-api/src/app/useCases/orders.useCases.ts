@@ -1,4 +1,4 @@
-import { ORDER_STATUS, PAYMENT_METHODS, PAYMENT_STATUS } from '@/constants';
+import { ORDER_STATUS, PAYMENT_STATUS } from '@/constants';
 import { IOrderDoc, IUserDoc } from '@/models';
 import * as _ from 'lodash';
 import {
@@ -30,6 +30,7 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
+import { PAYMENT_METHODS } from '@edenjiga/delivery-common';
 
 interface IProductWithUnits {
   product: IProduct;

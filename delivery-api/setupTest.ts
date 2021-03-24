@@ -10,8 +10,7 @@ import modelNames from '@/constants/modelNames';
 import { IOrderDoc, IUserDoc } from '@/models';
 import { CreateOrderDto } from '@/shared';
 import { Products } from './src/test/remote/products';
-import { PAYMENT_METHODS } from '@/constants';
-import { UserPublicFields } from '@edenjiga/delivery-common';
+import { PAYMENT_METHODS, UserPublicFields } from '@edenjiga/delivery-common';
 
 let identification = 0;
 declare global {
