@@ -11,15 +11,16 @@ const initialState: IuserState = {
   data: {},
 };
 
-const reducer = createReducer<IuserState, Actions>(initialState).handleAction(
-  userActions.loginUserAsync.success,
-  (state, action) => {
+const reducer = createReducer<IuserState, Actions>(initialState)
+  .handleAction(userActions.loginUserAsync.success, (state, action) => {
     return {
       ...state,
       loadingStatus: REQUEST_STATUS.REQUEST_LOADED,
       data: action.payload,
     };
-  }
-);
+  })
+  .handleAction(userActions.logOut, (state) => {
+    return { ...state, ...initialState };
+  });
 
 export default reducer;

@@ -19,4 +19,20 @@ describe("User reducer", () => {
       });
     });
   });
+
+  it(`handle ${userActions.logOut}`, () => {
+    const initialState = {
+      data: defaultUser,
+      error: {},
+      loadingStatus: RequestStatus.REQUEST_LOADED,
+    };
+
+    const action = userActions.logOut();
+    expect(reducer(initialState, action)).toEqual({
+      ...initialState,
+      data: {},
+      loadingStatus: RequestStatus.REQUEST_NOT_LOADED,
+      error: {},
+    });
+  });
 });

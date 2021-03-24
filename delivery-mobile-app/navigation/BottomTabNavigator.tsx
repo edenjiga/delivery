@@ -1,13 +1,16 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import TabTwoScreen from "../screens/TabTwoScreen";
-import { TabCartScreen, TabMainScreen, TabSearchScreen } from "../screens";
-import { BottomTabParamList, TabTwoParamList } from "../types";
+import {
+  TabAccountScreen,
+  TabCartScreen,
+  TabMainScreen,
+  TabSearchScreen,
+} from "../screens";
+import { BottomTabParamList } from "../types";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -49,8 +52,8 @@ export default function BottomTabNavigator() {
       />
 
       <BottomTab.Screen
-        name="TabThree"
-        component={TabTwoNavigator}
+        name="TabAccount"
+        component={TabAccountScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-code" color={color} />
@@ -68,20 +71,4 @@ function TabBarIcon(props: {
   color: string;
 }) {
   return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
-}
-
-// Each tab has its own navigation stack, you can read more about this pattern here:
-// https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
-
-function TabTwoNavigator() {
-  return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: "Tab Two Title" }}
-      />
-    </TabTwoStack.Navigator>
-  );
 }

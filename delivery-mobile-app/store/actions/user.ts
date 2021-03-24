@@ -1,11 +1,14 @@
 import { UserPublicFields } from "@edenjiga/delivery-common";
-import { createAsyncAction } from "typesafe-actions";
+import { createAction, createAsyncAction } from "typesafe-actions";
 
 export enum types {
   LOGIN_USER_REQUEST = "LOGIN_USER_REQUEST",
   LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS",
   LOGIN_USER_FAIL = "LOGIN_USER_FAIL",
+  USER_LOGOUT = "USER_LOGOUT",
 }
+
+export const logOut = createAction(types.USER_LOGOUT)();
 
 // Create the set of async actions
 export const loginUserAsync = createAsyncAction(

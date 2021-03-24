@@ -1,6 +1,8 @@
 import { omit } from "lodash";
 import storageService from "./storageService";
 import { loaderService } from "./loader";
+import { store } from "@/store";
+import * as userActions from "@/store/actions/user";
 const FETCH_TIMEOUT = 10000;
 
 interface IRequestInit extends RequestInit {
@@ -92,9 +94,10 @@ const apiService = (url: string) => {
         return await fetchWithTimeout(url, options, timeout, ++attempt);
       }
 
-      // if (error.statusCode === 401) {
-      //   storageService.setToken("");
-      // }
+      if (error.statusCode === 401) {
+        store.dispatch(userActions.logOut());
+        await storageService.clearToken();
+      }
       throw error;
     }
   };

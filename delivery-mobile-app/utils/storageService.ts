@@ -26,7 +26,7 @@ async function setAddress(address: Address) {
   cache.address = address;
 }
 
-async function clear() {
+async function clearToken() {
   await SecureStore.deleteItemAsync(Storage.TOKEN_KEY);
 }
 
@@ -41,7 +41,7 @@ const storageService = {
   getToken,
   setAddress,
   setToken,
-  clear,
+  clearToken,
   initialize,
 };
 
