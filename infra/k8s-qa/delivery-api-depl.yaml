@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: delivery-api
-          image: registry.digitalocean.com/delivery/delivery-api:qa
+          image: registry.gitlab.com/edenjiga1/delivery-app/delivery-api:qa
           imagePullPolicy: Always
           env:
             - name: PRODUCT_API_URL
@@ -77,7 +77,7 @@ spec:
                   name: delivery-secrets
                   key: HASH_SALT
       imagePullSecrets:
-        - name: delivery
+        - name: registry-qa-credentials
 ---
 apiVersion: v1
 kind: Service

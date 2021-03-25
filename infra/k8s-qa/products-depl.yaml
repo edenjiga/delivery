@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: products
-          image: registry.digitalocean.com/delivery/products-api:qa
+          image: registry.gitlab.com/edenjiga1/delivery-app/products-api:qa
           imagePullPolicy: Always
           env:
             - name: DATABASE_HOST
@@ -43,7 +43,7 @@ spec:
                   name: products-secrets
                   key: DATABASE_PASSWORD
             - name: DATABASE_SSL
-              value: 'true'
+              value: "true"
             - name: AWS_REGION
               value: us-east-1
             - name: AWS_BUCKET
@@ -62,7 +62,7 @@ spec:
                   name: products-secrets
                   key: AWS_ACCESS_SECRET
       imagePullSecrets:
-        - name: delivery
+        - name: registry-qa-credentials
 ---
 apiVersion: v1
 kind: Service

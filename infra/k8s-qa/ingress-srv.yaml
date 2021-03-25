@@ -1,17 +1,18 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: ingress-service
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/use-regex: 'true'
+    nginx.ingress.kubernetes.io/use-regex: "true"
 
 spec:
   tls:
     - secretName: edgarjimenezg-com-tls
       hosts:
         - qa.edgarjimenezg.com
+        - qa.dashboard.edgarjimenezg.com
         - qa.strapi.edgarjimenezg.com
   rules:
     - host: qa.edgarjimenezg.com
@@ -26,3 +27,9 @@ spec:
           - backend:
               serviceName: products-srv
               servicePort: 1337
+    - host: qa.dashboard.edgarjimenezg.com
+      http:
+        paths:
+          - backend:
+              serviceName: dashboard-srv
+              servicePort: 80
