@@ -1,0 +1,7 @@
+export default {
+  NOT_PAID: 'NOT_PAID',
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  DECLINED: 'DECLINED',
+  ERROR: 'ERROR'
+}

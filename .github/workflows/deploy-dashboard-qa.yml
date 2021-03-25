@@ -1,0 +1,39 @@
+name: deploy-dashboard:qa
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - "dashboard/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd dashboard/ && docker build -t registry.gitlab.com/edenjiga1/delivery-app/dashboard:qa .
+
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.GITLAB_QA_USERNAME }}
+          password: ${{ secrets.GITLAB_QA_USERNAME }}
+          repository: registry.gitlab.com/edenjiga1/delivery-app/dashboard:qa
+          # tag_with_ref: true
+      # - name: Install doctl
+      #   uses: digitalocean/action-doctl@v2
+      #   with:
+      #     token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      # - name: Log in to DigitalOcean Container Registry with short-lived credentials
+      #   run: doctl registry login --expiry-seconds 600
+
+      # - name: Push image to DigitalOcean Container Registry
+      #   run: docker push registry.digitalocean.com/delivery/delivery-api:qa
+
+      # - name: Add DigitalOcean Cluster
+      #   run: doctl kubernetes cluster kubeconfig save ${{ secrets.DIGITALOCEAN_QA_CLUSTER }}
+
+      # - name: Restar the service
+      #   run: kubectl rollout restart deployment delivery-api-depl
