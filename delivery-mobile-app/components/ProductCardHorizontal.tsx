@@ -29,9 +29,7 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
         </View>
         <View style={styles.info}>
           <Text style={styles.name}>{product.name}</Text>
-          <Text style={styles.description}>
-            {/* {product.description} */}Pequeña descripción sobre el producto.
-          </Text>
+          <Text style={styles.description}>{product.description}</Text>
         </View>
       </View>
 

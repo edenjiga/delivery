@@ -16,19 +16,19 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
   return (
     <View style={styles.card}>
       {!!product.Imagen && (
-        <Image
-          style={styles.productImage}
-          resizeMode={"contain"}
-          source={{
-            uri: product.Imagen.url,
-          }}
-        />
+        <View style={styles.ImagenView}>
+          <Image
+            style={styles.productImage}
+            resizeMode={"contain"}
+            source={{
+              uri: product.Imagen.url,
+            }}
+          />
+        </View>
       )}
       <View style={styles.info}>
         <Text style={styles.name}>{product.name}</Text>
-        <Text style={styles.description}>
-          {/* {product.description} */}Pequeña descripción del producto
-        </Text>
+        <Text style={styles.description}>{product.description}</Text>
         <Text style={styles.price}>${product.finalPrice}</Text>
       </View>
       {!quantity ? (
@@ -59,13 +59,17 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     justifyContent: "space-between",
   },
+  ImagenView: {
+    borderTopLeftRadius: 6,
+    borderTopRightRadius: 6,
+    borderBottomColor: Colors.lineGray,
+    borderBottomWidth: 1,
+  },
   productImage: {
     borderTopLeftRadius: 6,
     borderTopRightRadius: 6,
     width: "100%",
     height: 100,
-    borderBottomColor: Colors.lineGray,
-    borderBottomWidth: 1,
   },
   info: {
     backgroundColor: Colors.white,
