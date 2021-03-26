@@ -5,7 +5,7 @@ import * as React from "react";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import {
-  TabAccountScreen,
+  TabSettingsScreen,
   TabCartScreen,
   TabMainScreen,
   TabSearchScreen,
@@ -52,8 +52,8 @@ export default function BottomTabNavigator() {
       />
 
       <BottomTab.Screen
-        name="TabAccount"
-        component={TabAccountScreen}
+        name="TabSetting"
+        component={TabSettingsScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-code" color={color} />
