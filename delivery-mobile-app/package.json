@@ -12,10 +12,10 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@edenjiga/delivery-common": "^1.0.16",
+    "@edenjiga/delivery-common": "^1.0.17",
     "@expo/vector-icons": "12.0.0",
     "@react-native-community/masked-view": "0.1.10",
-    "@react-native-picker/picker": "^1.12.0",
+    "@react-native-picker/picker": "1.9.2",
     "@react-navigation/bottom-tabs": "5.11.2",
     "@react-navigation/native": "~5.8.10",
     "@react-navigation/stack": "~5.12.8",
@@ -33,6 +33,7 @@
     "react-dom": "16.13.1",
     "react-hook-form": "^6.15.4",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
+    "react-native-floating-action": "^1.21.0",
     "react-native-gesture-handler": "~1.8.0",
     "react-native-maps": "0.27.1",
     "react-native-safe-area-context": "3.1.9",

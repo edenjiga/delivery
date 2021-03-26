@@ -1,9 +1,11 @@
+export { default as AddAddressScreen } from "./AddAddressScreen";
 export { default as LoginScreen } from "./LoginScreen";
 export { default as LocationScreen } from "./LocationScreen";
 export { default as NotFoundScreen } from "./NotFoundScreen";
 export { default as OrderScreen } from "./OrderScreen";
+export { default as SelectAddressScreen } from "./SelectAddressScreen";
 export { default as UserRequiredFieldFormScreen } from "./UserRequiredFieldFormScreen";
-export { default as TabAccountScreen } from "./TabAccountScreen";
+export { default as TabSettingsScreen } from "./TabSettingsScreen";
 export { default as TabCartScreen } from "./TabCartScreen";
 export { default as TabMainScreen } from "./TabMainScreen";
 export { default as TabSearchScreen } from "./TabSearchScreen";
