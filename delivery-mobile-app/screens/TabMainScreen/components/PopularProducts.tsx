@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { View, Text } from "@/components/Themed";
 import { getProducts } from "@/api/products";
 import { Product } from "@edenjiga/delivery-common";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { ProductCardHorizontal } from "@/components";
+import { StyleSheet, SafeAreaView, TouchableOpacity } from "react-native";
+import Colors from "@/constants/Colors";
 
 export default () => {
   const [products, setProductState] = useState<Product[]>([]);
@@ -26,8 +27,8 @@ export default () => {
   }, []);
   return (
     <SafeAreaView>
-      <Text>Ofertas especiales</Text>
-      <View style={{ height: 143 }}>
+      <Text style={styles.title}>Populares</Text>
+      <View>
         {products.map((product) => (
           <ProductCardHorizontal key={product._id} product={product} />
         ))}
@@ -35,3 +36,13 @@ export default () => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {
+    backgroundColor: Colors.lightgrey,
+    padding: 10,
+    fontSize: 20,
+    color: Colors.black,
+    fontWeight: "700",
+  },
+});
