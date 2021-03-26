@@ -19,5 +19,9 @@ export default {
   white: "#fff",
   black: "#000",
   grey: "#9B9B9B",
+  lightgrey: "#CCCBCB",
+  darkGrey: "#686868",
   orange: "#F28A34",
+  lineGray: "rgba(104,104,104,.1)",
+
 };

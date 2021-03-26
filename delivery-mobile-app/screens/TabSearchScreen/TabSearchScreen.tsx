@@ -1,9 +1,8 @@
 import { Text, View } from "@/components/Themed";
 import { Product } from "@edenjiga/delivery-common";
 import React, { FC } from "react";
-import { TextInput } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { NotFound } from "./components";
+import { SafeAreaView, TextInput, StyleSheet } from "react-native";
 
 type Props = {
   isLoading: boolean;
@@ -20,9 +19,9 @@ const TabSearchScreen: FC<Props> = ({
 }) => {
   const showNotFound = !products.length && text;
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <TextInput
-        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+        style={styles.input}
         onChangeText={onChangeText}
         defaultValue={""}
       />
@@ -41,3 +40,15 @@ const TabSearchScreen: FC<Props> = ({
   );
 };
 export default TabSearchScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 30,
+  },
+  input: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    margin: 20,
+  },
+});
