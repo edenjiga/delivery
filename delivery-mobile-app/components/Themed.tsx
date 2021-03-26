@@ -1,60 +1,38 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Text as DefaultText,
   TextInput as DefaultTextInput,
   View as DefaultView,
   KeyboardAvoidingView as DefaultKeyboardAvoidingView,
   Platform,
-} from "react-native";
+} from 'react-native';
 
-import Colors from "../constants/Colors";
-import useColorScheme from "../hooks/useColorScheme";
-
-export function useThemeColor(
-  props: { light?: string; dark?: string },
-  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
-) {
-  const theme = useColorScheme();
-  const colorFromProps = props[theme];
-
-  if (colorFromProps) {
-    return colorFromProps;
-  } else {
-    return Colors[theme][colorName];
-  }
-}
+import Colors from '../constants/Colors';
 
 type ThemeProps = {
   lightColor?: string;
   darkColor?: string;
 };
 
-export type TextProps = ThemeProps & DefaultText["props"];
-export type TextInputProps = ThemeProps & DefaultTextInput["props"];
-export type ViewProps = ThemeProps & DefaultView["props"];
+export type TextProps = ThemeProps & DefaultText['props'];
+export type TextInputProps = ThemeProps & DefaultTextInput['props'];
+export type ViewProps = ThemeProps & DefaultView['props'];
 export type KeyboardAvoidingViewProps = ThemeProps &
-  DefaultKeyboardAvoidingView["props"];
+  DefaultKeyboardAvoidingView['props'];
 
 export function Text(props: TextProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const { style, ...otherProps } = props;
+  const color = Colors.black;
 
   return <DefaultText style={[{ color }, style]} {...otherProps} />;
 }
 
 export function TextInput(props: TextInputProps) {
-  const {
-    style,
-    lightColor,
-    darkColor,
-    placeholderTextColor,
-    ...otherProps
-  } = props;
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const { style, placeholderTextColor, ...otherProps } = props;
 
   return (
     <DefaultTextInput
-      style={[{ color }, style]}
+      style={[styles.textInput, style]}
       placeholderTextColor={placeholderTextColor || Colors.grey}
       {...otherProps}
     />
@@ -62,13 +40,9 @@ export function TextInput(props: TextInputProps) {
 }
 
 export function View(props: ViewProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
-    "background"
-  );
+  const { style, ...otherProps } = props;
 
-  return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+  return <DefaultView style={[styles.view, style]} {...otherProps} />;
 }
 
 export function KeyboardAvoidingView(props: KeyboardAvoidingViewProps) {
@@ -76,14 +50,18 @@ export function KeyboardAvoidingView(props: KeyboardAvoidingViewProps) {
 
   return (
     <DefaultKeyboardAvoidingView
-      behavior={behavior || (Platform.OS === "ios" ? "padding" : "height")}
-      style={[
-        {
-          flex: 1,
-        },
-        style,
-      ]}
+      behavior={behavior || (Platform.OS === 'ios' ? 'padding' : 'height')}
+      style={[styles.defaultKeyboardAvoidingView, style]}
       {...otherProps}
     />
   );
 }
+
+const styles = {
+  defaultKeyboardAvoidingView: { flex: 1 },
+  view: {},
+  textInput: {
+    borderColor: Colors.grey,
+    fontSize: 13,
+  },
+};

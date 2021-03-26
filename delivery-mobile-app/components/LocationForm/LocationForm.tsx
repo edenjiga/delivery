@@ -1,14 +1,14 @@
-import { View, Text, KeyboardAvoidingView } from "@/components/Themed";
-import React, { FC } from "react";
-import MapView, { Region } from "react-native-maps";
+import { View, Text, KeyboardAvoidingView } from '@/components/Themed';
+import React, { FC } from 'react';
+import MapView, { Region } from 'react-native-maps';
 import {
   Dimensions,
   StyleSheet,
   TextInput,
   Image,
   TouchableOpacity,
-} from "react-native";
-import Colors from "@/constants/Colors";
+} from 'react-native';
+import Colors from '@/constants/Colors';
 
 type Props = {
   coords: {
@@ -41,7 +41,7 @@ const LocationForm: FC<Props> = ({
         <View style={styles.markerPoint}>
           <Image
             style={styles.marker}
-            source={require("assets/images/marker.png")}
+            source={require('assets/images/marker.png')}
           />
         </View>
       </View>
@@ -51,7 +51,7 @@ const LocationForm: FC<Props> = ({
         <TextInput
           placeholderTextColor={Colors.grey}
           style={styles.input}
-          onChangeText={(value) => setValue("nomenclature", value)}
+          onChangeText={(value) => setValue('nomenclature', value)}
           placeholder="Cra 30 #75-02"
         />
         <TextInput
@@ -60,13 +60,13 @@ const LocationForm: FC<Props> = ({
           numberOfLines={4}
           maxLength={150}
           placeholderTextColor={Colors.grey}
-          onChangeText={(value) => setValue("note", value)}
+          onChangeText={(value) => setValue('note', value)}
           placeholder="Agrega instrucciones especificas de tu dirección: referencias, apartamento, urbanización, barrio, etc"
         />
         <TextInput
           placeholderTextColor={Colors.grey}
           style={styles.input}
-          onChangeText={(value) => setValue("name", value)}
+          onChangeText={(value) => setValue('name', value)}
           placeholder="Nombra tu dirección (opcional): Casa, trabajo"
         />
         <View style={styles.buttonContainer}>
@@ -86,36 +86,36 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     backgroundColor: Colors.white,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   mapStyle: {
     flex: 1,
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
   mapBox: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   markerPoint: {
-    position: "absolute",
-    backgroundColor: "transparent",
+    position: 'absolute',
+    backgroundColor: 'transparent',
   },
   marker: {
     height: 45,
     width: 50,
-    resizeMode: "contain",
+    resizeMode: 'contain',
   },
   text: {
     color: Colors.black,
-    fontWeight: "700",
+    fontWeight: '700',
     marginBottom: 15,
     fontSize: 15,
   },
   inputContent: {
-    width: "100%",
+    width: '100%',
     padding: 20,
     backgroundColor: Colors.white,
   },
@@ -130,27 +130,27 @@ const styles = StyleSheet.create({
     height: 40,
   },
   inputDescription: {
-    borderRadius: 6,
-    marginBottom: 10,
-    borderWidth: 1,
     borderColor: Colors.grey,
-    paddingHorizontal: 10,
-    paddingVertical: 7,
-    textAlignVertical: "top",
+    borderRadius: 6,
+    borderWidth: 1,
     fontSize: 13,
     height: 80,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
+    textAlignVertical: 'top',
   },
   buttonContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 10,
+    alignItems: 'center',
     backgroundColor: Colors.white,
+    justifyContent: 'center',
+    marginVertical: 10,
   },
   button: {
     backgroundColor: Colors.orange,
-    paddingVertical: 10,
-    paddingHorizontal: 60,
     borderRadius: 6,
+    paddingHorizontal: 60,
+    paddingVertical: 10,
   },
   btnText: {
     color: Colors.white,

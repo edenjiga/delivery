@@ -1,14 +1,14 @@
-import { LocationFormValues } from "@/types";
-import { checkField } from "@/utils/checkField";
-import { loaderService } from "@/utils/loader";
-import { getLocation } from "@/utils/location";
-import useReducerHelper from "@/utils/useReducerHelper";
-import { Address } from "@edenjiga/delivery-common";
-import React, { FC, useEffect, useReducer } from "react";
-import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
-import { Alert } from "react-native";
-import { Region } from "react-native-maps";
-import LocationForm from "./LocationForm";
+import { LocationFormValues } from '@/types';
+import { checkField } from '@/utils/checkField';
+import { loaderService } from '@/utils/loader';
+import { getLocation } from '@/utils/location';
+import useReducerHelper from '@/utils/useReducerHelper';
+import { Address } from '@edenjiga/delivery-common';
+import React, { FC, useEffect, useReducer } from 'react';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
+import { Alert } from 'react-native';
+import { Region } from 'react-native-maps';
+import LocationForm from './LocationForm';
 
 type Props = {
   onSubmit(data: Address): void;
@@ -19,7 +19,7 @@ interface IState {
     latitude: number;
     longitude: number;
   };
-  currentCoords?: Address["coordinates"];
+  currentCoords?: Address['coordinates'];
   isReady: boolean;
 }
 
@@ -35,7 +35,7 @@ const LocationFormContainer: FC<Props> = ({ onSubmit }) => {
   const { handleSubmit, register, setValue } = useForm<LocationFormValues>();
   const [state, setState] = useReducer(
     useReducerHelper.basicReducer,
-    initialState
+    initialState,
   );
 
   const { coords, currentCoords, isReady }: IState = state;
@@ -63,13 +63,15 @@ const LocationFormContainer: FC<Props> = ({ onSubmit }) => {
 
   //Register form use effect
   useEffect(() => {
-    register("note", {
-      required: { value: true, message: "Instrucciones son requeridas" },
+    register('note', {
+      required: { value: true, message: 'Instrucciones son requeridas' },
     });
-    register("nomenclature", {
-      required: { value: true, message: "Direccion es requerida" },
+    register('nomenclature', {
+      required: { value: true, message: 'Direccion es requerida' },
     });
-    register("name", { required: false });
+    register('name', {
+      required: { value: true, message: 'Nombre es requerida' },
+    });
   }, [register]);
 
   const onRegionChangeComplete = (region: Region) => {
@@ -91,7 +93,7 @@ const LocationFormContainer: FC<Props> = ({ onSubmit }) => {
   const onError: SubmitErrorHandler<LocationFormValues> = (errors) => {
     const message = Object.values(errors).reduce(
       (prevValue, field) => `${prevValue}\n${field?.message}`,
-      ""
+      '',
     );
 
     Alert.alert(message);

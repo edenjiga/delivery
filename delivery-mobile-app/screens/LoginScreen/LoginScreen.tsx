@@ -1,8 +1,8 @@
-import { Text, View } from "@/components/Themed";
-import React from "react";
-import { Button } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View } from '@/components/Themed';
+import React from 'react';
+import { Button } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Props = {
   onChangePhoneText(text: string): void;

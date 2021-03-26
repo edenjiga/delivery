@@ -1,7 +1,7 @@
-import { Address, Product, UserPublicFields } from "@edenjiga/delivery-common";
-import screenNames from "@/constants/screenNames";
-import REQUEST_STATUS from "@/constants/RequestStatus";
-import SCREEN_NAMES from "@/constants/screenNames";
+import { Address, Product, UserPublicFields } from '@edenjiga/delivery-common';
+import screenNames from '@/constants/screenNames';
+import REQUEST_STATUS from '@/constants/RequestStatus';
+import SCREEN_NAMES from '@/constants/screenNames';
 
 const {
   ADD_ADDRESS,
@@ -52,7 +52,7 @@ export type BottomTabParamList = {
 };
 
 export type LocationFormValues = {
-  note: Address["note"];
-  nomenclature: Address["nomenclature"];
-  name?: Address["name"];
+  note: Address['note'];
+  nomenclature: Address['nomenclature'];
+  name: Address['name'];
 };

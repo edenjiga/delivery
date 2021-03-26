@@ -1,7 +1,7 @@
-import { View, Text } from "@/components/Themed";
-import React from "react";
-import { Image, StyleSheet } from "react-native";
-import Colors from "@/constants/Colors";
+import { View, Text } from '@/components/Themed';
+import React from 'react';
+import { Image, StyleSheet } from 'react-native';
+import Colors from '@/constants/Colors';
 
 export default () => (
   <View style={styles.container}>
@@ -13,7 +13,7 @@ export default () => (
       </Text>
       <Image
         style={styles.image}
-        source={require("assets/images/not-found.png")}
+        source={require('assets/images/not-found.png')}
       />
     </View>
   </View>
@@ -26,29 +26,29 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 20,
-    justifyContent: "center",
-    textAlignVertical: "center",
+    justifyContent: 'center',
+    textAlignVertical: 'center',
     flex: 1,
   },
   infoCont: {
     height: 500,
-    backgroundColor: "transparent",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 30,
-    fontWeight: "800",
+    fontWeight: '800',
     color: Colors.darkGrey,
     marginBottom: 10,
   },
   description: {
-    textAlign: "center",
+    textAlign: 'center',
     color: Colors.darkGrey,
   },
   image: {
-    resizeMode: "contain",
+    resizeMode: 'contain',
     marginTop: 40,
   },
 });

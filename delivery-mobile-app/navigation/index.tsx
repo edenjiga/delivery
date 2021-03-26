@@ -1,11 +1,6 @@
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import * as React from "react";
-import { ColorSchemeName } from "react-native";
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import * as React from 'react';
 
 import {
   NotFoundScreen,
@@ -16,26 +11,19 @@ import {
   UserRequiredFieldFormScreen,
   VerifyCodeScreen,
   AddAddressScreen,
-} from "../screens";
-import { RootStackParamList } from "../types";
-import BottomTabNavigator from "./BottomTabNavigator";
-import LinkingConfiguration from "./LinkingConfiguration";
-import storageService from "@/utils/storageService";
-import { isEmpty } from "lodash";
-import SCREEN_NAMES from "@/constants/screenNames";
+} from '../screens';
+import { RootStackParamList } from '../types';
+import BottomTabNavigator from './BottomTabNavigator';
+import LinkingConfiguration from './LinkingConfiguration';
+import storageService from '@/utils/storageService';
+import { isEmpty } from 'lodash';
+import SCREEN_NAMES from '@/constants/screenNames';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
-export default function Navigation({
-  colorScheme,
-}: {
-  colorScheme: ColorSchemeName;
-}) {
+export default function Navigation() {
   return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-    >
+    <NavigationContainer linking={LinkingConfiguration} theme={DefaultTheme}>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -78,7 +66,7 @@ function RootNavigator() {
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
-        options={{ title: "Oops!" }}
+        options={{ title: 'Oops!' }}
       />
     </Stack.Navigator>
   );

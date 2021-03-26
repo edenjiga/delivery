@@ -1,8 +1,9 @@
-import { Text, View } from "@/components/Themed";
-import { Product } from "@edenjiga/delivery-common";
-import React, { FC } from "react";
-import { NotFound } from "./components";
-import { SafeAreaView, TextInput, StyleSheet } from "react-native";
+import { View } from '@/components/Themed';
+import { Product } from '@edenjiga/delivery-common';
+import React, { FC } from 'react';
+import { NotFound } from './components';
+import { TextInput, StyleSheet } from 'react-native';
+import { ProductCardHorizontal } from '@/components';
 
 type Props = {
   isLoading: boolean;
@@ -19,24 +20,22 @@ const TabSearchScreen: FC<Props> = ({
 }) => {
   const showNotFound = !products.length && text;
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
-        defaultValue={""}
+        defaultValue={''}
       />
       {!isLoading && (
         <View>
-          {products.map(({ _id, name }) => (
-            <View key={_id}>
-              <Text>{name}</Text>
-            </View>
+          {products.map((product) => (
+            <ProductCardHorizontal key={product._id} product={product} />
           ))}
 
           {showNotFound ? <NotFound /> : null}
         </View>
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 export default TabSearchScreen;
@@ -46,9 +45,9 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   input: {
-    height: 40,
-    borderColor: "gray",
+    borderColor: 'gray',
     borderWidth: 1,
+    height: 40,
     margin: 20,
   },
 });
