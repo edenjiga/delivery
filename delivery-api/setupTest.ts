@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import 'reflect-metadata';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { MongoMemoryReplSet } from 'mongodb-memory-server';

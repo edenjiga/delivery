@@ -3,7 +3,7 @@ import { View, Text } from "@/components/Themed";
 import { getProducts } from "@/api/products";
 import { Product } from "@edenjiga/delivery-common";
 import { ProductCardHorizontal } from "@/components";
-import { StyleSheet, SafeAreaView, TouchableOpacity } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import Colors from "@/constants/Colors";
 
 export default () => {
