@@ -1,12 +1,9 @@
-import { ActionType, createReducer } from "typesafe-actions";
-import * as cartActions from "@/store/actions/cart";
-import { ICartState } from "@/types";
-import { omit } from "lodash";
+import { ActionType, createReducer } from 'typesafe-actions';
+import * as cartActions from '@/store/actions/cart';
+import { ICartState } from '@/types';
+import { omit } from 'lodash';
 
-const { addProductAction, decreaseProductAction } = cartActions;
-const actions = { addProductAction, decreaseProductAction };
-
-type Action = ActionType<typeof actions>;
+type Action = ActionType<typeof cartActions>;
 
 const initialState: ICartState = {};
 
@@ -30,7 +27,7 @@ const reducer = createReducer<ICartState, Action>(initialState)
     };
   })
   .handleAction(cartActions.decreaseProductAction, (state, { payload }) => {
-    let productWithQuantityToDecrease = state[payload];
+    const productWithQuantityToDecrease = state[payload];
     if (!productWithQuantityToDecrease) {
       return state;
     }
@@ -46,6 +43,9 @@ const reducer = createReducer<ICartState, Action>(initialState)
       ...state,
       [payload]: { product: productWithQuantityToDecrease.product, quantity },
     };
+  })
+  .handleAction(cartActions.cleanCartAction, () => {
+    return initialState;
   });
 
 export default reducer;

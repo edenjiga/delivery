@@ -17,34 +17,29 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabMain"
-      tabBarOptions={{ activeTintColor: Colors.light.tint }}
+      tabBarOptions={{ activeTintColor: Colors.orange, showLabel: false }}
     >
       <BottomTab.Screen
         name="TabMain"
         component={TabMainScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="home-sharp" color={color} />
           ),
+        }}
+      />
+      <BottomTab.Screen
+        name="TabSearch"
+        component={TabSearchScreen}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="TabCart"
         component={TabCartScreen}
         options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
-          ),
-        }}
-      />
-
-      <BottomTab.Screen
-        name="TabSearch"
-        component={TabSearchScreen}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
-          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="cart" color={color} />,
         }}
       />
 
@@ -53,7 +48,7 @@ export default function BottomTabNavigator() {
         component={TabSettingsScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="settings-sharp" color={color} />
           ),
         }}
       />

@@ -17,7 +17,7 @@ export default ({ onChangePhoneText, handleLogin }: Props) => (
         autoCapitalize="none"
         maxLength={10}
         onChangeText={onChangePhoneText}
-        placeholder="Ingresar numemero de celular"
+        placeholder="Ingresar numero de celular"
       />
 
       <Button title="Enviar" onPress={handleLogin} />

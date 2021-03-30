@@ -35,6 +35,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies,
     'react/prop-types': 'off',
+    'react/display-name': 'off',
     quotes: ['error', 'single'],
     'comma-dangle': ['error', 'always-multiline'],
     'react-native/no-raw-text': [

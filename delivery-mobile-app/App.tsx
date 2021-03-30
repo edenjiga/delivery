@@ -9,6 +9,7 @@ import useCachedResources from './hooks/useCachedResources';
 import Navigation from './navigation';
 import { store } from './store';
 import Loader from './components/Loader';
+import Colors from './constants/Colors';
 
 function App() {
   const isLoadingComplete = useCachedResources();
@@ -20,7 +21,7 @@ function App() {
       <SafeAreaProvider>
         <SafeAreaView style={styles.SafeAreaViewStyle}>
           <Navigation />
-          <StatusBar />
+          <StatusBar backgroundColor={Colors.orange} />
           <Loader />
         </SafeAreaView>
       </SafeAreaProvider>

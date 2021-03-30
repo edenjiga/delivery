@@ -37,7 +37,7 @@ export class IPayment {
 export class CreateOrderAddressDto {
   @IsString()
   @IsOptional()
-  name?: Address["name"];
+  name: Address["name"];
 
   @IsString()
   nomenclature: Address["nomenclature"];

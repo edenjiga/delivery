@@ -1,16 +1,17 @@
-import { createOrder } from "@/api/orders";
-import RequestStatus from "@/constants/RequestStatus";
-import SCREEN_NAMES from "@/constants/screenNames";
-import { RootState } from "@/store";
-import { RootStackParamList } from "@/types";
-import storageService from "@/utils/storageService";
-import { CreateOrderDto, PAYMENT_METHODS } from "@edenjiga/delivery-common";
-import { RouteProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import React, { useEffect, useMemo, useState } from "react";
-import { Alert } from "react-native";
-import { useSelector } from "react-redux";
-import OrderScreen from "./OrderScreen";
+import { createOrder } from '@/api/orders';
+import RequestStatus from '@/constants/RequestStatus';
+import SCREEN_NAMES from '@/constants/screenNames';
+import { RootState } from '@/store';
+import { cleanCartAction } from '@/store/actions/cart';
+import { RootStackParamList } from '@/types';
+import storageService from '@/utils/storageService';
+import { CreateOrderDto, PAYMENT_METHODS } from '@edenjiga/delivery-common';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Alert } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import OrderScreen from './OrderScreen';
 
 interface Props {
   navigation: StackNavigationProp<RootStackParamList, SCREEN_NAMES.ORDER>;
@@ -20,10 +21,11 @@ interface Props {
 const deliveryValue = 3000;
 
 export default ({ navigation }: Props) => {
+  const dispatch = useDispatch();
   const { user, cart } = useSelector<RootState, RootState>((state) => state);
   const { loadingStatus, data: userData } = user;
   const [paymentMethodSelected, setPaymentMethodSelected] = useState(
-    PAYMENT_METHODS.CASH
+    PAYMENT_METHODS.CASH,
   );
 
   const productsWithQuanty = useMemo(() => Object.values(cart), [cart]);
@@ -33,9 +35,9 @@ export default ({ navigation }: Props) => {
       (prevValue, { quantity, product: { finalPrice } }) => {
         return prevValue + quantity * finalPrice;
       },
-      0
+      0,
     );
-  }, [cart]);
+  }, [productsWithQuanty]);
 
   const total = useMemo(() => subTotal + deliveryValue, [subTotal]);
 
@@ -52,7 +54,13 @@ export default ({ navigation }: Props) => {
         goTo,
       });
     }
-  }, []);
+  }, [
+    loadingStatus,
+    navigation,
+    userData.email,
+    userData.identification,
+    userData.name,
+  ]);
 
   const onCreateOrder = async () => {
     const address = storageService.getAddress();
@@ -61,7 +69,7 @@ export default ({ navigation }: Props) => {
       ({ quantity, product: { _id } }) => ({
         id: _id,
         unitsPurchased: quantity,
-      })
+      }),
     );
 
     const data: CreateOrderDto = {
@@ -75,9 +83,11 @@ export default ({ navigation }: Props) => {
     };
     try {
       await createOrder(data);
+
+      dispatch(cleanCartAction());
       return navigation.replace(SCREEN_NAMES.ROOT);
     } catch (error) {
-      Alert.alert("Ups algo fallo");
+      Alert.alert('Ups algo fallo');
     }
   };
 
