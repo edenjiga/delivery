@@ -1,9 +1,9 @@
-import useCartOperationForProduct from "@/hooks/useCartOperationForProduct";
-import { Product } from "@edenjiga/delivery-common";
-import React, { FC } from "react";
-import { StyleSheet, Image, TouchableOpacity } from "react-native";
-import { Text, View } from "./Themed";
-import Colors from "@/constants/Colors";
+import useCartOperationForProduct from '@/hooks/useCartOperationForProduct';
+import { Product } from '@edenjiga/delivery-common';
+import React, { FC } from 'react';
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View } from './Themed';
+import Colors from '@/constants/Colors';
 
 type Props = {
   product: Product;
@@ -11,7 +11,7 @@ type Props = {
 
 const ProductCardHorizontal: FC<Props> = ({ product }) => {
   const { addProduct, decreaseProduct, quantity } = useCartOperationForProduct(
-    product
+    product,
   );
   return (
     <View style={styles.card}>
@@ -20,7 +20,7 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
           {!!product.Imagen && (
             <Image
               style={styles.productImage}
-              resizeMode={"contain"}
+              resizeMode="contain"
               source={{
                 uri: product.Imagen.url,
               }}
@@ -28,8 +28,10 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
           )}
         </View>
         <View style={styles.info}>
+          <Text style={styles.name}>{product.discount}%</Text>
           <Text style={styles.name}>{product.name}</Text>
           <Text style={styles.description}>{product.description}</Text>
+          <Text style={styles.price}>${product.price}</Text>
         </View>
       </View>
 
@@ -56,98 +58,98 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
 };
 
 const styles = StyleSheet.create({
+  addText: {
+    color: Colors.white,
+    fontSize: 20,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  box: {
+    flexDirection: 'row',
+  },
   boxInfo: {
     paddingHorizontal: 10,
     paddingTop: 10,
   },
-  box: {
-    flexDirection: "row",
+  buttonAdd: {
+    backgroundColor: Colors.orange,
+    borderRadius: 6,
+    justifyContent: 'center',
+  },
+  card: {
+    backgroundColor: Colors.white,
+    borderBottomColor: Colors.lineGray,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    minHeight: 100,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+  },
+  count: {
+    color: Colors.white,
+    fontSize: 22,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  counter: {
+    backgroundColor: Colors.white,
+    borderRadius: 10,
+    flexDirection: 'row',
+  },
+  decrease: {
+    alignItems: 'center',
+    backgroundColor: Colors.orange,
+    borderBottomLeftRadius: 10,
+    borderTopLeftRadius: 10,
+    justifyContent: 'center',
+    width: 25,
+  },
+  description: {
+    color: Colors.darkGrey,
+    fontSize: 13,
+    fontWeight: '300',
   },
   image: {
     borderRadius: 10,
   },
-  card: {
-    paddingHorizontal: 10,
-    backgroundColor: Colors.white,
-    minHeight: 100,
-    paddingVertical: 5,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.lineGray,
-  },
-  productImage: {
-    borderRadius: 10,
-    width: 80,
-    height: 100,
+  increase: {
+    alignItems: 'center',
+    backgroundColor: Colors.orange,
+    borderBottomRightRadius: 10,
+    borderTopRightRadius: 10,
+    justifyContent: 'center',
+    width: 25,
   },
   info: {
     backgroundColor: Colors.white,
     paddingVertical: 10,
     width: 150,
   },
-  buttonAdd: {
-    backgroundColor: Colors.orange,
-    borderRadius: 6,
-    justifyContent: "center",
-  },
-  counter: {
-    flexDirection: "row",
-    borderRadius: 10,
-    backgroundColor: Colors.white,
-  },
-  quantity: {
-    justifyContent: "center",
-    color: Colors.black,
-    textAlign: "center",
-    alignSelf: "center",
-    width: 25,
-  },
-  count: {
-    textAlign: "center",
-    color: Colors.white,
-    fontSize: 22,
-    fontWeight: "600",
-  },
-  addText: {
-    textAlign: "center",
-    color: Colors.white,
-    fontSize: 20,
-    fontWeight: "600",
-  },
-  increase: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: Colors.orange,
-    borderBottomRightRadius: 10,
-    borderTopRightRadius: 10,
-    width: 25,
-  },
-  decrease: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: Colors.orange,
-    borderBottomLeftRadius: 10,
-    borderTopLeftRadius: 10,
-    width: 25,
-  },
   name: {
     color: Colors.darkGrey,
     fontSize: 14,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 5,
-  },
-  description: {
-    color: Colors.darkGrey,
-    fontSize: 13,
-    fontWeight: "300",
   },
   price: {
     color: Colors.black,
     fontSize: 14,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 15,
-    textAlign: "right",
+    textAlign: 'right',
+  },
+  productImage: {
+    borderRadius: 10,
+    height: 100,
+    width: 80,
+  },
+  quantity: {
+    alignSelf: 'center',
+    color: Colors.black,
+    justifyContent: 'center',
+    textAlign: 'center',
+    width: 25,
   },
 });
 

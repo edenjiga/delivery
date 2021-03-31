@@ -1,21 +1,21 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   StyleSheet,
   ScrollView,
   SafeAreaView,
   KeyboardAvoidingView,
   Platform,
-} from "react-native";
+} from 'react-native';
 
-import { View } from "@/components/Themed";
-import { PopularProducts, SpecialOffers, SearchProduct } from "./components";
-import Colors from "@/constants/Colors";
+import { View } from '@/components/Themed';
+import { PopularProducts, SpecialOffers, SearchProduct } from './components';
+import Colors from '@/constants/Colors';
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.container}
       >
         <SafeAreaView>

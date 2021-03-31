@@ -24,4 +24,5 @@ export default {
   orange: '#F28A34',
   lineGray: 'rgba(104,104,104,.1)',
   witheGrey: '#F2F2F2',
+  greenlight: '#2E9280',
 };

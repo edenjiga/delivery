@@ -1,9 +1,10 @@
-import useCartOperationForProduct from "@/hooks/useCartOperationForProduct";
-import { Product } from "@edenjiga/delivery-common";
-import React, { FC } from "react";
-import { StyleSheet, Image, TouchableOpacity } from "react-native";
-import { Text, View } from "./Themed";
-import Colors from "@/constants/Colors";
+/* eslint-disable sonarjs/no-duplicate-string */
+import useCartOperationForProduct from '@/hooks/useCartOperationForProduct';
+import { Product } from '@edenjiga/delivery-common';
+import React, { FC } from 'react';
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View } from './Themed';
+import Colors from '@/constants/Colors';
 
 type Props = {
   product: Product;
@@ -11,7 +12,7 @@ type Props = {
 
 const ProductCardHorizontal: FC<Props> = ({ product }) => {
   const { addProduct, decreaseProduct, quantity } = useCartOperationForProduct(
-    product
+    product,
   );
   return (
     <View style={styles.card}>
@@ -19,7 +20,7 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
         <View style={styles.ImagenView}>
           <Image
             style={styles.productImage}
-            resizeMode={"contain"}
+            resizeMode="contain"
             source={{
               uri: product.Imagen.url,
             }}
@@ -27,9 +28,11 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
         </View>
       )}
       <View style={styles.info}>
+        <Text style={styles.name}>{product.discount}%</Text>
         <Text style={styles.name}>{product.name}</Text>
         <Text style={styles.description}>{product.description}</Text>
         <Text style={styles.price}>${product.finalPrice}</Text>
+        <Text style={styles.price}>${product.price}</Text>
       </View>
       {!quantity ? (
         <TouchableOpacity style={styles.buttonAdd} onPress={addProduct}>
@@ -53,97 +56,97 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: Colors.white,
+    borderRadius: 6,
+    justifyContent: 'space-between',
     marginHorizontal: 5,
     minHeight: 120,
     width: 140,
-    borderRadius: 6,
-    justifyContent: "space-between",
   },
   ImagenView: {
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
     borderBottomColor: Colors.lineGray,
     borderBottomWidth: 1,
+    borderTopLeftRadius: 6,
+    borderTopRightRadius: 6,
   },
   productImage: {
     borderTopLeftRadius: 6,
     borderTopRightRadius: 6,
-    width: "100%",
     height: 100,
+    width: '100%',
   },
   info: {
     backgroundColor: Colors.white,
-    paddingHorizontal: 5,
-    paddingVertical: 5,
+    justifyContent: 'space-between',
     marginLeft: 5,
     minHeight: 90,
-    justifyContent: "space-between",
+    paddingHorizontal: 5,
+    paddingVertical: 5,
   },
   buttonAdd: {
     backgroundColor: Colors.orange,
     borderBottomLeftRadius: 6,
     borderBottomRightRadius: 6,
     height: 40,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   counter: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    backgroundColor: Colors.white,
     borderBottomLeftRadius: 6,
     borderBottomRightRadius: 6,
+    flexDirection: 'row',
     height: 40,
-    backgroundColor: Colors.white,
+    justifyContent: 'space-between',
   },
   quantity: {
-    justifyContent: "center",
+    alignSelf: 'center',
     color: Colors.black,
-    width: 60,
-    textAlign: "center",
-    alignSelf: "center",
     fontSize: 20,
+    justifyContent: 'center',
+    textAlign: 'center',
+    width: 60,
   },
   count: {
-    textAlign: "center",
     color: Colors.white,
     fontSize: 28,
-    fontWeight: "600",
+    fontWeight: '600',
+    textAlign: 'center',
   },
   addText: {
-    textAlign: "center",
     color: Colors.white,
     fontSize: 18,
-    fontWeight: "600",
+    fontWeight: '600',
+    textAlign: 'center',
   },
   increase: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
     backgroundColor: Colors.orange,
-    width: 40,
     borderBottomRightRadius: 6,
+    justifyContent: 'center',
+    width: 40,
   },
   decrease: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
     backgroundColor: Colors.orange,
-    width: 40,
     borderBottomLeftRadius: 6,
+    justifyContent: 'center',
+    width: 40,
   },
   name: {
     color: Colors.darkGrey,
     fontSize: 13,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 5,
   },
   description: {
     color: Colors.darkGrey,
     fontSize: 12,
-    fontWeight: "300",
+    fontWeight: '300',
     marginBottom: 10,
   },
   price: {
     color: Colors.black,
     fontSize: 13,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });
 
