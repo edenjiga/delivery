@@ -14,6 +14,7 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
   const { addProduct, decreaseProduct, quantity } = useCartOperationForProduct(
     product,
   );
+
   return (
     <View style={styles.card}>
       {!!product.Imagen && (
@@ -28,11 +29,15 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
         </View>
       )}
       <View style={styles.info}>
-        <Text style={styles.name}>{product.discount}%</Text>
+        {!!product.discount && (
+          <Text style={styles.name}>{product.discount}%</Text>
+        )}
         <Text style={styles.name}>{product.name}</Text>
         <Text style={styles.description}>{product.description}</Text>
         <Text style={styles.price}>${product.finalPrice}</Text>
-        <Text style={styles.price}>${product.price}</Text>
+        {!!product.discount && (
+          <Text style={styles.price}>${product.price}</Text>
+        )}
       </View>
       {!quantity ? (
         <TouchableOpacity style={styles.buttonAdd} onPress={addProduct}>
@@ -54,6 +59,25 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
 };
 
 const styles = StyleSheet.create({
+  ImagenView: {
+    borderBottomColor: Colors.lineGray,
+    borderBottomWidth: 1,
+    borderTopLeftRadius: 6,
+    borderTopRightRadius: 6,
+  },
+  addText: {
+    color: Colors.white,
+    fontSize: 18,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  buttonAdd: {
+    backgroundColor: Colors.orange,
+    borderBottomLeftRadius: 6,
+    borderBottomRightRadius: 6,
+    height: 40,
+    justifyContent: 'center',
+  },
   card: {
     backgroundColor: Colors.white,
     borderRadius: 6,
@@ -62,32 +86,11 @@ const styles = StyleSheet.create({
     minHeight: 120,
     width: 140,
   },
-  ImagenView: {
-    borderBottomColor: Colors.lineGray,
-    borderBottomWidth: 1,
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
-  },
-  productImage: {
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
-    height: 100,
-    width: '100%',
-  },
-  info: {
-    backgroundColor: Colors.white,
-    justifyContent: 'space-between',
-    marginLeft: 5,
-    minHeight: 90,
-    paddingHorizontal: 5,
-    paddingVertical: 5,
-  },
-  buttonAdd: {
-    backgroundColor: Colors.orange,
-    borderBottomLeftRadius: 6,
-    borderBottomRightRadius: 6,
-    height: 40,
-    justifyContent: 'center',
+  count: {
+    color: Colors.white,
+    fontSize: 28,
+    fontWeight: '600',
+    textAlign: 'center',
   },
   counter: {
     backgroundColor: Colors.white,
@@ -97,6 +100,20 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'space-between',
   },
+  info: {
+    backgroundColor: Colors.white,
+    justifyContent: 'space-between',
+    marginLeft: 5,
+    minHeight: 90,
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+  },
+  productImage: {
+    borderTopLeftRadius: 6,
+    borderTopRightRadius: 6,
+    height: 100,
+    width: '100%',
+  },
   quantity: {
     alignSelf: 'center',
     color: Colors.black,
@@ -104,18 +121,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     width: 60,
-  },
-  count: {
-    color: Colors.white,
-    fontSize: 28,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-  addText: {
-    color: Colors.white,
-    fontSize: 18,
-    fontWeight: '600',
-    textAlign: 'center',
   },
   increase: {
     alignItems: 'center',

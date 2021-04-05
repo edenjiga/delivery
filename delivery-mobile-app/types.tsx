@@ -1,5 +1,9 @@
-import { Address, Product, UserPublicFields } from '@edenjiga/delivery-common';
-import screenNames from '@/constants/screenNames';
+import {
+  Address,
+  IOrder,
+  Product,
+  UserPublicFields,
+} from '@edenjiga/delivery-common';
 import REQUEST_STATUS from '@/constants/RequestStatus';
 import SCREEN_NAMES from '@/constants/screenNames';
 
@@ -12,10 +16,15 @@ const {
   SELECT_ADDRESS,
   USER_REQUIRED_FIELDS_FORM,
   VERIFY_CODE,
-} = screenNames;
+} = SCREEN_NAMES;
 
 export interface ICartState {
   [key: string]: ProductWithQuantity;
+}
+
+export interface IOrdersState {
+  loadingStatus: REQUEST_STATUS;
+  data: { [key: string]: IOrder };
 }
 
 export interface IuserState {

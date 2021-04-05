@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -7,11 +7,27 @@ import {
   Platform,
 } from 'react-native';
 
-import { View } from '@/components/Themed';
+import { View, Text } from '@/components/Themed';
 import { PopularProducts, SpecialOffers, SearchProduct } from './components';
 import Colors from '@/constants/Colors';
+import { RootState } from '@/store';
+import { IOrdersState } from '@/types';
+import { useSelector } from 'react-redux';
+import { ORDER_STATUS } from '@edenjiga/delivery-common';
 
-export default function TabOneScreen() {
+export default function TabMainScreen() {
+  const { data } = useSelector<RootState, IOrdersState>(
+    (state) => state.orders,
+  );
+
+  const orderActive = useMemo(
+    () =>
+      Object.values(data).filter(
+        ({ status }) => status === ORDER_STATUS.CREATED,
+      ),
+    [data],
+  );
+
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -21,6 +37,9 @@ export default function TabOneScreen() {
         <SafeAreaView>
           <ScrollView>
             {/* <SearchProduct /> */}
+            {!!orderActive.length && (
+              <Text>Ordenes activas {orderActive.length} </Text>
+            )}
             <SpecialOffers />
             <PopularProducts />
           </ScrollView>
@@ -32,7 +51,7 @@ export default function TabOneScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: Colors.white,
+    flex: 1,
   },
 });

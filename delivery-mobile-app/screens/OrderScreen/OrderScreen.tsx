@@ -1,9 +1,9 @@
-import React, { FC } from "react";
-import { Text } from "@/components/Themed";
-import { Button, SafeAreaView, View } from "react-native";
-import { ProductWithQuantity } from "@/types";
-import { Picker } from "@react-native-picker/picker";
-import { PAYMENT_METHODS } from "@edenjiga/delivery-common";
+import React, { FC } from 'react';
+import { Text } from '@/components/Themed';
+import { Button, SafeAreaView, View } from 'react-native';
+import { ProductWithQuantity } from '@/types';
+import { Picker } from '@react-native-picker/picker';
+import { PAYMENT_METHODS } from '@edenjiga/delivery-common';
 type Props = {
   deliveryValue: number;
   onCreateOrder(): void;

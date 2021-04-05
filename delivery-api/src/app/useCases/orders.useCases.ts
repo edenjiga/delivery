@@ -119,7 +119,7 @@ export class OrdersUseCases {
 
     // Verify Address
 
-    const orderData: IOrder = {
+    const orderData: Omit<IOrder, '_id'> = {
       discountValue: totalDiscount,
       deliveryValue: this.deliveryValue,
       payment: {

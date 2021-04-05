@@ -3,6 +3,7 @@ import RequestStatus from '@/constants/RequestStatus';
 import SCREEN_NAMES from '@/constants/screenNames';
 import { RootState } from '@/store';
 import { cleanCartAction } from '@/store/actions/cart';
+import { addOrder } from '@/store/actions/orders';
 import { RootStackParamList } from '@/types';
 import storageService from '@/utils/storageService';
 import { CreateOrderDto, PAYMENT_METHODS } from '@edenjiga/delivery-common';
@@ -82,8 +83,9 @@ export default ({ navigation }: Props) => {
       },
     };
     try {
-      await createOrder(data);
+      const newOrder = await createOrder(data);
 
+      dispatch(addOrder(newOrder));
       dispatch(cleanCartAction());
       return navigation.replace(SCREEN_NAMES.ROOT);
     } catch (error) {

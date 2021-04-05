@@ -28,10 +28,14 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
           )}
         </View>
         <View style={styles.info}>
-          <Text style={styles.name}>{product.discount}%</Text>
+          {!!product.discount && (
+            <Text style={styles.name}>{product.discount}%</Text>
+          )}
           <Text style={styles.name}>{product.name}</Text>
           <Text style={styles.description}>{product.description}</Text>
-          <Text style={styles.price}>${product.price}</Text>
+          {!!product.discount && (
+            <Text style={styles.price}>${product.price}</Text>
+          )}
         </View>
       </View>
 

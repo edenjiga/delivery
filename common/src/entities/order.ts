@@ -83,6 +83,7 @@ export class CreateOrderDto {
 }
 
 export class IOrder {
+  _id: string;
   address: Address;
   deliveryDate?: Date;
   deliveryValue: number;
