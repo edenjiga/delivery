@@ -1,10 +1,10 @@
-import SCREEN_NAMES from '@/constants/screenNames';
-import { RootState } from '@/store';
-import { ICartState, RootStackParamList } from '@/types';
-import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useCallback, useMemo } from 'react';
-import { useSelector } from 'react-redux';
-import TabCartScreen from './TabCartScreen';
+import SCREEN_NAMES from "@/constants/screenNames";
+import { RootState } from "@/store";
+import { ICartState, RootStackParamList } from "@/types";
+import { StackNavigationProp } from "@react-navigation/stack";
+import React, { FC, useCallback, useMemo } from "react";
+import { useSelector } from "react-redux";
+import TabCartScreen from "./TabCartScreen";
 
 interface Props {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -20,13 +20,13 @@ const TabCartScreenContainer: FC<Props> = ({ navigation }) => {
       (prevValue, { quantity, product: { finalPrice } }) => {
         return prevValue + quantity * finalPrice;
       },
-      0,
+      0
     );
-  }, [productsWithQuanty]);
+  }, [cart]);
 
   const onGoToPay = useCallback(() => {
     navigation.navigate(SCREEN_NAMES.ORDER);
-  }, [navigation]);
+  }, []);
 
   return (
     <TabCartScreen

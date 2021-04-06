@@ -1,13 +1,12 @@
-import { Ionicons } from '@expo/vector-icons';
-import * as Font from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-import * as React from 'react';
+import { Ionicons } from "@expo/vector-icons";
+import * as Font from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import * as React from "react";
 
-import storageService from '@/utils/storageService';
-import { getUserByToken } from '@/api/user';
-import { loginUserAsync } from '@/store/actions/user';
-import { useDispatch } from 'react-redux';
-import { fetchUnfinishedOrdersAsync } from '@/store/actions/orders';
+import storageService from "@/utils/storageService";
+import { getUserByToken } from "@/api/user";
+import { loginUserAsync } from "@/store/actions/user";
+import { useDispatch } from "react-redux";
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -19,7 +18,6 @@ export default function useCachedResources() {
         try {
           const user = await getUserByToken();
           dispatch(loginUserAsync.success(user));
-          return user;
         } catch (error) {}
       };
 
@@ -30,13 +28,12 @@ export default function useCachedResources() {
           // Load fonts
           Font.loadAsync({
             ...Ionicons.font,
-            'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
+            "lato": require("../assets/fonts/Lato-Regular.ttf"),
           }),
           storageService.initialize(),
         ]);
 
-        const user = await getUser();
-        if (user) dispatch(fetchUnfinishedOrdersAsync.request());
+        await getUser();
       } catch (e) {
         // We might want to provide this error information to an error reporting service
         console.warn(e);

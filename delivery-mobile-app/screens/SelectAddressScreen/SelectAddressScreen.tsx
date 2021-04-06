@@ -56,7 +56,7 @@ const style = StyleSheet.create({
     display: 'flex',
   },
   principalView: {
-    backgroundColor: Colors.witheGrey,
+    backgroundColor: Colors.whiteGrey,
     flex: 1,
   },
 });

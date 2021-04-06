@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text } from '@/components/Themed';
-import { getProducts } from '@/api/products';
-import { Product } from '@edenjiga/delivery-common';
-import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
-import Colors from '@/constants/Colors';
-import { ProductCardVertical } from '@/components';
+import React, { useEffect, useState } from "react";
+import { View, Text } from "@/components/Themed";
+import { getProducts } from "@/api/products";
+import { Product } from "@edenjiga/delivery-common";
+import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import Colors from "@/constants/Colors";
+import { ProductCardVertical } from "@/components";
 
-export default function Component() {
+export default () => {
   const [products, setProductState] = useState<Product[]>([]);
   useEffect(() => {
     const getProductsInPromotion = async () => {
@@ -32,7 +32,6 @@ export default function Component() {
         <View style={styles.box}>
           <ScrollView
             horizontal={true}
-            style={styles.content}
             showsHorizontalScrollIndicator={false}
           >
             <View style={styles.productCard}>
@@ -45,30 +44,29 @@ export default function Component() {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  box: {
-    backgroundColor: Colors.lightgrey,
-    justifyContent: 'center',
-    width: '100%',
-  },
   container: {
     flex: 1,
   },
-  content: {},
+  box: {
+    width: "100%",
+    backgroundColor: Colors.lightgrey,
+    justifyContent: "center",
+  },
   productCard: {
     backgroundColor: Colors.lightgrey,
-    flexDirection: 'row',
-    paddingHorizontal: 5,
+    flexDirection: "row",
     paddingVertical: 15,
+    paddingHorizontal: 5,
   },
   title: {
     backgroundColor: Colors.lightgrey,
-    color: Colors.black,
-    fontSize: 20,
-    fontWeight: '700',
-    paddingHorizontal: 10,
     paddingTop: 10,
+    paddingHorizontal: 10,
+    fontSize: 20,
+    color: Colors.black,
+    fontWeight: "bold",
   },
 });

@@ -10,7 +10,6 @@ import Navigation from './navigation';
 import { store } from './store';
 import Loader from './components/Loader';
 import Colors from './constants/Colors';
-import './store/sagas';
 
 function App() {
   const isLoadingComplete = useCachedResources();
@@ -22,7 +21,7 @@ function App() {
       <SafeAreaProvider>
         <SafeAreaView style={styles.SafeAreaViewStyle}>
           <Navigation />
-          <StatusBar backgroundColor={Colors.orange} />
+          <StatusBar backgroundColor={Colors.orangeDark} />
           <Loader />
         </SafeAreaView>
       </SafeAreaProvider>
@@ -37,10 +36,8 @@ const styles = StyleSheet.create({
 });
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default function Component() {
-  return (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
-}
+export default () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);

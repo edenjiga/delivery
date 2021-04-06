@@ -14,7 +14,6 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
   const { addProduct, decreaseProduct, quantity } = useCartOperationForProduct(
     product,
   );
-
   return (
     <View style={styles.card}>
       {!!product.Imagen && (
@@ -25,19 +24,24 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
             source={{
               uri: product.Imagen.url,
             }}
+            /* source={require('assets/images/vehicle.png')}*/
           />
+          <View style={styles.discountBox}>
+            <Image
+              style={styles.discount}
+              resizeMode="contain"
+              source={require('assets/images/discount.png')}
+            />
+            <Text style={styles.discountText}>-{product.discount}%</Text>
+          </View>
         </View>
       )}
       <View style={styles.info}>
-        {!!product.discount && (
-          <Text style={styles.name}>{product.discount}%</Text>
-        )}
         <Text style={styles.name}>{product.name}</Text>
-        <Text style={styles.description}>{product.description}</Text>
-        <Text style={styles.price}>${product.finalPrice}</Text>
-        {!!product.discount && (
+        <View style={styles.priceBox}>
+          <Text style={styles.finalPrice}>${product.finalPrice}</Text>
           <Text style={styles.price}>${product.price}</Text>
-        )}
+        </View>
       </View>
       {!quantity ? (
         <TouchableOpacity style={styles.buttonAdd} onPress={addProduct}>
@@ -59,17 +63,35 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
 };
 
 const styles = StyleSheet.create({
+  card: {
+    backgroundColor: Colors.white,
+    borderRadius: 6,
+    justifyContent: 'space-between',
+    marginHorizontal: 5,
+    width: 140,
+  },
   ImagenView: {
-    borderBottomColor: Colors.lineGray,
+    borderBottomColor: Colors.lineGrey,
     borderBottomWidth: 1,
     borderTopLeftRadius: 6,
     borderTopRightRadius: 6,
+    paddingVertical: 5,
+    backgroundColor: Colors.backGrey,
+    alignItems: 'center',
   },
-  addText: {
-    color: Colors.white,
-    fontSize: 18,
-    fontWeight: '600',
-    textAlign: 'center',
+  productImage: {
+    borderTopLeftRadius: 6,
+    height: 100,
+    width: 90,
+    borderTopRightRadius: 6,
+  },
+  info: {
+    backgroundColor: Colors.white,
+    marginLeft: 5,
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+    height: 80,
+    justifyContent: 'space-between',
   },
   buttonAdd: {
     backgroundColor: Colors.orange,
@@ -77,20 +99,6 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 6,
     height: 40,
     justifyContent: 'center',
-  },
-  card: {
-    backgroundColor: Colors.white,
-    borderRadius: 6,
-    justifyContent: 'space-between',
-    marginHorizontal: 5,
-    minHeight: 120,
-    width: 140,
-  },
-  count: {
-    color: Colors.white,
-    fontSize: 28,
-    fontWeight: '600',
-    textAlign: 'center',
   },
   counter: {
     backgroundColor: Colors.white,
@@ -100,18 +108,24 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'space-between',
   },
-  decrease: {
-    alignItems: 'center',
-    backgroundColor: Colors.orange,
-    borderBottomLeftRadius: 6,
+  quantity: {
+    alignSelf: 'center',
+    color: Colors.black,
+    fontSize: 20,
     justifyContent: 'center',
-    width: 40,
+    textAlign: 'center',
+    width: 60,
   },
-  description: {
-    color: Colors.darkGrey,
-    fontSize: 12,
-    fontWeight: '300',
-    marginBottom: 10,
+  count: {
+    color: Colors.white,
+    fontSize: 28,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  addText: {
+    color: Colors.white,
+    fontSize: 18,
+    textAlign: 'center',
   },
   increase: {
     alignItems: 'center',
@@ -120,38 +134,57 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 40,
   },
-  info: {
-    backgroundColor: Colors.white,
-    justifyContent: 'space-between',
-    marginLeft: 5,
-    minHeight: 90,
-    paddingHorizontal: 5,
-    paddingVertical: 5,
+  decrease: {
+    alignItems: 'center',
+    backgroundColor: Colors.orange,
+    borderBottomLeftRadius: 6,
+    justifyContent: 'center',
+    width: 40,
   },
   name: {
     color: Colors.darkGrey,
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 5,
   },
+  description: {
+    color: Colors.darkGrey,
+    fontSize: 12,
+    fontWeight: '300',
+    marginBottom: 10,
+  },
   price: {
-    color: Colors.black,
-    fontSize: 13,
+    color: Colors.red,
+    fontSize: 15,
+    textDecorationLine: 'line-through',
+  },
+  finalPrice: {
+    color: Colors.green,
+    fontSize: 15,
+    marginRight: 10,
     fontWeight: 'bold',
   },
-  productImage: {
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
-    height: 100,
-    width: '100%',
-  },
-  quantity: {
-    alignSelf: 'center',
-    color: Colors.black,
-    fontSize: 20,
-    justifyContent: 'center',
+  priceBox: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    alignContent: 'flex-start',
     textAlign: 'center',
-    width: 60,
+  },
+  discountBox: {
+    position: 'absolute',
+    right: 2,
+    top: 2,
+  },
+  discount: {
+    width: 35,
+    height: 35,
+  },
+  discountText: {
+    color: Colors.white,
+    position: 'absolute',
+    fontSize: 12,
+    right: 5,
+    top: 8,
   },
 });
 

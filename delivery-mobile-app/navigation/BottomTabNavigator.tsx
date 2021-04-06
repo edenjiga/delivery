@@ -17,7 +17,7 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabMain"
-      tabBarOptions={{ activeTintColor: Colors.orange, showLabel: false }}
+      tabBarOptions={{ activeTintColor: Colors.orangeDark, showLabel: false }}
     >
       <BottomTab.Screen
         name="TabMain"
@@ -62,5 +62,5 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof Ionicons>['name'];
   color: string;
 }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <Ionicons size={30} {...props} />;
 }

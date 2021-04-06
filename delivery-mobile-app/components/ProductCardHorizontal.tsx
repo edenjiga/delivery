@@ -16,31 +16,40 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
   return (
     <View style={styles.card}>
       <View style={styles.box}>
-        <View style={styles.image}>
+        <View>
           {!!product.Imagen && (
-            <Image
-              style={styles.productImage}
-              resizeMode="contain"
-              source={{
+            <View style={styles.image}>
+              <Image
+                style={styles.productImage}
+                resizeMode="contain"
+                /*source={{
                 uri: product.Imagen.url,
-              }}
-            />
+              }}*/
+                source={require('assets/images/vehicle.png')}
+              />
+              <View style={styles.discountBox}>
+                <Image
+                  style={styles.discount}
+                  resizeMode="contain"
+                  source={require('assets/images/discount.png')}
+                />
+                <Text style={styles.discountText}>-{product.discount}%</Text>
+              </View>
+            </View>
           )}
         </View>
         <View style={styles.info}>
-          {!!product.discount && (
-            <Text style={styles.name}>{product.discount}%</Text>
-          )}
           <Text style={styles.name}>{product.name}</Text>
           <Text style={styles.description}>{product.description}</Text>
-          {!!product.discount && (
-            <Text style={styles.price}>${product.price}</Text>
-          )}
         </View>
       </View>
 
       <View style={styles.boxInfo}>
-        <Text style={styles.price}>${product.finalPrice}</Text>
+        <View>
+          <Text style={styles.normalPrice}>${product.price}</Text>
+          <Text style={styles.discountPrice}>${product.finalPrice}</Text>
+          <Text style={styles.specialPrice}>${product.price}</Text>
+        </View>
         {!quantity ? (
           <TouchableOpacity style={styles.buttonAdd} onPress={addProduct}>
             <Text style={styles.addText}>+</Text>
@@ -62,33 +71,88 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
 };
 
 const styles = StyleSheet.create({
+  card: {
+    backgroundColor: Colors.white,
+    borderBottomColor: Colors.lineGrey,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
+  box: {
+    flexDirection: 'row',
+  },
+  image: {
+    borderRadius: 6,
+    backgroundColor: Colors.backGrey,
+    width: 120,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  productImage: {
+    height: 100,
+    width: 90,
+  },
+  discountBox: {
+    position: 'absolute',
+    right: 2,
+    top: 2,
+  },
+  discount: {
+    width: 35,
+    height: 35,
+  },
+  info: {
+    backgroundColor: Colors.white,
+    padding: 5,
+    width: 140,
+  },
+  discountText: {
+    color: Colors.white,
+    position: 'absolute',
+    fontSize: 12,
+    right: 5,
+    top: 8,
+  },
   addText: {
     color: Colors.white,
     fontSize: 20,
     fontWeight: '600',
     textAlign: 'center',
   },
-  box: {
-    flexDirection: 'row',
+  name: {
+    color: Colors.black,
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginBottom: 5,
   },
   boxInfo: {
-    paddingHorizontal: 10,
-    paddingTop: 10,
+    paddingRight: 5,
+    paddingTop: 5,
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+  },
+  normalPrice: {
+    color: Colors.black,
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  specialPrice: {
+    color: Colors.red,
+    fontSize: 15,
+    textDecorationLine: 'line-through',
+  },
+  discountPrice: {
+    color: Colors.green,
+    fontSize: 15,
+    fontWeight: 'bold',
   },
   buttonAdd: {
     backgroundColor: Colors.orange,
     borderRadius: 6,
-    justifyContent: 'center',
-  },
-  card: {
-    backgroundColor: Colors.white,
-    borderBottomColor: Colors.lineGray,
-    borderBottomWidth: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    minHeight: 100,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+    width: 35,
   },
   count: {
     color: Colors.white,
@@ -111,11 +175,8 @@ const styles = StyleSheet.create({
   },
   description: {
     color: Colors.darkGrey,
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '300',
-  },
-  image: {
-    borderRadius: 10,
   },
   increase: {
     alignItems: 'center',
@@ -124,29 +185,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     justifyContent: 'center',
     width: 25,
-  },
-  info: {
-    backgroundColor: Colors.white,
-    paddingVertical: 10,
-    width: 150,
-  },
-  name: {
-    color: Colors.darkGrey,
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  price: {
-    color: Colors.black,
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginBottom: 15,
-    textAlign: 'right',
-  },
-  productImage: {
-    borderRadius: 10,
-    height: 100,
-    width: 80,
   },
   quantity: {
     alignSelf: 'center',

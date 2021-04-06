@@ -41,10 +41,11 @@ export default PopularProducts;
 
 const styles = StyleSheet.create({
   title: {
-    backgroundColor: Colors.lightgrey,
     color: Colors.black,
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: 'bold',
     padding: 10,
+    borderBottomColor: Colors.lineGrey,
+    borderBottomWidth: 1,
   },
 });

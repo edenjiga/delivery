@@ -1,9 +1,5 @@
-import {
-  Address,
-  IOrder,
-  Product,
-  UserPublicFields,
-} from '@edenjiga/delivery-common';
+import { Address, Product, UserPublicFields } from '@edenjiga/delivery-common';
+import screenNames from '@/constants/screenNames';
 import REQUEST_STATUS from '@/constants/RequestStatus';
 import SCREEN_NAMES from '@/constants/screenNames';
 
@@ -16,15 +12,10 @@ const {
   SELECT_ADDRESS,
   USER_REQUIRED_FIELDS_FORM,
   VERIFY_CODE,
-} = SCREEN_NAMES;
+} = screenNames;
 
 export interface ICartState {
   [key: string]: ProductWithQuantity;
-}
-
-export interface IOrdersState {
-  loadingStatus: REQUEST_STATUS;
-  data: { [key: string]: IOrder };
 }
 
 export interface IuserState {
@@ -65,17 +56,3 @@ export type LocationFormValues = {
   nomenclature: Address['nomenclature'];
   name: Address['name'];
 };
-
-export class PaginationModel<T> {
-  totalDocs: number | undefined;
-  limit: number | undefined = 0;
-  totalPages: number | undefined;
-  page: number | undefined;
-  pagingCounter: number | undefined;
-  hasPrevPage: boolean | undefined = false;
-  hasNextPage: boolean | undefined = false;
-  prevPage: number | undefined;
-  nextPage: number | undefined;
-  hasMore: boolean | undefined = false;
-  docs: T[] = [];
-}
