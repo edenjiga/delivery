@@ -22,7 +22,7 @@ function App() {
       <SafeAreaProvider>
         <SafeAreaView style={styles.SafeAreaViewStyle}>
           <Navigation />
-          <StatusBar backgroundColor={Colors.orange} />
+          <StatusBar backgroundColor={Colors.orangeDark} />
           <Loader />
         </SafeAreaView>
       </SafeAreaProvider>

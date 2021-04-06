@@ -48,7 +48,7 @@ const style = StyleSheet.create({
   },
   greenDot: {
     alignItems: 'center',
-    backgroundColor: Colors.greenlight,
+    backgroundColor: Colors.green,
     borderRadius: 50,
     height: 25,
     justifyContent: 'center',

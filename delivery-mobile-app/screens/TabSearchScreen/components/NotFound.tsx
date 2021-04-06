@@ -24,27 +24,31 @@ export default function Component() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    marginTop: 100,
+    paddingHorizontal: 20,
   },
   infoCont: {
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    height: 500,
     justifyContent: 'center',
+    height: 280,
+    alignItems: 'center',
   },
-  title: {
-    color: Colors.darkGrey,
-    fontSize: 30,
-    fontWeight: '800',
-    marginBottom: 10,
-    textAlign: 'center',
-  },
+
   description: {
     color: Colors.darkGrey,
+    fontSize: 16,
+    paddingHorizontal: 20,
     textAlign: 'center',
   },
   image: {
-    marginTop: 40,
+    height: '100%',
+    marginTop: 60,
     resizeMode: 'contain',
+    width: '100%',
+  },
+  title: {
+    color: Colors.darkGrey,
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 15,
   },
 });

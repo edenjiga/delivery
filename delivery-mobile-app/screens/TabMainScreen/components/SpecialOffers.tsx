@@ -30,11 +30,7 @@ export default function Component() {
       <View style={styles.container}>
         <Text style={styles.title}>Ofertas especiales</Text>
         <View style={styles.box}>
-          <ScrollView
-            horizontal={true}
-            style={styles.content}
-            showsHorizontalScrollIndicator={false}
-          >
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={styles.productCard}>
               {products.map((product) => (
                 <ProductCardVertical product={product} key={product._id} />
@@ -56,7 +52,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  content: {},
   productCard: {
     backgroundColor: Colors.lightgrey,
     flexDirection: 'row',
@@ -67,7 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.lightgrey,
     color: Colors.black,
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: 'bold',
     paddingHorizontal: 10,
     paddingTop: 10,
   },

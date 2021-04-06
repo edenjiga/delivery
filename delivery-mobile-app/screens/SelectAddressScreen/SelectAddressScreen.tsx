@@ -1,4 +1,4 @@
-import { Text, View } from '@/components/Themed';
+import { View } from '@/components/Themed';
 import Colors from '@/constants/Colors';
 import { Address } from '@edenjiga/delivery-common';
 import React, { FC } from 'react';
@@ -56,7 +56,7 @@ const style = StyleSheet.create({
     display: 'flex',
   },
   principalView: {
-    backgroundColor: Colors.witheGrey,
+    backgroundColor: Colors.whiteGrey,
     flex: 1,
   },
 });

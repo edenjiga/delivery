@@ -30,7 +30,7 @@ export default function useCachedResources() {
           // Load fonts
           Font.loadAsync({
             ...Ionicons.font,
-            'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
+            lato: require('../assets/fonts/Lato-Regular.ttf'),
           }),
           storageService.initialize(),
         ]);
