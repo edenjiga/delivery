@@ -100,6 +100,26 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'space-between',
   },
+  decrease: {
+    alignItems: 'center',
+    backgroundColor: Colors.orange,
+    borderBottomLeftRadius: 6,
+    justifyContent: 'center',
+    width: 40,
+  },
+  description: {
+    color: Colors.darkGrey,
+    fontSize: 12,
+    fontWeight: '300',
+    marginBottom: 10,
+  },
+  increase: {
+    alignItems: 'center',
+    backgroundColor: Colors.orange,
+    borderBottomRightRadius: 6,
+    justifyContent: 'center',
+    width: 40,
+  },
   info: {
     backgroundColor: Colors.white,
     justifyContent: 'space-between',
@@ -107,6 +127,17 @@ const styles = StyleSheet.create({
     minHeight: 90,
     paddingHorizontal: 5,
     paddingVertical: 5,
+  },
+  name: {
+    color: Colors.darkGrey,
+    fontSize: 13,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  price: {
+    color: Colors.black,
+    fontSize: 13,
+    fontWeight: 'bold',
   },
   productImage: {
     borderTopLeftRadius: 6,
@@ -121,37 +152,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     width: 60,
-  },
-  increase: {
-    alignItems: 'center',
-    backgroundColor: Colors.orange,
-    borderBottomRightRadius: 6,
-    justifyContent: 'center',
-    width: 40,
-  },
-  decrease: {
-    alignItems: 'center',
-    backgroundColor: Colors.orange,
-    borderBottomLeftRadius: 6,
-    justifyContent: 'center',
-    width: 40,
-  },
-  name: {
-    color: Colors.darkGrey,
-    fontSize: 13,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  description: {
-    color: Colors.darkGrey,
-    fontSize: 12,
-    fontWeight: '300',
-    marginBottom: 10,
-  },
-  price: {
-    color: Colors.black,
-    fontSize: 13,
-    fontWeight: 'bold',
   },
 });
 

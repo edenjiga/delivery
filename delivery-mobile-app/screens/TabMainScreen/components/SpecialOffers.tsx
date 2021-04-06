@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { View, Text } from "@/components/Themed";
-import { getProducts } from "@/api/products";
-import { Product } from "@edenjiga/delivery-common";
-import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
-import Colors from "@/constants/Colors";
-import { ProductCardVertical } from "@/components";
+import React, { useEffect, useState } from 'react';
+import { View, Text } from '@/components/Themed';
+import { getProducts } from '@/api/products';
+import { Product } from '@edenjiga/delivery-common';
+import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import Colors from '@/constants/Colors';
+import { ProductCardVertical } from '@/components';
 
-export default () => {
+export default function Component() {
   const [products, setProductState] = useState<Product[]>([]);
   useEffect(() => {
     const getProductsInPromotion = async () => {
@@ -45,30 +45,30 @@ export default () => {
       </View>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
+  box: {
+    backgroundColor: Colors.lightgrey,
+    justifyContent: 'center',
+    width: '100%',
+  },
   container: {
     flex: 1,
-  },
-  box: {
-    width: "100%",
-    backgroundColor: Colors.lightgrey,
-    justifyContent: "center",
   },
   content: {},
   productCard: {
     backgroundColor: Colors.lightgrey,
-    flexDirection: "row",
-    paddingVertical: 15,
+    flexDirection: 'row',
     paddingHorizontal: 5,
+    paddingVertical: 15,
   },
   title: {
     backgroundColor: Colors.lightgrey,
-    paddingTop: 10,
-    paddingHorizontal: 10,
-    fontSize: 20,
     color: Colors.black,
-    fontWeight: "700",
+    fontSize: 20,
+    fontWeight: '700',
+    paddingHorizontal: 10,
+    paddingTop: 10,
   },
 });

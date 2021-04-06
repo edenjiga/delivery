@@ -10,6 +10,7 @@ import Navigation from './navigation';
 import { store } from './store';
 import Loader from './components/Loader';
 import Colors from './constants/Colors';
+import './store/sagas';
 
 function App() {
   const isLoadingComplete = useCachedResources();
@@ -36,8 +37,10 @@ const styles = StyleSheet.create({
 });
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default () => (
-  <Provider store={store}>
-    <App />
-  </Provider>
-);
+export default function Component() {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+}

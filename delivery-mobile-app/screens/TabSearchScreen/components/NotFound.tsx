@@ -3,52 +3,48 @@ import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import Colors from '@/constants/Colors';
 
-export default () => (
-  <View style={styles.container}>
-    <View style={styles.infoCont}>
-      <Text style={styles.title}>Lo sentimos</Text>
-      <Text style={styles.description}>
-        No hemos encontrado nada relacionado con tu búsqueda, por favor, intenta
-        nuevamente.
-      </Text>
-      <Image
-        style={styles.image}
-        source={require('assets/images/not-found.png')}
-      />
+export default function Component() {
+  return (
+    <View style={styles.container}>
+      <View style={styles.infoCont}>
+        <Text style={styles.title}>Lo sentimos</Text>
+        <Text style={styles.description}>
+          No hemos encontrado nada relacionado con tu búsqueda, por favor,
+          intenta nuevamente.
+        </Text>
+        <Image
+          style={styles.image}
+          source={require('assets/images/not-found.png')}
+        />
+      </View>
     </View>
-  </View>
-);
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
   },
-  content: {
-    padding: 20,
-    justifyContent: 'center',
-    textAlignVertical: 'center',
-    flex: 1,
-  },
   infoCont: {
-    height: 500,
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'transparent',
+    height: 500,
+    justifyContent: 'center',
   },
   title: {
-    textAlign: 'center',
+    color: Colors.darkGrey,
     fontSize: 30,
     fontWeight: '800',
-    color: Colors.darkGrey,
     marginBottom: 10,
+    textAlign: 'center',
   },
   description: {
-    textAlign: 'center',
     color: Colors.darkGrey,
+    textAlign: 'center',
   },
   image: {
-    resizeMode: 'contain',
     marginTop: 40,
+    resizeMode: 'contain',
   },
 });

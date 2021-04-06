@@ -1,9 +1,14 @@
-import { CreateOrderDto, IOrder } from "@edenjiga/delivery-common";
-import mainApi from "./mainApi";
+import { PaginationModel } from '@/types';
+import { CreateOrderDto, IOrder } from '@edenjiga/delivery-common';
+import mainApi from './mainApi';
 
 const createOrder = (body: CreateOrderDto) =>
-  mainApi.post<IOrder>("/orders", {
+  mainApi.post<IOrder>('/orders', {
     body,
   });
 
-export { createOrder };
+const getOrders = (params = {}) =>
+  mainApi.get<PaginationModel<IOrder>>('/orders', {
+    params,
+  });
+export { createOrder, getOrders };
