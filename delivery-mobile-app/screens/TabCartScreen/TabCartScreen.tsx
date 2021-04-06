@@ -1,8 +1,9 @@
-import React, { FC } from "react";
-import { View, Text } from "@/components/Themed";
-import { ProductWithQuantity } from "@/types";
-import { Button } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React, { FC } from 'react';
+import { Text, View } from '@/components/Themed';
+import { ProductWithQuantity } from '@/types';
+import { Button } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ProductCardHorizontal } from '@/components';
 
 type Props = {
   onGoToPay(): void;
@@ -17,14 +18,14 @@ const TabCartScreen: FC<Props> = ({
 }) => (
   <SafeAreaView>
     <View>
-      {productWithQuantity.map(({ product, quantity }) => (
-        <Text key={`tabCart-${product._id}`}>
-          {product.name} {quantity}
-        </Text>
+      {productWithQuantity.map(({ product }) => (
+        <ProductCardHorizontal product={product} key={product._id} />
       ))}
 
+      <Text>Subtotal {total}</Text>
+
       {!!productWithQuantity.length && (
-        <Button title={`go to pay $ ${total}`} onPress={onGoToPay} />
+        <Button title="Ir a pagar" onPress={onGoToPay} />
       )}
     </View>
   </SafeAreaView>
