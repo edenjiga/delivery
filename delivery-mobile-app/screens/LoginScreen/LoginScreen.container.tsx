@@ -23,7 +23,7 @@ const LoginScreenContainer: FC<Props> = ({ navigation, route }) => {
   const handleLogin = async () => {
     if (phoneText.length !== 10) return Alert.alert('Numero invalido');
     try {
-      // await sendSms(phoneText);
+      await sendSms(phoneText);
       return navigation.navigate(SCREEN_NAMES.VERIFY_CODE, {
         phone: phoneText,
         goTo: route.params?.goTo,
