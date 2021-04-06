@@ -32,6 +32,10 @@ const reducer = createReducer<IOrdersState, Actions>(initialState)
   )
   .handleAction(orderActions.fetchUnfinishedOrdersAsync.failure, (state) => {
     return { ...state, loadingStatus: RequestStatus.REQUEST_FAILED };
+  })
+  .handleAction(orderActions.orderUpdatedAction, (state, action) => {
+    const { payload } = action;
+    return { ...state, data: { ...state.data, [payload._id]: payload } };
   });
 
 export default reducer;

@@ -3,7 +3,7 @@ import { IuserState } from '@/types';
 import { useSelector } from 'react-redux';
 
 const useUserFromRedux = () => {
-  const user = useSelector<RootState, IuserState>((state) => state.user);
-  return user;
+  return useSelector<RootState, IuserState>((state: RootState) => state.user);
+  // return user;
 };
 export default useUserFromRedux;

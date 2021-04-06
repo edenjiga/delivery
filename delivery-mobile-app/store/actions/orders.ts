@@ -1,7 +1,6 @@
 import { IOrdersState } from '@/types';
-import { IOrder } from '@edenjiga/delivery-common';
+import { IOrder, SOCKET_EVENTS } from '@edenjiga/delivery-common';
 import { createAction, createAsyncAction } from 'typesafe-actions';
-
 export enum types {
   ADD_ORDER = 'ADD_ORDER',
   FETCH_UNFINISHED_ORDERS_REQUEST = 'FETCH_UNFINISHED_ORDERS_REQUEST',
@@ -9,6 +8,9 @@ export enum types {
   FETCH_UNFINISHED_ORDERS_FAIL = 'FETCH_UNFINISHED_ORDERS_FAIL',
 }
 export const addOrder = createAction(types.ADD_ORDER)<IOrder>();
+export const orderUpdatedAction = createAction(
+  SOCKET_EVENTS.ORDER_UPDATED,
+)<IOrder>();
 
 export const fetchUnfinishedOrdersAsync = createAsyncAction(
   types.FETCH_UNFINISHED_ORDERS_REQUEST,

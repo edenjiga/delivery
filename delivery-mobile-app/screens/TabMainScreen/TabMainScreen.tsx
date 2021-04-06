@@ -23,7 +23,9 @@ export default function TabMainScreen() {
   const orderActive = useMemo(
     () =>
       Object.values(data).filter(
-        ({ status }) => status === ORDER_STATUS.CREATED,
+        ({ status }) =>
+          status === ORDER_STATUS.CREATED ||
+          status === ORDER_STATUS.IN_PROGRESS,
       ),
     [data],
   );

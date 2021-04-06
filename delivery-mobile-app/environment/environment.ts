@@ -6,6 +6,7 @@ import Constants from 'expo-constants';
 const defaultEnv = {
   // facebookAppId: '810634859679461',
   apiUrl: 'https://qa.edgarjimenezg.com',
+  socketUrl: 'https://qa.edgarjimenezg.com',
 };
 
 const getEnvVars = (env = Constants.manifest.releaseChannel) => {

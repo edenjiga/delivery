@@ -14,28 +14,30 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
   const { addProduct, decreaseProduct, quantity } = useCartOperationForProduct(
     product,
   );
+
   return (
     <View style={styles.card}>
-      {!!product.Imagen && (
-        <View style={styles.ImagenView}>
+      <View style={styles.ImagenView}>
+        <Image
+          style={styles.productImage}
+          resizeMode="contain"
+          source={
+            product.Imagen
+              ? {
+                  uri: product.Imagen.url,
+                }
+              : require('assets/images/vehicle.png')
+          }
+        />
+        <View style={styles.discountBox}>
           <Image
-            style={styles.productImage}
+            style={styles.discount}
             resizeMode="contain"
-            source={{
-              uri: product.Imagen.url,
-            }}
-            /* source={require('assets/images/vehicle.png')}*/
+            source={require('assets/images/discount.png')}
           />
-          <View style={styles.discountBox}>
-            <Image
-              style={styles.discount}
-              resizeMode="contain"
-              source={require('assets/images/discount.png')}
-            />
-            <Text style={styles.discountText}>-{product.discount}%</Text>
-          </View>
+          <Text style={styles.discountText}>-{product.discount}%</Text>
         </View>
-      )}
+      </View>
       <View style={styles.info}>
         <Text style={styles.name}>{product.name}</Text>
         <View style={styles.priceBox}>

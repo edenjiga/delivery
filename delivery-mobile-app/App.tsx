@@ -10,6 +10,7 @@ import Navigation from './navigation';
 import { store } from './store';
 import Loader from './components/Loader';
 import Colors from './constants/Colors';
+import SocketEventHandle from './components/SocketEventHandle';
 import './store/sagas';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   } else {
     return (
       <SafeAreaProvider>
+        <SocketEventHandle />
         <SafeAreaView style={styles.SafeAreaViewStyle}>
           <Navigation />
           <StatusBar backgroundColor={Colors.orangeDark} />
