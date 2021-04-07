@@ -8,7 +8,12 @@ import {
 } from 'react-native';
 
 import { View, Text } from '@/components/Themed';
-import { PopularProducts, SpecialOffers, SearchProduct } from './components';
+import {
+  CategorySection,
+  PopularProducts,
+  SpecialOffers,
+  SearchProduct,
+} from './components';
 import Colors from '@/constants/Colors';
 import { RootState } from '@/store';
 import { IOrdersState } from '@/types';
@@ -38,6 +43,7 @@ export default function TabMainScreen() {
       >
         <SafeAreaView>
           <ScrollView>
+            <CategorySection />
             {/* <SearchProduct /> */}
             {!!orderActive.length && (
               <Text>Ordenes activas {orderActive.length} </Text>
