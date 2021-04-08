@@ -2,6 +2,7 @@ import {
   Address,
   IOrder,
   Product,
+  PRODUCT_CATEGORY,
   UserPublicFields,
 } from '@edenjiga/delivery-common';
 import REQUEST_STATUS from '@/constants/RequestStatus';
@@ -14,6 +15,7 @@ const {
   ROOT,
   ORDER,
   SELECT_ADDRESS,
+  SEARCH_PRODUCT_BY_CATEGORY,
   USER_REQUIRED_FIELDS_FORM,
   VERIFY_CODE,
 } = SCREEN_NAMES;
@@ -45,6 +47,9 @@ export type RootStackParamList = {
   [LOGIN]: { goTo?: SCREEN_NAMES };
   [ORDER]: undefined;
   [SELECT_ADDRESS]: undefined;
+  [SEARCH_PRODUCT_BY_CATEGORY]: {
+    category: PRODUCT_CATEGORY;
+  };
   [USER_REQUIRED_FIELDS_FORM]: { goTo: SCREEN_NAMES };
   [VERIFY_CODE]: {
     phone: string;
