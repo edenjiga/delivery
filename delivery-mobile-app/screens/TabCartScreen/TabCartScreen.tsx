@@ -1,10 +1,6 @@
 import React, { FC } from 'react';
 import { Text, View } from '@/components/Themed';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import { StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 
 import { ProductWithQuantity } from '@/types';
 import { ProductCardHorizontal } from '@/components';
@@ -46,45 +42,45 @@ const TabCartScreen: FC<Props> = ({
 );
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  order: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: Colors.white,
-  },
-  subtotal: {
-    borderTopWidth: 1,
-    borderTopColor: Colors.lineGrey,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.lineGrey,
-    textAlign: 'center',
-    paddingVertical: 10,
-    fontSize: 18,
-  },
-  price: {
-    fontSize: 17,
-    color: Colors.green,
-    fontWeight: 'bold',
-  },
   btnBox: {
     alignItems: 'center',
     marginVertical: 15,
   },
   button: {
-    backgroundColor: Colors.orange,
-    height: 40,
     alignItems: 'center',
+    backgroundColor: Colors.orange,
+    borderRadius: 6,
+    height: 40,
     justifyContent: 'center',
     width: 160,
-    borderRadius: 6,
   },
   buttonText: {
     color: Colors.white,
     fontSize: 20,
+  },
+  container: {
+    flex: 1,
+  },
+  order: {
+    backgroundColor: Colors.white,
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+  },
+  price: {
+    color: Colors.green,
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
+  subtotal: {
+    borderBottomColor: Colors.lineGrey,
+    borderBottomWidth: 1,
+    borderTopColor: Colors.lineGrey,
+    borderTopWidth: 1,
+    fontSize: 18,
+    paddingVertical: 10,
+    textAlign: 'center',
   },
 });
 

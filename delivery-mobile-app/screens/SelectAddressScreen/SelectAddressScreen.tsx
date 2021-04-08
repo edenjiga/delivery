@@ -1,3 +1,4 @@
+import { GoBackButton } from '@/components';
 import { View } from '@/components/Themed';
 import Colors from '@/constants/Colors';
 import { Address } from '@edenjiga/delivery-common';
@@ -23,6 +24,7 @@ const SelectAddressScren: FC<Props> = ({
 }: Props) => {
   return (
     <View style={style.principalView}>
+      <GoBackButton title="SELECCIONA UNA DIRECCIÓN" />
       <View style={style.elementContainerView}>
         {address.map(({ name, nomenclature, coordinates, note }) => (
           <AddressCard

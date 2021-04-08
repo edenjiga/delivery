@@ -4,6 +4,7 @@ import { Button, SafeAreaView, View } from 'react-native';
 import { ProductWithQuantity } from '@/types';
 import { Picker } from '@react-native-picker/picker';
 import { PAYMENT_METHODS } from '@edenjiga/delivery-common';
+import { GoBackButton } from '@/components';
 type Props = {
   deliveryValue: number;
   onCreateOrder(): void;
@@ -27,6 +28,7 @@ const OrderScreen: FC<Props> = ({
     <SafeAreaView>
       <View>
         <Text>OrderScreen</Text>
+        <GoBackButton />
         <Picker
           selectedValue={paymentMethodSelected}
           onValueChange={(itemValue) => setPaymentMethodSelected(itemValue)}

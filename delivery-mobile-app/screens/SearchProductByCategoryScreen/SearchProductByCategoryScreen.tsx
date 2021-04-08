@@ -1,9 +1,20 @@
-import { Text, View } from '@/components/Themed';
+import { GoBackButton, ProductCardHorizontal } from '@/components';
+import { Product } from '@edenjiga/delivery-common';
 import React, { FC } from 'react';
-const SearchProductByCategoryScreen: FC = () => (
-  <View>
-    <Text>search by product screen</Text>
-  </View>
+import { ScrollView } from 'react-native-gesture-handler';
+
+type Props = {
+  products: Array<Product>;
+  title: string;
+};
+const SearchProductByCategoryScreen: FC<Props> = ({ products, title }) => (
+  <ScrollView>
+    <GoBackButton title={title} />
+
+    {products.map((product) => (
+      <ProductCardHorizontal key={product._id} product={product} />
+    ))}
+  </ScrollView>
 );
 
 export default SearchProductByCategoryScreen;
