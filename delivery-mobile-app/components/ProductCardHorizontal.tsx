@@ -1,7 +1,7 @@
 import useCartOperationForProduct from '@/hooks/useCartOperationForProduct';
 import { Product } from '@edenjiga/delivery-common';
 import React, { FC } from 'react';
-import { StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, TouchableOpacity, Platform } from 'react-native';
 import { Text, View } from './Themed';
 import Colors from '@/constants/Colors';
 
@@ -147,11 +147,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   discountText: {
+    position: 'absolute',
     color: Colors.white,
     fontSize: 12,
-    position: 'absolute',
-    right: 5,
+    textAlign: 'center',
     top: 8,
+    right: 2,
+    width: 30,
+    ...Platform.select({
+      ios: {
+        fontSize: 10,
+        top: 11,
+      },
+    }),
   },
   image: {
     alignItems: 'center',

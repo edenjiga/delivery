@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 45,
     marginVertical: 20,
     marginHorizontal: 10,
+    minHeight: 40,
   },
   close: {
     position: 'absolute',
