@@ -1,17 +1,17 @@
 import { ActionType, createReducer } from 'typesafe-actions';
 import * as orderActions from '@/store/actions/orders';
-import { IOrdersState } from '@/types';
+import { OrdersState } from '@/types';
 import RequestStatus from '@/constants/RequestStatus';
 
 type Actions = ActionType<typeof orderActions>;
 
-const initialState: IOrdersState = {
+const initialState: OrdersState = {
   data: {},
   fetchUnfinishOrderStatus: RequestStatus.REQUEST_NOT_LOADED,
   fetchOrderStatus: RequestStatus.REQUEST_NOT_LOADED,
 };
 
-const reducer = createReducer<IOrdersState, Actions>(initialState)
+const reducer = createReducer<OrdersState, Actions>(initialState)
   .handleAction(orderActions.addOrder, (state, action) => {
     const { payload } = action;
 

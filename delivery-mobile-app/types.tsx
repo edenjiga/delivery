@@ -1,6 +1,6 @@
 import {
   Address,
-  IOrder,
+  OrderPublicFields,
   Product,
   PRODUCT_CATEGORY,
   UserPublicFields,
@@ -25,8 +25,8 @@ export interface ICartState {
   [key: string]: ProductWithQuantity;
 }
 
-export interface IOrdersState {
-  data: { [key: string]: IOrder };
+export interface OrdersState {
+  data: { [key: string]: OrderPublicFields };
   fetchOrderStatus: REQUEST_STATUS;
   fetchUnfinishOrderStatus: REQUEST_STATUS;
 }

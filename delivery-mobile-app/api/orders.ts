@@ -1,14 +1,22 @@
 import { PaginationModel } from '@/types';
-import { CreateOrderDto, IOrder } from '@edenjiga/delivery-common';
+import {
+  CreateOrderDto,
+  OrderPublicFields,
+  PartialOrderPublicFields,
+} from '@edenjiga/delivery-common';
 import mainApi from './mainApi';
 
 const createOrder = (body: CreateOrderDto) =>
-  mainApi.post<IOrder>('/orders', {
+  mainApi.post<OrderPublicFields>('/orders', {
     body,
   });
 
 const getOrders = (params = {}) =>
-  mainApi.get<PaginationModel<IOrder>>('/orders', {
-    params,
+  mainApi.get<PaginationModel<OrderPublicFields>>('/orders', {
+    params: { ...params, sort: 'field -createdAt' },
   });
-export { createOrder, getOrders };
+
+const updateOrder = (orderId: string, body: PartialOrderPublicFields) =>
+  mainApi.patch<OrderPublicFields>(`/orders/${orderId}`, { body });
+
+export { createOrder, getOrders, updateOrder };

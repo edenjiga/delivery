@@ -1,0 +1,10 @@
+import { ORDER_STATUS } from '@edenjiga/delivery-common';
+
+ORDER_STATUS;
+
+export default {
+  [ORDER_STATUS.CANCELED]: 'CANCELADO',
+  [ORDER_STATUS.COMPLETED]: 'COMPLETADO',
+  [ORDER_STATUS.IN_PROGRESS]: 'EN PROGRESO',
+  [ORDER_STATUS.CREATED]: 'CREADA',
+};

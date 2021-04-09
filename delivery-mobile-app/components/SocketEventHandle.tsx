@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { socket } from '@/utils/socket';
 import storageService from '@/utils/storageService';
-import { IOrder, SOCKET_EVENTS } from '@edenjiga/delivery-common';
+import { OrderPublicFields, SOCKET_EVENTS } from '@edenjiga/delivery-common';
 import { useDispatch } from 'react-redux';
 import { orderUpdatedAction } from '@/store/actions/orders';
 import { View } from './Themed';
@@ -13,7 +13,7 @@ const SocketEventHandle: FC = () => {
     if (user.data._id) {
       socket.emit('authorization', storageService.getToken());
     }
-    socket.on(SOCKET_EVENTS.ORDER_UPDATED, (data: IOrder) => {
+    socket.on(SOCKET_EVENTS.ORDER_UPDATED, (data: OrderPublicFields) => {
       dispatch(orderUpdatedAction(data));
     });
 

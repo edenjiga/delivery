@@ -1,8 +1,8 @@
 import { RootState } from '@/store';
-import { IOrdersState } from '@/types';
+import { OrdersState } from '@/types';
 import { useSelector } from 'react-redux';
 
-const useOrdersFromRedux = (): IOrdersState => {
-  return useSelector<RootState, IOrdersState>((state) => state.orders);
+const useOrdersFromRedux = (): OrdersState => {
+  return useSelector<RootState, OrdersState>((state) => state.orders);
 };
 export default useOrdersFromRedux;

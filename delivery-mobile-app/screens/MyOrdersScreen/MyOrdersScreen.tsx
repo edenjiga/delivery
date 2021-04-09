@@ -1,26 +1,23 @@
 import { GoBackButton } from '@/components';
-import { Text, View } from '@/components/Themed';
 import Colors from '@/constants/Colors';
-import { IOrdersState } from '@/types';
+import { OrderPublicFields } from '@edenjiga/delivery-common';
 import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import OrderDetail from './components/OrderDetail';
 
 type Props = {
-  orders: IOrdersState['data'];
+  orders: OrderPublicFields[];
 };
 
 const MyOrdersScreen: FC<Props> = ({ orders }) => {
   return (
-    <View style={style.principalView}>
+    <ScrollView style={style.principalView}>
       <GoBackButton title="MIS ORDENES" />
-      {Object.values(orders).map((order) => (
-        <View key={order._id}>
-          <Text>
-            {order._id} {order.status}
-          </Text>
-        </View>
+      {orders.map((order) => (
+        <OrderDetail key={order._id} order={order} />
       ))}
-    </View>
+    </ScrollView>
   );
 };
 

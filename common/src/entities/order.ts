@@ -104,3 +104,9 @@ export class IOrder {
     product: Product;
   }>;
 }
+
+export class OrderPublicFields extends IOrder {
+  createdAt: string;
+}
+
+export type PartialOrderPublicFields = Partial<OrderPublicFields>;
