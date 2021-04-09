@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -15,15 +15,11 @@ import {
   SearchProduct,
 } from './components';
 import Colors from '@/constants/Colors';
-import { RootState } from '@/store';
-import { IOrdersState } from '@/types';
-import { useSelector } from 'react-redux';
 import { ORDER_STATUS } from '@edenjiga/delivery-common';
+import useOrdersFromRedux from '@/hooks/useOrdersFromRedux';
 
-export default function TabMainScreen() {
-  const { data } = useSelector<RootState, IOrdersState>(
-    (state) => state.orders,
-  );
+export default function TabMainScreen(): JSX.Element {
+  const { data } = useOrdersFromRedux();
 
   const orderActive = useMemo(
     () =>

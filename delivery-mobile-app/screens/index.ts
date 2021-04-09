@@ -1,6 +1,7 @@
 export { default as AddAddressScreen } from './AddAddressScreen';
 export { default as LoginScreen } from './LoginScreen';
 export { default as LocationScreen } from './LocationScreen';
+export { default as MyOrdersScreen } from './MyOrdersScreen';
 export { default as NotFoundScreen } from './NotFoundScreen';
 export { default as OrderScreen } from './OrderScreen';
 export { default as SelectAddressScreen } from './SelectAddressScreen';

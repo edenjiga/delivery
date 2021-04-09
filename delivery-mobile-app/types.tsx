@@ -14,6 +14,7 @@ const {
   LOCATION,
   ROOT,
   ORDER,
+  MY_ORDERS,
   SELECT_ADDRESS,
   SEARCH_PRODUCT_BY_CATEGORY,
   USER_REQUIRED_FIELDS_FORM,
@@ -25,8 +26,9 @@ export interface ICartState {
 }
 
 export interface IOrdersState {
-  loadingStatus: REQUEST_STATUS;
   data: { [key: string]: IOrder };
+  fetchOrderStatus: REQUEST_STATUS;
+  fetchUnfinishOrderStatus: REQUEST_STATUS;
 }
 
 export interface IuserState {
@@ -46,6 +48,7 @@ export type RootStackParamList = {
   [LOCATION]: undefined;
   [LOGIN]: { goTo?: SCREEN_NAMES };
   [ORDER]: undefined;
+  [MY_ORDERS]: undefined;
   [SELECT_ADDRESS]: undefined;
   [SEARCH_PRODUCT_BY_CATEGORY]: {
     category: PRODUCT_CATEGORY;

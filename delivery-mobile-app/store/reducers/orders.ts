@@ -7,7 +7,8 @@ type Actions = ActionType<typeof orderActions>;
 
 const initialState: IOrdersState = {
   data: {},
-  loadingStatus: RequestStatus.REQUEST_NOT_LOADED,
+  fetchUnfinishOrderStatus: RequestStatus.REQUEST_NOT_LOADED,
+  fetchOrderStatus: RequestStatus.REQUEST_NOT_LOADED,
 };
 
 const reducer = createReducer<IOrdersState, Actions>(initialState)
@@ -22,7 +23,7 @@ const reducer = createReducer<IOrdersState, Actions>(initialState)
       const { payload } = action;
       return {
         ...state,
-        loadingStatus: RequestStatus.REQUEST_LOADED,
+        fetchUnfinishOrderStatus: RequestStatus.REQUEST_LOADED,
         data: {
           ...state.data,
           ...payload,
@@ -31,11 +32,28 @@ const reducer = createReducer<IOrdersState, Actions>(initialState)
     },
   )
   .handleAction(orderActions.fetchUnfinishedOrdersAsync.failure, (state) => {
-    return { ...state, loadingStatus: RequestStatus.REQUEST_FAILED };
+    return { ...state, fetchUnfinishOrderStatus: RequestStatus.REQUEST_FAILED };
   })
   .handleAction(orderActions.orderUpdatedAction, (state, action) => {
     const { payload } = action;
     return { ...state, data: { ...state.data, [payload._id]: payload } };
-  });
+  })
+  .handleAction(orderActions.fetchOrdersAsync.success, (state, action) => {
+    const { payload } = action;
 
+    return {
+      ...state,
+      fetchOrderStatus: RequestStatus.REQUEST_LOADED,
+      data: {
+        ...state.data,
+        ...payload,
+      },
+    };
+  })
+  .handleAction(orderActions.fetchOrdersAsync.failure, (state) => {
+    return { ...state, fetchOrderStatus: RequestStatus.REQUEST_FAILED };
+  })
+  .handleAction(orderActions.fetchOrdersAsync.request, (state) => {
+    return { ...state, fetchOrderStatus: RequestStatus.REQUEST_LOADING };
+  });
 export default reducer;

@@ -10,11 +10,13 @@ type Props = {
   onPressLogOut(): void;
   loadingStatus: RequestStatus;
   onGoToSelectAddress(): void;
+  onGoToMyOrders(): void;
 };
 
 const TabsSettingsScreen: FC<Props> = ({
   onPressLogOut,
   onGoToSelectAddress,
+  onGoToMyOrders,
   loadingStatus,
   address,
 }) => {
@@ -29,6 +31,8 @@ const TabsSettingsScreen: FC<Props> = ({
             <Text>{address?.nomenclature}</Text>
           </View>
         </TouchableHighlight>
+
+        <Button onPress={onGoToMyOrders} title="Mis ordenes"></Button>
         {loadingStatus === RequestStatus.REQUEST_LOADED && (
           <Button title="Cerrar sesion" onPress={onPressLogOut}></Button>
         )}

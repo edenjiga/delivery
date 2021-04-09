@@ -21,14 +21,21 @@ const TabSettingsScreenContainer: FC<Props> = ({ navigation }) => {
   const onPressLogOut = useCallback(() => {
     dispatch(userLogOutAction());
   }, [dispatch]);
+
   const onGoToSelectAddress = useCallback(
     () => navigation.navigate(SCREEN_NAMES.SELECT_ADDRESS),
+    [navigation],
+  );
+
+  const onGoToMyOrders = useCallback(
+    () => navigation.navigate(SCREEN_NAMES.MY_ORDERS),
     [navigation],
   );
   return (
     <TabSettingsScreen
       address={address}
       onGoToSelectAddress={onGoToSelectAddress}
+      onGoToMyOrders={onGoToMyOrders}
       onPressLogOut={onPressLogOut}
       loadingStatus={loadingStatus}
     />

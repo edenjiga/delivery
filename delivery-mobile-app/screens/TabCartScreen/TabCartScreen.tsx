@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     bottom: 0,
     left: 0,
-    position: 'absolute',
     right: 0,
   },
   price: {
