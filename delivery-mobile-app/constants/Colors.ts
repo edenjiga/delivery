@@ -28,4 +28,5 @@ export default {
   orangeDark: '#BB5E17',
   green: '#2E9280',
   red: '#F72B5B',
+  violet: '#64344D',
 };

@@ -1,7 +1,7 @@
 import { Text, View } from '@/components/Themed';
 import Colors from '@/constants/Colors';
 import React, { FC } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 type Props = {
   onPress(): void;
@@ -10,15 +10,30 @@ type Props = {
 const NotLogin: FC<Props> = ({ onPress }) => (
   <View style={style.viewContainer}>
     <View style={style.firstView}>
-      <Text style={style.welcomeText}>!Bienvenido¡</Text>
+      <Text style={style.welcomeText}>Bienvenido!</Text>
+    </View>
+    <View style={style.searchBox}>
+      <Image
+        style={style.search}
+        resizeMode="contain"
+        source={require('assets/images/vehicle.png')}
+      />
+      <View style={style.infoText}>
+        <Text style={style.title}>
+          Súper <Text style={style.span}>APP</Text>
+        </Text>
+        <Text style={style.text}>
+          App millonaria de campeones para campeones
+        </Text>
+      </View>
     </View>
     <View style={style.secondView}>
-      <Pressable style={style.pressable} onPress={onPress}>
+      <TouchableOpacity style={style.pressable} onPress={onPress}>
         <Text style={style.pressableText}>Registrarme</Text>
-      </Pressable>
-      <Pressable style={style.pressable} onPress={onPress}>
+      </TouchableOpacity>
+      <TouchableOpacity style={style.pressable} onPress={onPress}>
         <Text style={style.pressableText}>Iniciar sesión</Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   </View>
 );
@@ -28,35 +43,61 @@ const style = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.orange,
     height: '50%',
-    justifyContent: 'center',
+    paddingTop: 80,
   },
   pressable: {
     alignItems: 'center',
     backgroundColor: Colors.orange,
-    borderRadius: 7,
-    height: 28,
+    borderRadius: 6,
+    height: 36,
     justifyContent: 'center',
-    width: 132,
+    width: 130,
   },
   pressableText: {
     color: Colors.white,
-    fontSize: 13,
-    fontWeight: '600',
+    fontSize: 14,
   },
   secondView: {
     alignItems: 'center',
-    flex: 1,
     flexDirection: 'row',
     height: '50%',
     justifyContent: 'space-evenly',
+    marginTop: 80,
   },
   viewContainer: {
-    height: '100%',
+    flex: 1,
   },
   welcomeText: {
     color: Colors.white,
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
+  },
+  searchBox: {
+    position: 'absolute',
+    top: '25%',
+    right: 0,
+    left: 0,
+    alignItems: 'center',
+  },
+  search: {
+    width: 260,
+    height: 260,
+  },
+  infoText: {
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 28,
+    color: Colors.orange,
+    marginBottom: 5,
+  },
+  span: {
+    color: Colors.violet,
+  },
+  text: {
+    fontSize: 16,
+    paddingHorizontal: 20,
+    textAlign: 'center',
   },
 });
 
