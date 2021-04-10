@@ -27,28 +27,28 @@ const GoBackButton: FC<Props> = ({ title, viewStyles }) => {
 };
 
 const style = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    alignItems: 'center',
-  },
   back: {
-    height: 40,
-    paddingHorizontal: 10,
-    justifyContent: 'center',
     borderRadius: 6,
+    height: 40,
+    justifyContent: 'center',
+    paddingHorizontal: 10,
   },
   backBnt: {
     height: 23,
     width: 23,
   },
+  container: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
   title: {
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: 'bold',
     marginLeft: 10,
     textTransform: 'uppercase',
-    fontSize: 16,
-    color: Colors.black,
-    fontWeight: 'bold',
   },
 });
 
