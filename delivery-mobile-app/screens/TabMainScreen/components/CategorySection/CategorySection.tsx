@@ -10,31 +10,36 @@ import { PRODUCT_CATEGORY } from '@edenjiga/delivery-common';
 
 const CategorySection: FC = () => (
   <View style={style.container}>
-    <Category
-      name="Licores"
-      imageSource={Licor}
-      category={PRODUCT_CATEGORY.ALCOHOL}
-    />
-    <Category
-      name="Pasabocas"
-      imageSource={Chips}
-      category={PRODUCT_CATEGORY.MECCATOS}
-    />
-    <Category
-      name="Cigarrillos"
-      imageSource={Cigarrete}
-      category={PRODUCT_CATEGORY.CIGARETTES}
-    />
+    <View style={style.containers}>
+      <Category
+        name="licores"
+        imageSource={Licor}
+        category={PRODUCT_CATEGORY.ALCOHOL}
+      />
+      <Category
+        name="pasabocas"
+        imageSource={Chips}
+        category={PRODUCT_CATEGORY.MECCATOS}
+      />
+      <Category
+        name="cigarrillos"
+        imageSource={Cigarrete}
+        category={PRODUCT_CATEGORY.CIGARETTES}
+      />
+    </View>
   </View>
 );
 
 const style = StyleSheet.create({
   container: {
-    // display: 'flex',
-    // flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    paddingHorizontal: 10,
+    paddingTop: 20,
+    paddingBottom: 10,
+  },
+  containers: {
     width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 

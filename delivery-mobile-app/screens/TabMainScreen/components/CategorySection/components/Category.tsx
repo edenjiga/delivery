@@ -5,12 +5,10 @@ import { RootStackParamList } from '@/types';
 import { PRODUCT_CATEGORY } from '@edenjiga/delivery-common';
 import {
   NavigationProp,
-  RouteProp,
   useNavigation,
 } from '@react-navigation/native';
 import React, { FC, useCallback } from 'react';
-import { Image, Pressable, StyleSheet } from 'react-native';
-// import A from '';
+import { Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 type Props = {
   name: string;
@@ -29,25 +27,31 @@ const Category: FC<Props> = ({ name, imageSource, category }) => {
   }, [category, navigation]);
   return (
     <View style={style.container}>
-      <Pressable style={style.pressable} onPress={onPressImage}>
+      <TouchableOpacity style={style.pressable} onPress={onPressImage}>
         <Image style={style.image} source={imageSource} />
-      </Pressable>
-      <Text>{name}</Text>
+      </TouchableOpacity>
+      <Text style={style.title}>{name}</Text>
     </View>
   );
 };
 const style = StyleSheet.create({
   container: {
     alignItems: 'center',
-    width: '30%',
+    width: '32%',
   },
   image: {
-    borderRadius: 8,
-    // height: 80,
+    height: 70,
+    borderRadius: 6,
     width: '100%',
+    resizeMode: 'cover',
   },
   pressable: {
     width: '100%',
+  },
+  title: {
+    color: Colors.darkGrey,
+    marginTop: 3,
+    textTransform: 'capitalize',
   },
 });
 
