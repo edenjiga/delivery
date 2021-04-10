@@ -4,7 +4,6 @@ import storageService from '@/utils/storageService';
 import { OrderPublicFields, SOCKET_EVENTS } from '@edenjiga/delivery-common';
 import { useDispatch } from 'react-redux';
 import { orderUpdatedAction } from '@/store/actions/orders';
-import { View } from './Themed';
 import useUserFromRedux from '@/hooks/useUserFromRedux';
 const SocketEventHandle: FC = () => {
   const user = useUserFromRedux();

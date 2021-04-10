@@ -4,7 +4,7 @@ const mutations = {}
 
 const actions = {
   socket_reconnect({ dispatch }) {
-    dispatch('user/authInLogin')
+    dispatch('user/authInLogin', '', { root: true })
   }
 }
 
