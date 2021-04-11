@@ -1,4 +1,4 @@
-import { Product } from '@edenjiga/delivery-common';
+import { ProductWithQuantity } from '@/types';
 import { createAction } from 'typesafe-actions';
 
 export enum types {
@@ -7,7 +7,9 @@ export enum types {
   CLEAN_CART = 'CLEAN_CART',
 }
 
-export const addProductAction = createAction(types.ADD_PRODUCT)<Product>();
+export const addProductAction = createAction(types.ADD_PRODUCT)<
+  Omit<ProductWithQuantity, 'quantity'> & { quantity?: number }
+>();
 export const cleanCartAction = createAction(types.CLEAN_CART)();
 export const decreaseProductAction = createAction(
   types.DECREASE_PRODUCT,

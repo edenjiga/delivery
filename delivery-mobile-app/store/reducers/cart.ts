@@ -10,19 +10,19 @@ const initialState: ICartState = {};
 const reducer = createReducer<ICartState, Action>(initialState)
   .handleAction(cartActions.addProductAction, (state, action) => {
     const { payload } = action;
-    const { _id } = payload;
+    const { product, quantity: oldQuantity = 1 } = payload;
+    const { _id } = product;
 
-    let quantity = 1;
-
+    let quantity = oldQuantity;
     if (state[_id]) {
-      quantity = state[_id].quantity + 1;
+      quantity = state[_id].quantity + oldQuantity;
     }
 
     return {
       ...state,
-      [payload._id]: {
+      [product._id]: {
         quantity,
-        product: payload,
+        product,
       },
     };
   })

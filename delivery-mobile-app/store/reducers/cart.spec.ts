@@ -5,15 +5,24 @@ import { ICartState } from '@/types';
 describe('cart reducer', () => {
   describe(`handle ${cartActions.addProductAction}`, () => {
     it('should add the product to the state if the product is not in the state', () => {
-      const action = cartActions.addProductAction(product);
+      const action = cartActions.addProductAction({ product });
 
       expect(reducer({}, action)).toEqual({
         [product._id]: { product, quantity: 1 },
       });
     });
 
+    it('should add the product to the state if the product is not in the state with the quantity sent', () => {
+      const quantity = 3;
+      const action = cartActions.addProductAction({ product, quantity });
+
+      expect(reducer({}, action)).toEqual({
+        [product._id]: { product, quantity: 3 },
+      });
+    });
+
     it('should add 1 to quantity if the product is already in the state', () => {
-      const action = cartActions.addProductAction(product);
+      const action = cartActions.addProductAction({ product });
 
       const initialState: ICartState = {
         [product._id]: {
@@ -26,6 +35,25 @@ describe('cart reducer', () => {
         [product._id]: {
           product,
           quantity: initialState[product._id].quantity + 1,
+        },
+      });
+    });
+
+    it('should add the quantity sent to quantity if the product is already in the state', () => {
+      const quantity = 3;
+      const action = cartActions.addProductAction({ product, quantity });
+
+      const initialState: ICartState = {
+        [product._id]: {
+          quantity: 3,
+          product,
+        },
+      };
+
+      expect(reducer(initialState, action)).toEqual({
+        [product._id]: {
+          product,
+          quantity: initialState[product._id].quantity + quantity,
         },
       });
     });

@@ -4,7 +4,7 @@
  */
 export function formatNumberToCop(value: number): string | number {
   if (isNaN(value)) return value;
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat('es-CO', {
     minimumFractionDigits: 0,
   }).format(value);
 }

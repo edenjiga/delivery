@@ -13,6 +13,7 @@ import {
   AddAddressScreen,
   SearchProductByCategoryScreen,
   MyOrdersScreen,
+  ProductDetailScreen,
 } from '../screens';
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
@@ -54,6 +55,10 @@ function RootNavigator() {
       <Stack.Screen name={SCREEN_NAMES.LOGIN} component={LoginScreen} />
       <Stack.Screen name={SCREEN_NAMES.MY_ORDERS} component={MyOrdersScreen} />
       <Stack.Screen name={SCREEN_NAMES.ORDER} component={OrderScreen} />
+      <Stack.Screen
+        name={SCREEN_NAMES.PRODUCT_DETAIL}
+        component={ProductDetailScreen}
+      />
       <Stack.Screen
         name={SCREEN_NAMES.SEARCH_PRODUCT_BY_CATEGORY}
         component={SearchProductByCategoryScreen}

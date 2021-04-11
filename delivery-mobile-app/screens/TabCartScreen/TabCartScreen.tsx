@@ -5,6 +5,7 @@ import { StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { ProductWithQuantity } from '@/types';
 import { ProductCardHorizontal } from '@/components';
 import Colors from '@/constants/Colors';
+import NumberFormatToCop from '@/components/NumberFormatToCop';
 
 type Props = {
   onGoToPay(): void;
@@ -28,7 +29,7 @@ const TabCartScreen: FC<Props> = ({
 
     <View style={styles.order}>
       <Text style={styles.subtotal}>
-        Subtotal: <Text style={styles.price}>${total}</Text>
+        Subtotal: <NumberFormatToCop style={styles.price} number={total} />
       </Text>
       {!!productWithQuantity.length && (
         <View style={styles.btnBox}>

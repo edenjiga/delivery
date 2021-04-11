@@ -3,10 +3,7 @@ import Colors from '@/constants/Colors';
 import SCREEN_NAMES from '@/constants/screenNames';
 import { RootStackParamList } from '@/types';
 import { PRODUCT_CATEGORY } from '@edenjiga/delivery-common';
-import {
-  NavigationProp,
-  useNavigation,
-} from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React, { FC, useCallback } from 'react';
 import { Image, TouchableOpacity, StyleSheet } from 'react-native';
 
@@ -40,10 +37,10 @@ const style = StyleSheet.create({
     width: '32%',
   },
   image: {
-    height: 70,
     borderRadius: 6,
-    width: '100%',
+    height: 70,
     resizeMode: 'cover',
+    width: '100%',
   },
   pressable: {
     width: '100%',

@@ -2,8 +2,12 @@ import useCartOperationForProduct from '@/hooks/useCartOperationForProduct';
 import { Product } from '@edenjiga/delivery-common';
 import React, { FC } from 'react';
 import { StyleSheet, Image, TouchableOpacity, Platform } from 'react-native';
-import { Text, View } from './Themed';
+import { Text, View } from '../Themed';
 import Colors from '@/constants/Colors';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '@/types';
+import SCREEN_NAMES from '@/constants/screenNames';
+import NumberFormatToCop from '../NumberFormatToCop';
 
 type Props = {
   product: Product;
@@ -13,9 +17,20 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
   const { addProduct, decreaseProduct, quantity } = useCartOperationForProduct(
     product,
   );
+
+  const navigation = useNavigation<
+    NavigationProp<RootStackParamList, SCREEN_NAMES.ROOT>
+  >();
   return (
     <View style={styles.card}>
-      <View style={styles.box}>
+      <TouchableOpacity
+        style={styles.box}
+        onPress={() =>
+          navigation.navigate(SCREEN_NAMES.PRODUCT_DETAIL, {
+            product,
+          })
+        }
+      >
         <View>
           <View style={styles.image}>
             <Image
@@ -45,21 +60,33 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
           <Text style={styles.name}>{product.name}</Text>
           <Text style={styles.description}>{product.description}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
 
       <View style={styles.boxInfo}>
         <View>
           {!product.discount ? (
-            <Text style={styles.normalPrice}>${product.price}</Text>
+            <NumberFormatToCop
+              style={styles.normalPrice}
+              number={product.price}
+            />
           ) : (
             <View>
-              <Text style={styles.discountPrice}>${product.finalPrice}</Text>
-              <Text style={styles.specialPrice}>${product.price}</Text>
+              <NumberFormatToCop
+                style={styles.discountPrice}
+                number={product.finalPrice}
+              />
+              <NumberFormatToCop
+                style={styles.specialPrice}
+                number={product.price}
+              />
             </View>
           )}
         </View>
         {!quantity ? (
-          <TouchableOpacity style={styles.buttonAdd} onPress={addProduct}>
+          <TouchableOpacity
+            style={styles.buttonAdd}
+            onPress={() => addProduct()}
+          >
             <Text style={styles.addText}>+</Text>
           </TouchableOpacity>
         ) : (
@@ -68,7 +95,10 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
               <Text style={styles.count}>-</Text>
             </TouchableOpacity>
             <Text style={styles.quantity}>{quantity}</Text>
-            <TouchableOpacity style={styles.increase} onPress={addProduct}>
+            <TouchableOpacity
+              style={styles.increase}
+              onPress={() => addProduct()}
+            >
               <Text style={styles.count}>+</Text>
             </TouchableOpacity>
           </View>
@@ -87,6 +117,7 @@ const styles = StyleSheet.create({
   },
   box: {
     flexDirection: 'row',
+    width: '80%',
   },
   boxInfo: {
     alignItems: 'flex-end',
@@ -147,12 +178,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   discountText: {
-    position: 'absolute',
     color: Colors.white,
     fontSize: 12,
+    position: 'absolute',
+    right: 2,
     textAlign: 'center',
     top: 8,
-    right: 2,
     width: 30,
     ...Platform.select({
       ios: {
@@ -181,7 +212,7 @@ const styles = StyleSheet.create({
   info: {
     backgroundColor: Colors.white,
     padding: 5,
-    width: 140,
+    width: '63%',
   },
   name: {
     color: Colors.black,

@@ -15,6 +15,7 @@ const {
   ROOT,
   ORDER,
   MY_ORDERS,
+  PRODUCT_DETAIL,
   SELECT_ADDRESS,
   SEARCH_PRODUCT_BY_CATEGORY,
   USER_REQUIRED_FIELDS_FORM,
@@ -49,6 +50,7 @@ export type RootStackParamList = {
   [LOGIN]: { goTo?: SCREEN_NAMES };
   [ORDER]: undefined;
   [MY_ORDERS]: undefined;
+  [PRODUCT_DETAIL]: { product: Product };
   [SELECT_ADDRESS]: undefined;
   [SEARCH_PRODUCT_BY_CATEGORY]: {
     category: PRODUCT_CATEGORY;

@@ -4,6 +4,7 @@ export { default as LocationScreen } from './LocationScreen';
 export { default as MyOrdersScreen } from './MyOrdersScreen';
 export { default as NotFoundScreen } from './NotFoundScreen';
 export { default as OrderScreen } from './OrderScreen';
+export { default as ProductDetailScreen } from './ProductDetailScreen';
 export { default as SelectAddressScreen } from './SelectAddressScreen';
 export { default as SearchProductByCategoryScreen } from './SearchProductByCategoryScreen';
 export { default as UserRequiredFieldFormScreen } from './UserRequiredFieldFormScreen';

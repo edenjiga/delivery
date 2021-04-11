@@ -32,14 +32,14 @@ const CategorySection: FC = () => (
 
 const style = StyleSheet.create({
   container: {
+    paddingBottom: 10,
     paddingHorizontal: 10,
     paddingTop: 20,
-    paddingBottom: 10,
   },
   containers: {
-    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: '100%',
   },
 });
 
