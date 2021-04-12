@@ -18,13 +18,13 @@ const reducer = createReducer<ICartState, Action>(initialState)
       quantity = state[_id].quantity + oldQuantity;
     }
 
-    return {
-      ...state,
+    // this is to fix the bug in android if we just return the state with the product that is already in the state
+    return Object.assign({}, state, {
       [product._id]: {
         quantity,
         product,
       },
-    };
+    });
   })
   .handleAction(cartActions.decreaseProductAction, (state, { payload }) => {
     const productWithQuantityToDecrease = state[payload];
@@ -39,10 +39,10 @@ const reducer = createReducer<ICartState, Action>(initialState)
     }
 
     quantity--;
-    return {
-      ...state,
+
+    return Object.assign({}, state, {
       [payload]: { product: productWithQuantityToDecrease.product, quantity },
-    };
+    });
   })
   .handleAction(cartActions.cleanCartAction, () => {
     return initialState;

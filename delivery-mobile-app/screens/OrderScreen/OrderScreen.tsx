@@ -5,6 +5,7 @@ import { ProductWithQuantity } from '@/types';
 import { Picker } from '@react-native-picker/picker';
 import { PAYMENT_METHODS } from '@edenjiga/delivery-common';
 import { GoBackButton } from '@/components';
+import NumberFormatToCop from '@/components/NumberFormatToCop';
 type Props = {
   deliveryValue: number;
   onCreateOrder(): void;
@@ -43,7 +44,7 @@ const OrderScreen: FC<Props> = ({
             </Text>
           </View>
         ))}
-        <Text>{subTotal}</Text>
+        <NumberFormatToCop number={subTotal} />
         <Text>Domicilio: {deliveryValue}</Text>
         <Text>{total}</Text>
         <Button title="Ordernar" onPress={onCreateOrder} />
