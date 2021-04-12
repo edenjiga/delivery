@@ -29,6 +29,7 @@
     "expo-splash-screen": "~0.8.0",
     "expo-status-bar": "~1.0.3",
     "expo-web-browser": "~8.6.0",
+    "intl": "^1.2.5",
     "lodash": "4.17.21",
     "normalizr": "^3.6.1",
     "react": "16.13.1",

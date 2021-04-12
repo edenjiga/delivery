@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -7,30 +7,17 @@ import {
   Platform,
 } from 'react-native';
 
-import { View, Text } from '@/components/Themed';
+import { View } from '@/components/Themed';
 import {
   CategorySection,
   PopularProducts,
   SpecialOffers,
   SearchProduct,
+  OrderActives,
 } from './components';
 import Colors from '@/constants/Colors';
-import { ORDER_STATUS } from '@edenjiga/delivery-common';
-import useOrdersFromRedux from '@/hooks/useOrdersFromRedux';
 
 export default function TabMainScreen(): JSX.Element {
-  const { data } = useOrdersFromRedux();
-
-  const orderActive = useMemo(
-    () =>
-      Object.values(data).filter(
-        ({ status }) =>
-          status === ORDER_STATUS.CREATED ||
-          status === ORDER_STATUS.IN_PROGRESS,
-      ),
-    [data],
-  );
-
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -41,9 +28,7 @@ export default function TabMainScreen(): JSX.Element {
           <ScrollView>
             <CategorySection />
             {/* <SearchProduct /> */}
-            {!!orderActive.length && (
-              <Text>Ordenes activas {orderActive.length} </Text>
-            )}
+            <OrderActives />
             <SpecialOffers />
             <PopularProducts />
           </ScrollView>
