@@ -122,8 +122,9 @@ const styles = StyleSheet.create({
   boxInfo: {
     alignItems: 'flex-end',
     justifyContent: 'space-between',
-    paddingRight: 5,
     paddingTop: 5,
+    right: 2,
+    minWidth: 75,
   },
   buttonAdd: {
     backgroundColor: Colors.orange,
@@ -160,8 +161,7 @@ const styles = StyleSheet.create({
   },
   description: {
     color: Colors.darkGrey,
-    fontSize: 14,
-    fontWeight: '300',
+    fontSize: 13,
   },
   discount: {
     height: 35,
@@ -208,15 +208,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 25,
   },
-
   info: {
     backgroundColor: Colors.white,
     padding: 5,
-    width: '63%',
+    width: '55%',
   },
   name: {
     color: Colors.black,
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: 'bold',
     marginBottom: 5,
   },
@@ -240,6 +239,7 @@ const styles = StyleSheet.create({
     color: Colors.red,
     fontSize: 15,
     textDecorationLine: 'line-through',
+    textAlign: 'right',
   },
 });
 
