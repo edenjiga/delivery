@@ -1,3 +1,4 @@
+import { ProductCardVertical } from '@/components';
 import NumberFormatToCop from '@/components/NumberFormatToCop';
 import { View, Text } from '@/components/Themed';
 import Colors from '@/constants/Colors';
@@ -9,6 +10,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 type Props = {
   product: Product;
+  products: Array<Product>;
   quantity: number;
   addOneToQuantity(): void;
   goBack(): void;
@@ -18,6 +20,7 @@ type Props = {
 
 const ProductDetailScreen: FC<Props> = ({
   product,
+  products,
   quantity,
   addOneToQuantity,
   goBack,
@@ -61,6 +64,14 @@ const ProductDetailScreen: FC<Props> = ({
           />
         )}
       </View>
+      <View>
+        <Text>Productos relacionados</Text>
+        <ScrollView horizontal={true} style={{ flexDirection: 'row' }}>
+          {products.map((p) => (
+            <ProductCardVertical product={p} key={p._id} />
+          ))}
+        </ScrollView>
+      </View>
     </ScrollView>
 
     <View style={styles.actions}>
@@ -75,7 +86,7 @@ const ProductDetailScreen: FC<Props> = ({
       </View>
       <TouchableOpacity onPress={onPressAgregar}>
         <Text style={styles.buttonAdd}>
-          Agregar {formatNumberToCop(product.finalPrice * quantity)}
+          Agregar ${formatNumberToCop(product.finalPrice * quantity)}
         </Text>
       </TouchableOpacity>
     </View>
@@ -163,6 +174,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   productInfo: {
+    backgroundColor: Colors.white,
     padding: 15,
   },
   productName: {

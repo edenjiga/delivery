@@ -8,7 +8,8 @@ import Colors from '@/constants/Colors';
 import NumberFormatToCop from '../NumberFormatToCop';
 import SCREEN_NAMES from '@/constants/screenNames';
 import { RootStackParamList } from '@/types';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
   product: Product;
@@ -20,13 +21,13 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
   );
 
   const navigation = useNavigation<
-    NavigationProp<RootStackParamList, SCREEN_NAMES.ROOT>
+    StackNavigationProp<RootStackParamList, SCREEN_NAMES.ROOT>
   >();
   return (
     <View style={styles.card}>
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate(SCREEN_NAMES.PRODUCT_DETAIL, {
+          navigation.push(SCREEN_NAMES.PRODUCT_DETAIL, {
             product,
           })
         }
@@ -43,24 +44,33 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
                 : require('assets/images/vehicle.png')
             }
           />
-          <View style={styles.discountBox}>
-            <Image
-              style={styles.discount}
-              resizeMode="contain"
-              source={require('assets/images/discount.png')}
-            />
-            <Text style={styles.discountText}>-{product.discount}%</Text>
-          </View>
+          {!!product.discount && (
+            <View style={styles.discountBox}>
+              <Image
+                style={styles.discount}
+                resizeMode="contain"
+                source={require('assets/images/discount.png')}
+              />
+              <Text style={styles.discountText}>-{product.discount}%</Text>
+            </View>
+          )}
         </View>
         <View style={styles.info}>
           <Text style={styles.name}>{product.name}</Text>
-          <View style={styles.priceBox}>
+          {product.discount ? (
+            <View style={styles.priceBox}>
+              <NumberFormatToCop
+                style={styles.finalPrice}
+                number={product.finalPrice}
+              />
+              <NumberFormatToCop style={styles.price} number={product.price} />
+            </View>
+          ) : (
             <NumberFormatToCop
-              style={styles.finalPrice}
+              style={styles.priceWithNotDiscount}
               number={product.finalPrice}
             />
-            <NumberFormatToCop style={styles.price} number={product.price} />
-          </View>
+          )}
         </View>
       </TouchableOpacity>
 
@@ -200,6 +210,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'row',
     textAlign: 'center',
+  },
+  priceWithNotDiscount: {
+    fontSize: 15,
+    fontWeight: 'bold',
   },
   productImage: {
     borderTopLeftRadius: 6,

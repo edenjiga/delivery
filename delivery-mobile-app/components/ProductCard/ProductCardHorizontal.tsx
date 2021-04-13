@@ -4,10 +4,11 @@ import React, { FC } from 'react';
 import { StyleSheet, Image, TouchableOpacity, Platform } from 'react-native';
 import { Text, View } from '../Themed';
 import Colors from '@/constants/Colors';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '@/types';
 import SCREEN_NAMES from '@/constants/screenNames';
 import NumberFormatToCop from '../NumberFormatToCop';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
   product: Product;
@@ -19,7 +20,7 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
   );
 
   const navigation = useNavigation<
-    NavigationProp<RootStackParamList, SCREEN_NAMES.ROOT>
+    StackNavigationProp<RootStackParamList, SCREEN_NAMES.ROOT>
   >();
   return (
     <View style={styles.card}>
