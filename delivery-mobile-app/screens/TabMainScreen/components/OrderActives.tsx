@@ -8,6 +8,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 
 import SCREEN_NAMES from '@/constants/screenNames';
+import { StyleSheet } from 'react-native';
+import Colors from '@/constants/Colors';
 
 const OrderActives: FC = () => {
   const { data } = useOrdersFromRedux();
@@ -30,9 +32,30 @@ const OrderActives: FC = () => {
   }, [navigation]);
 
   return orderActives.length ? (
-    <TouchableOpacity onPress={goToMyOrders}>
-      <Text>Ordenes activas {orderActives.length} </Text>
+    <TouchableOpacity style={style.container} onPress={goToMyOrders}>
+      <Text>
+        {orderActives.length}
+        <Text style={style.detailText}>ORDEN EN PROCESO</Text>
+      </Text>
     </TouchableOpacity>
   ) : null;
 };
+
+const style = StyleSheet.create({
+  container: {
+    // alignContent: 'flex-start',
+    backgroundColor: Colors.lightGreen,
+    borderRadius: 8,
+    // flexDirection: 'row',
+    height: 31,
+    justifyContent: 'center',
+    marginHorizontal: 10,
+    paddingHorizontal: 10,
+  },
+  detailText: {
+    color: Colors.white,
+    fontWeight: 'bold',
+    // fontSize: 13,
+  },
+});
 export default OrderActives;
