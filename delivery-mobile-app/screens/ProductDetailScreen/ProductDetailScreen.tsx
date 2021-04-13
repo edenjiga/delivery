@@ -1,10 +1,11 @@
 import NumberFormatToCop from '@/components/NumberFormatToCop';
+import { GoBackButton } from '@/components';
 import { View, Text } from '@/components/Themed';
 import Colors from '@/constants/Colors';
 import { formatNumberToCop } from '@/utils/number';
 import { Product } from '@edenjiga/delivery-common';
 import React, { FC } from 'react';
-import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 type Props = {
@@ -20,46 +21,62 @@ const ProductDetailScreen: FC<Props> = ({
   product,
   quantity,
   addOneToQuantity,
-  goBack,
   onPressAgregar,
   substractOneToQuantity,
 }) => (
   <View style={styles.container}>
-    <TouchableOpacity onPress={goBack}>
-      <Text>X</Text>
-    </TouchableOpacity>
+    <View style={styles.head}>
+      <GoBackButton />
+    </View>
     <ScrollView>
-      <Image
-        style={styles.banner}
-        source={
-          product.Imagen?.formats.large
-            ? { uri: product.Imagen.formats.large.url }
-            : require('@/assets/images/vehicle.png')
-        }
-      ></Image>
+      <View style={styles.banner}>
+        <Image
+          style={styles.bannerImg}
+          source={
+            product.Imagen?.formats.large
+              ? { uri: product.Imagen.formats.large.url }
+              : require('@/assets/images/vehicle.png')
+          }
+          resizeMode={'contain'}
+        ></Image>
+        {!!product.discount && (
+          <View style={styles.discountBox}>
+            <Image
+              style={styles.discount}
+              resizeMode="contain"
+              source={require('assets/images/discount.png')}
+            />
+            <Text style={styles.discountText}>-{product.discount}%</Text>
+          </View>
+        )}
+      </View>
       <View style={styles.productInfo}>
         <Text style={styles.productName}>{product.name}</Text>
         <Text style={styles.productDescription}>{product.description}</Text>
 
-        {product.discount ? (
-          <View>
-            <View style={styles.discountView}>
-              <Text style={styles.discountText}>-{product.discount}%</Text>
-            </View>
-            <View style={styles.priceBox}>
+        <View style={styles.priceCont}>
+          {!product.discount ? (
+            <NumberFormatToCop
+              style={styles.normalPrice}
+              number={product.price}
+            />
+          ) : (
+            <View style={styles.boxPrice}>
               <NumberFormatToCop
-                style={styles.finalPrice}
+                style={styles.discountPrice}
                 number={product.finalPrice}
               />
-              <NumberFormatToCop style={styles.price} number={product.price} />
+              <NumberFormatToCop
+                style={styles.specialPrice}
+                number={product.price}
+              />
             </View>
-          </View>
-        ) : (
-          <NumberFormatToCop
-            style={styles.finalPrice}
-            number={product.finalPrice}
-          />
-        )}
+          )}
+        </View>
+      </View>
+      <View>
+        <Text style={styles.title}>Productos relacionados</Text>
+        <View style={styles.box}>{/* component here */}</View>
       </View>
     </ScrollView>
 
@@ -75,7 +92,7 @@ const ProductDetailScreen: FC<Props> = ({
       </View>
       <TouchableOpacity onPress={onPressAgregar}>
         <Text style={styles.buttonAdd}>
-          Agregar {formatNumberToCop(product.finalPrice * quantity)}
+          Agregar ${formatNumberToCop(product.finalPrice * quantity)}
         </Text>
       </TouchableOpacity>
     </View>
@@ -91,84 +108,127 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 15,
     paddingVertical: 20,
+    borderTopColor: Colors.lightgrey,
+    borderTopWidth: 1,
+    marginTop: 20,
+  },
+  head: {
+    backgroundColor: Colors.white,
   },
   banner: {
     height: 200,
+    justifyContent: 'center',
+  },
+  bannerImg: {
+    height: 180,
     width: '100%',
   },
   buttonAdd: {
     backgroundColor: Colors.orange,
-    borderRadius: 5,
+    borderRadius: 6,
     color: Colors.white,
     fontWeight: 'bold',
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
   categoryBtn: {
-    alignItems: 'center',
     borderColor: Colors.lineGrey,
-    borderRadius: 10,
+    borderRadius: 6,
     borderWidth: 1,
     flexDirection: 'row',
-    // width: '50%',
   },
-  container: { flex: 1 },
+  container: {
+    flex: 1,
+    backgroundColor: Colors.white,
+  },
   count: {
-    // backgroundColor: Colors.orange,
-    borderRadius: 2,
     color: Colors.black,
     fontWeight: 'bold',
-    paddingHorizontal: 16,
+    paddingHorizontal: 14,
     paddingVertical: 10,
   },
   countNumber: {
     color: Colors.black,
     fontWeight: 'bold',
-    marginHorizontal: 1,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
   discountText: {
     color: Colors.white,
-    fontWeight: 'bold',
+    fontSize: 13,
+    position: 'absolute',
+    right: 2,
+    textAlign: 'center',
+    top: 13,
+    width: 40,
+    ...Platform.select({
+      ios: {
+        fontSize: 12,
+        top: 15,
+      },
+    }),
   },
-  discountView: {
-    alignItems: 'center',
-    backgroundColor: Colors.orange,
-    borderRadius: 10,
-    height: 25,
-    justifyContent: 'center',
-    marginTop: 10,
+  discount: {
+    height: 45,
     width: 45,
   },
-  finalPrice: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    marginRight: 10,
-  },
-  price: {
-    color: Colors.darkGrey,
-    fontSize: 15,
-    textDecorationLine: 'line-through',
-  },
-  priceBox: {
-    alignContent: 'flex-start',
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    marginTop: 10,
-    textAlign: 'center',
+  discountBox: {
+    position: 'absolute',
+    right: 20,
+    bottom: 20,
   },
   productDescription: {
     color: Colors.darkGrey,
-    fontSize: 15,
+    fontSize: 16,
+    marginBottom: 10,
   },
   productInfo: {
-    padding: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    backgroundColor: Colors.white,
+    borderBottomColor: Colors.lineGrey,
+    borderBottomWidth: 1,
+    marginBottom: 20,
   },
   productName: {
+    color: Colors.black,
     fontSize: 22,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 5,
+  },
+  title: {
+    backgroundColor: Colors.lightgrey,
+    color: Colors.black,
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingHorizontal: 10,
+    paddingTop: 10,
+  },
+  box: {
+    backgroundColor: Colors.lightgrey,
+    height: 200,
+  },
+  priceCont: {
+    paddingVertical: 10,
+  },
+  boxPrice: {
+    flexDirection: 'row',
+  },
+  normalPrice: {
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  discountPrice: {
+    color: Colors.green,
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginRight: 30,
+  },
+  specialPrice: {
+    color: Colors.red,
+    fontSize: 16,
+    textDecorationLine: 'line-through',
   },
 });
 export default ProductDetailScreen;
