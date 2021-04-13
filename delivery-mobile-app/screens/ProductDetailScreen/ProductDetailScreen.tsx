@@ -98,7 +98,7 @@ const ProductDetailScreen: FC<Props> = ({
           <Text style={styles.count}>+</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={onPressAgregar}>
+      <TouchableOpacity style={styles.addButton} onPress={onPressAgregar}>
         <Text style={styles.buttonAdd}>
           Agregar ${formatNumberToCop(product.finalPrice * quantity)}
         </Text>
@@ -120,6 +120,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 20,
   },
+  addButton: {
+    backgroundColor: Colors.orange,
+    borderRadius: 8,
+  },
   banner: {
     height: 200,
     justifyContent: 'center',
@@ -129,7 +133,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   buttonAdd: {
-    backgroundColor: Colors.orange,
     borderRadius: 6,
     color: Colors.white,
     fontWeight: 'bold',
