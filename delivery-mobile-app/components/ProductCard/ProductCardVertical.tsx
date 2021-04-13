@@ -126,7 +126,12 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     justifyContent: 'space-between',
     marginHorizontal: 5,
-    width: 140,
+    width: 150,
+    ...Platform.select({
+      ios: {
+        width: 160,
+      },
+    }),
   },
   count: {
     color: Colors.white,
@@ -178,6 +183,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     marginRight: 10,
+    ...Platform.select({
+      ios: {
+        fontSize: 14,
+      },
+    }),
   },
   increase: {
     alignItems: 'center',
@@ -190,20 +200,29 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     height: 80,
     justifyContent: 'space-between',
-    marginLeft: 5,
     paddingHorizontal: 5,
     paddingVertical: 10,
   },
   name: {
     color: Colors.darkGrey,
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: 'bold',
     marginBottom: 5,
+    ...Platform.select({
+      ios: {
+        fontSize: 12,
+      },
+    }),
   },
   price: {
     color: Colors.red,
     fontSize: 15,
     textDecorationLine: 'line-through',
+    ...Platform.select({
+      ios: {
+        fontSize: 14,
+      },
+    }),
   },
   priceBox: {
     alignContent: 'flex-start',
