@@ -9,6 +9,7 @@ import {
 
 import { View } from '@/components/Themed';
 import {
+  AddressSelected,
   CategorySection,
   PopularProducts,
   SpecialOffers,
@@ -26,6 +27,7 @@ export default function TabMainScreen(): JSX.Element {
       >
         <SafeAreaView>
           <ScrollView>
+            <AddressSelected />
             <CategorySection />
             <OrderActives />
             {/* <SearchProduct /> */}
