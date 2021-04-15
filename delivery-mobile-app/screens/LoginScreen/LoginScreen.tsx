@@ -18,7 +18,7 @@ type Props = {
 export default ({ onChangePhoneText, handleLogin }: Props) => (
   <View style={styles.container}>
     <SafeAreaView>
-      <GoBackButton />
+      <GoBackButton backWitheArrow={true} viewStyles={styles.goBackButton} />
       <View style={styles.header}>
         <Text style={styles.title}>¡Bienvenido!</Text>
       </View>
@@ -57,22 +57,23 @@ export default ({ onChangePhoneText, handleLogin }: Props) => (
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: Colors.white,
+    flex: 1,
   },
+  goBackButton: { backgroundColor: Colors.orange },
   header: {
-    backgroundColor: Colors.orange,
-    justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: Colors.orange,
     height: '40%',
-  },
-  title: {
-    fontSize: 24,
-    color: Colors.white,
+    justifyContent: 'center',
   },
   info: {
-    paddingHorizontal: 50,
     marginTop: 30,
+    paddingHorizontal: 50,
+  },
+  title: {
+    color: Colors.white,
+    fontSize: 24,
   },
   text: {
     textAlign: 'center',

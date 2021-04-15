@@ -4,12 +4,16 @@ import { TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Text, View, ViewProps } from './Themed';
 import Colors from '@/constants/Colors';
 
+import orangeArrow from '@/assets/images/back.png';
+import whiteBackArrow from '@/assets/images/backWhite.png';
+
 type Props = {
   title?: string;
-  viewStyles?: ViewProps;
+  viewStyles?: ViewProps['style'];
+  backWitheArrow?: boolean;
 };
 
-const GoBackButton: FC<Props> = ({ title, viewStyles }) => {
+const GoBackButton: FC<Props> = ({ backWitheArrow, title, viewStyles }) => {
   const navigation = useNavigation();
 
   return (
@@ -18,7 +22,7 @@ const GoBackButton: FC<Props> = ({ title, viewStyles }) => {
         <Image
           style={style.backBnt}
           resizeMode="contain"
-          source={require('assets/images/back.png')}
+          source={backWitheArrow ? whiteBackArrow : orangeArrow}
         />
       </TouchableOpacity>
       <Text style={style.title}>{title}</Text>
