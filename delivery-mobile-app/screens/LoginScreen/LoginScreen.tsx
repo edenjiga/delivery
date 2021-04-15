@@ -1,6 +1,14 @@
-import { View } from '@/components/Themed';
+import { View, Text } from '@/components/Themed';
 import React from 'react';
-import { Button, TextInput, SafeAreaView } from 'react-native';
+import {
+  TouchableOpacity,
+  TextInput,
+  SafeAreaView,
+  StyleSheet,
+  Image,
+} from 'react-native';
+import { GoBackButton } from '@/components';
+import Colors from '@/constants/Colors';
 
 type Props = {
   onChangePhoneText(text: string): void;
@@ -8,17 +16,98 @@ type Props = {
 };
 
 export default ({ onChangePhoneText, handleLogin }: Props) => (
-  <SafeAreaView>
-    <View>
-      <TextInput
-        keyboardType="phone-pad"
-        autoCapitalize="none"
-        maxLength={10}
-        onChangeText={onChangePhoneText}
-        placeholder="Ingresar numero de celular"
-      />
+  <View style={styles.container}>
+    <SafeAreaView>
+      <GoBackButton />
+      <View style={styles.header}>
+        <Text style={styles.title}>¡Bienvenido!</Text>
+      </View>
+      <View style={styles.info}>
+        <Text style={styles.text}>
+          Te enviaremos un código de verificación al número de celular que
+          ingreses
+        </Text>
+        <View style={styles.inputCont}>
+          <Image
+            style={styles.phone}
+            resizeMode="contain"
+            source={require('assets/images/phone.png')}
+          />
+          <TextInput
+            style={styles.input}
+            keyboardType="phone-pad"
+            autoCapitalize="none"
+            maxLength={10}
+            onChangeText={onChangePhoneText}
+            placeholder="Ingresar numero de celular"
+            placeholderTextColor={Colors.grey}
+          />
+        </View>
+        <TouchableOpacity style={styles.buttonAdd} onPress={handleLogin}>
+          <Text style={styles.addText}>Enviar</Text>
+        </TouchableOpacity>
 
-      <Button title="Enviar" onPress={handleLogin} />
-    </View>
-  </SafeAreaView>
+        <Text style={styles.text}>
+          Al confirmar aceptas que te enviemos un código de verificación vía SMS
+        </Text>
+      </View>
+    </SafeAreaView>
+  </View>
 );
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.white,
+  },
+  header: {
+    backgroundColor: Colors.orange,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '40%',
+  },
+  title: {
+    fontSize: 24,
+    color: Colors.white,
+  },
+  info: {
+    paddingHorizontal: 50,
+    marginTop: 30,
+  },
+  text: {
+    textAlign: 'center',
+  },
+  inputCont: {
+    marginVertical: 30,
+  },
+  phone: {
+    width: 20,
+    height: 20,
+    position: 'absolute',
+    zIndex: 10,
+    top: 10,
+    left: 10,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: Colors.grey,
+    borderRadius: 10,
+    height: 40,
+    backgroundColor: Colors.whiteGrey,
+    paddingLeft: 40,
+    fontSize: 15,
+  },
+  buttonAdd: {
+    backgroundColor: Colors.orange,
+    borderRadius: 6,
+    height: 40,
+    justifyContent: 'center',
+    marginHorizontal: 30,
+    marginBottom: 30,
+  },
+  addText: {
+    color: Colors.white,
+    fontSize: 18,
+    textAlign: 'center',
+  },
+});
