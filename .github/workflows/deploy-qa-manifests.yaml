@@ -18,9 +18,8 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
-      - name: Log in to DigitalOcean Container Registry with short-lived credentials
-        # run: doctl registry login --expiry-seconds 600
-        run: doctl kubernetes cluster kubeconfig save 096a14ca-d608-4dcd-9cdb-ad92df4c55d9
+      - name: Add DigitalOcean Cluster
+        run: doctl kubernetes cluster kubeconfig save ${{ secrets.DIGITALOCEAN_QA_CLUSTER }}
 
       - name: Update infra folder
         run: kubectl apply -f infra/k8s-qa

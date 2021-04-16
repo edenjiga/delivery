@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: delivery-api-depl
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: delivery-api
@@ -14,8 +14,7 @@ spec:
     spec:
       containers:
         - name: delivery-api
-          image: registry.gitlab.com/edenjiga1/delivery-app/delivery-api:qa
-          imagePullPolicy: Always
+          image: delivery-app/delivery-api
           env:
             - name: PRODUCT_API_URL
               value: http://products-srv:1337

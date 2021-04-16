@@ -62,7 +62,7 @@ spec:
                   name: products-secrets
                   key: AWS_ACCESS_SECRET
       imagePullSecrets:
-        - name: registry-qa-credentials
+        - name: registry-credentials
 ---
 apiVersion: v1
 kind: Service

@@ -17,7 +17,7 @@ spec:
           image: registry.gitlab.com/edenjiga1/delivery-app/dashboard:qa
           imagePullPolicy: Always
       imagePullSecrets:
-        - name: registry-qa-credentials
+        - name: registry-credentials
 ---
 apiVersion: v1
 kind: Service
