@@ -60,11 +60,13 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     flex: 1,
   },
-  goBackButton: { backgroundColor: Colors.orange },
+  goBackButton: {
+    backgroundColor: Colors.orange,
+  },
   header: {
     alignItems: 'center',
     backgroundColor: Colors.orange,
-    height: '40%',
+    height: '20%',
     justifyContent: 'center',
   },
   info: {
