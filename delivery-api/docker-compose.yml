@@ -10,12 +10,20 @@ services:
       - '27003:27003'
     volumes:
       - mongo_data:/data/db
+  redis:
+    image: redis:alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports: 
+      - '6379:6379'
+    volumes: 
+      - redis-data:/data
   api:
     build:
       dockerfile: Dockerfile_Dev
       context: .
     depends_on:
       - mongo
+      - redis
     environment:
       NODE_ENV: local
       MONGO_URL: mongodb://mongo:27001,mongo:27002,mongo:27003
@@ -27,3 +35,4 @@ services:
       - /app/node_modules
 volumes:
   mongo_data: ~
+  redis-data: ~

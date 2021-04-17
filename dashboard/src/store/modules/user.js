@@ -30,7 +30,6 @@ const mutations = {
 
 const actions = {
   authInLogin({ state }) {
-    console.log('se llamo authinlogin')
     this._vm.$socket.client.emit('authorization', state.token)
   },
 
