@@ -14,6 +14,7 @@ export enum PRODUCT_CATEGORY {
   CIGARETTES = "CIGARETTES",
   ALCOHOL = "ALCOHOL",
   MECCATOS = "MECCATOS",
+  OTHERS = "OTHERS",
 }
 
 export interface Product {

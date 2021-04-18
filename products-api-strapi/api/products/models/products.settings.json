@@ -45,7 +45,8 @@
       "enum": [
         "CIGARETTES",
         "ALCOHOL",
-        "MECCATOS"
+        "MECCATOS",
+        "OTHERS"
       ]
     }
   }
