@@ -5,7 +5,7 @@ import { Category } from './components';
 
 import Licor from '@/assets/images/glass-bottles-of-beer-with-glass-and-ice-on-dark-background.png';
 import Chips from '@/assets/images/top-view-different-kind-chips-texture-horizontal.png';
-import Cigarrete from '@/assets/images/flat-lay-no-tobacco-day-elements-composition.png';
+import Cigarrete from '@/assets/images/cigarette.png';
 import { PRODUCT_CATEGORY } from '@edenjiga/delivery-common';
 
 const CategorySection: FC = () => (
@@ -25,6 +25,11 @@ const CategorySection: FC = () => (
         name="cigarrillos"
         imageSource={Cigarrete}
         category={PRODUCT_CATEGORY.CIGARETTES}
+      />
+      <Category
+        name="Otros"
+        imageSource={Cigarrete}
+        category={PRODUCT_CATEGORY.OTHERS}
       />
     </View>
   </View>

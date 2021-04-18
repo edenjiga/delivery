@@ -41,8 +41,9 @@
       </el-table-column>
       <el-table-column width="200px" align="center" label="Direccion">
         <template slot-scope="{ row }">
-          <span>{{ row.address.nomenclature }}</span>
-          <span>{{ row.address.note }}</span>
+          <a :href="'https://www.google.com/maps/search/?api=1&query='+row.address.coordinates.latitude+','+row.address.coordinates.longitude">{{ row.address.nomenclature }} </a>
+          <!-- <span>{{ row.address }}</span> -->
+          <!-- <span>{{ row.address.note }}</span> -->
         </template>
       </el-table-column>
       <el-table-column

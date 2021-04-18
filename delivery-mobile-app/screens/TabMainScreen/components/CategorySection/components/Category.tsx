@@ -34,7 +34,7 @@ const Category: FC<Props> = ({ name, imageSource, category }) => {
 const style = StyleSheet.create({
   container: {
     alignItems: 'center',
-    width: '32%',
+    width: '23%',
   },
   image: {
     borderRadius: 6,

@@ -32,8 +32,11 @@ const SearchProductByCategoryScreenContainer: FC<Props> = ({ route }) => {
       case PRODUCT_CATEGORY.CIGARETTES:
         return 'Cigarrillos';
 
-      default:
+      case PRODUCT_CATEGORY.MECCATOS:
         return 'Pasabocas';
+
+      default:
+        return 'Otros';
     }
   }, [category]);
 

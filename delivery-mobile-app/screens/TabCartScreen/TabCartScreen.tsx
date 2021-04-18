@@ -6,6 +6,7 @@ import { ProductWithQuantity } from '@/types';
 import { ProductCardHorizontal } from '@/components';
 import Colors from '@/constants/Colors';
 import NumberFormatToCop from '@/components/NumberFormatToCop';
+import { EmptyCart } from './component';
 
 type Props = {
   onGoToPay(): void;
@@ -17,31 +18,33 @@ const TabCartScreen: FC<Props> = ({
   onGoToPay,
   productWithQuantity = [],
   total,
-}) => (
-  <View style={styles.container}>
-    <ScrollView>
-      <View>
-        {productWithQuantity.map(({ product }) => (
-          <ProductCardHorizontal product={product} key={product._id} />
-        ))}
-      </View>
-    </ScrollView>
-
-    <View style={styles.order}>
-      <Text style={styles.subtotal}>
-        Subtotal: <NumberFormatToCop style={styles.price} number={total} />
-      </Text>
-      {!!productWithQuantity.length && (
-        <View style={styles.btnBox}>
-          <TouchableOpacity style={styles.button} onPress={onGoToPay}>
-            <Text style={styles.buttonText}>Ir a pagar</Text>
-          </TouchableOpacity>
+}) =>
+  productWithQuantity.length ? (
+    <View style={styles.container}>
+      <ScrollView>
+        <View>
+          {productWithQuantity.map(({ product }) => (
+            <ProductCardHorizontal product={product} key={product._id} />
+          ))}
         </View>
-      )}
-    </View>
-  </View>
-);
+      </ScrollView>
 
+      <View style={styles.order}>
+        <Text style={styles.subtotal}>
+          Subtotal: <NumberFormatToCop style={styles.price} number={total} />
+        </Text>
+        {!!productWithQuantity.length && (
+          <View style={styles.btnBox}>
+            <TouchableOpacity style={styles.button} onPress={onGoToPay}>
+              <Text style={styles.buttonText}>Ir a pagar</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
+    </View>
+  ) : (
+    <EmptyCart />
+  );
 const styles = StyleSheet.create({
   btnBox: {
     alignItems: 'center',
