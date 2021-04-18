@@ -1,22 +1,26 @@
+/* eslint-disable react-native/no-raw-text */
 import React, { FC } from 'react';
 import { Text } from '@/components/Themed';
 import { Button, SafeAreaView, View } from 'react-native';
 import { ProductWithQuantity } from '@/types';
-import { Picker } from '@react-native-picker/picker';
-import { PAYMENT_METHODS } from '@edenjiga/delivery-common';
+import { Address, PAYMENT_METHODS } from '@edenjiga/delivery-common';
 import { GoBackButton } from '@/components';
 import NumberFormatToCop from '@/components/NumberFormatToCop';
+import { PaymentMethods } from './components';
 type Props = {
+  address: Address | null;
   deliveryValue: number;
   onCreateOrder(): void;
   paymentMethodSelected: PAYMENT_METHODS;
   productsWithQuanty: ProductWithQuantity[];
   subTotal: number;
   setPaymentMethodSelected(a: PAYMENT_METHODS): void;
+  totalDiscount: number;
   total: number;
 };
 
 const OrderScreen: FC<Props> = ({
+  address,
   deliveryValue,
   onCreateOrder,
   productsWithQuanty,
@@ -24,29 +28,43 @@ const OrderScreen: FC<Props> = ({
   setPaymentMethodSelected,
   paymentMethodSelected,
   total,
+  totalDiscount,
 }) => {
   return (
     <SafeAreaView>
       <View>
         <Text>OrderScreen</Text>
-        <GoBackButton />
-        <Picker
-          selectedValue={paymentMethodSelected}
-          onValueChange={(itemValue) => setPaymentMethodSelected(itemValue)}
-        >
-          <Picker.Item label="EFECTIVO" value={PAYMENT_METHODS.CASH} />
-          <Picker.Item label="DATAFONO" value={PAYMENT_METHODS.DATAPHONE} />
-        </Picker>
-        {productsWithQuanty.map(({ quantity, product: { name, _id } }) => (
+        <GoBackButton title="RESUMENT DE LA ORDEN:" />
+
+        <Text>Entregar domicilio a </Text>
+        <Text>{address?.nomenclature}</Text>
+        <Text>{address?.name}</Text>
+        {/* {productsWithQuanty.map(({ quantity, product: { name, _id } }) => (
           <View key={_id}>
             <Text>
               {name} {quantity}
             </Text>
           </View>
-        ))}
-        <NumberFormatToCop number={subTotal} />
-        <Text>Domicilio: {deliveryValue}</Text>
-        <Text>{total}</Text>
+        ))} */}
+        <Text>Numero de products: {productsWithQuanty.length}</Text>
+        <Text>
+          SubTotal: <NumberFormatToCop number={subTotal} />
+        </Text>
+        <Text>
+          Descuento Aplicado: <NumberFormatToCop number={totalDiscount} />
+        </Text>
+        <Text>
+          Envio: <NumberFormatToCop number={deliveryValue} />
+        </Text>
+        <Text>
+          Total a pagar: <NumberFormatToCop number={total} />
+        </Text>
+
+        <Text>Metodo de pago:</Text>
+        <PaymentMethods
+          paymentMethodSelected={paymentMethodSelected}
+          onValueChange={(itemValue) => setPaymentMethodSelected(itemValue)}
+        />
         <Button title="Ordernar" onPress={onCreateOrder} />
       </View>
     </SafeAreaView>

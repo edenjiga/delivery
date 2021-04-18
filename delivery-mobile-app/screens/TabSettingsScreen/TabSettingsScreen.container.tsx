@@ -1,11 +1,11 @@
 import SCREEN_NAMES from '@/constants/screenNames';
-import { RootState } from '@/store';
+import useUserFromRedux from '@/hooks/useUserFromRedux';
 import { logOut as userLogOutAction } from '@/store/actions/user';
-import { IuserState, RootStackParamList } from '@/types';
+import { RootStackParamList } from '@/types';
 import storageService from '@/utils/storageService';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import TabSettingsScreen from './TabSettingsScreen';
 
 interface Props {
@@ -14,10 +14,9 @@ interface Props {
 
 const TabSettingsScreenContainer: FC<Props> = ({ navigation }) => {
   const address = storageService.getAddress();
+  const { loadingStatus, data: user } = useUserFromRedux();
   const dispatch = useDispatch();
-  const { loadingStatus } = useSelector<RootState, IuserState>(
-    (state) => state.user,
-  );
+
   const onPressLogOut = useCallback(() => {
     dispatch(userLogOutAction());
   }, [dispatch]);
@@ -31,13 +30,21 @@ const TabSettingsScreenContainer: FC<Props> = ({ navigation }) => {
     () => navigation.navigate(SCREEN_NAMES.MY_ORDERS),
     [navigation],
   );
+
+  const onGoToEditUserInfo = useCallback(
+    () => navigation.navigate(SCREEN_NAMES.USER_REQUIRED_FIELDS_FORM, {}),
+    [navigation],
+  );
+
   return (
     <TabSettingsScreen
       address={address}
+      loadingStatus={loadingStatus}
+      onGoToEditUserInfo={onGoToEditUserInfo}
       onGoToSelectAddress={onGoToSelectAddress}
       onGoToMyOrders={onGoToMyOrders}
       onPressLogOut={onPressLogOut}
-      loadingStatus={loadingStatus}
+      user={user}
     />
   );
 };

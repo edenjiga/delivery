@@ -1,13 +1,8 @@
 import React, { FC } from 'react';
 import { Text, View } from '@/components/Themed';
-import {
-  Button,
-  TouchableOpacity,
-  SafeAreaView,
-  StyleSheet,
-} from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import RequestStatus from '@/constants/RequestStatus';
-import { Address } from '@edenjiga/delivery-common';
+import { Address, UserPublicFields } from '@edenjiga/delivery-common';
 import { NotLogin } from './components';
 import { GoBackButton } from '@/components';
 import Colors from '@/constants/Colors';
@@ -17,23 +12,31 @@ type Props = {
   onPressLogOut(): void;
   loadingStatus: RequestStatus;
   onGoToSelectAddress(): void;
+  onGoToEditUserInfo(): void;
   onGoToMyOrders(): void;
+  user: UserPublicFields;
 };
 
 const TabsSettingsScreen: FC<Props> = ({
+  address,
+  loadingStatus,
   onPressLogOut,
   onGoToSelectAddress,
+  onGoToEditUserInfo,
   onGoToMyOrders,
-  loadingStatus,
-  address,
+  user,
 }) => {
   if (loadingStatus === RequestStatus.REQUEST_LOADED) {
     return (
       <View style={styles.container}>
         <GoBackButton backWitheArrow={true} viewStyles={styles.goBackButton} />
+        <TouchableOpacity onPress={onGoToEditUserInfo}>
+          <Text>{user.name}</Text>
+          <Text>{user.email}</Text>
+        </TouchableOpacity>
         <View style={styles.info}>
           <TouchableOpacity onPress={onGoToSelectAddress}>
-            <View style={styles.adress}>
+            <View style={styles.address}>
               <Text style={styles.adressText}>Dirección: </Text>
               <Text style={styles.adressText}>{address?.nomenclature}</Text>
             </View>
@@ -57,18 +60,12 @@ const TabsSettingsScreen: FC<Props> = ({
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: Colors.white,
-    flex: 1,
+  addText: {
+    color: Colors.white,
+    fontSize: 18,
+    textAlign: 'center',
   },
-  goBackButton: {
-    backgroundColor: Colors.orange,
-  },
-  info: {
-    marginTop: 30,
-    paddingHorizontal: 30,
-  },
-  adress: {
+  address: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 20,
@@ -85,16 +82,23 @@ const styles = StyleSheet.create({
     marginHorizontal: 50,
     marginTop: 30,
   },
-  addText: {
-    color: Colors.white,
-    fontSize: 18,
-    textAlign: 'center',
+  container: {
+    backgroundColor: Colors.white,
+    flex: 1,
   },
+  goBackButton: {
+    backgroundColor: Colors.orange,
+  },
+  info: {
+    marginTop: 30,
+    paddingHorizontal: 30,
+  },
+
   logout: {
-    position: 'absolute',
     bottom: 0,
-    width: '100%',
     marginBottom: 20,
+    position: 'absolute',
+    width: '100%',
   },
 });
 

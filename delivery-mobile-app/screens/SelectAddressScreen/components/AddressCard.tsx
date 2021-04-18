@@ -29,7 +29,6 @@ const AddressCard: FC<Props> = ({ name, nomenclature, selected, onPress }) => (
 );
 
 const style = StyleSheet.create({
-  dotView: { width: '20%', alignItems: 'center', justifyContent: 'center' },
   dot: {
     alignItems: 'center',
     backgroundColor: Colors.orange,
@@ -38,6 +37,7 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     width: 25,
   },
+  dotView: { width: '20%', alignItems: 'center', justifyContent: 'center' },
   elementView: {
     backgroundColor: Colors.white,
     borderRadius: 7,

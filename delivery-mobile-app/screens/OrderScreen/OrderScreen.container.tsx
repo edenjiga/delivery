@@ -23,6 +23,8 @@ const deliveryValue = 3000;
 
 export default ({ navigation }: Props) => {
   const dispatch = useDispatch();
+  const address = useMemo(() => storageService.getAddress(), []);
+
   const { user, cart } = useSelector<RootState, RootState>((state) => state);
   const { loadingStatus, data: userData } = user;
   const [paymentMethodSelected, setPaymentMethodSelected] = useState(
@@ -31,12 +33,17 @@ export default ({ navigation }: Props) => {
 
   const productsWithQuanty = useMemo(() => Object.values(cart), [cart]);
 
-  const subTotal = useMemo(() => {
+  const { subTotal, totalDiscount } = useMemo(() => {
     return productsWithQuanty.reduce(
-      (prevValue, { quantity, product: { finalPrice } }) => {
-        return prevValue + quantity * finalPrice;
+      (prevValue, { quantity, product: { finalPrice, discountValue } }) => ({
+        subTotal: prevValue.subTotal + quantity * finalPrice,
+        totalDiscount: prevValue.totalDiscount + quantity * discountValue,
+      }),
+
+      {
+        subTotal: 0,
+        totalDiscount: 0,
       },
-      0,
     );
   }, [productsWithQuanty]);
 
@@ -64,8 +71,6 @@ export default ({ navigation }: Props) => {
   ]);
 
   const onCreateOrder = async () => {
-    const address = storageService.getAddress();
-
     const products = productsWithQuanty.map(
       ({ quantity, product: { _id } }) => ({
         id: _id,
@@ -95,12 +100,14 @@ export default ({ navigation }: Props) => {
 
   return (
     <OrderScreen
+      address={address}
       deliveryValue={deliveryValue}
       onCreateOrder={onCreateOrder}
       paymentMethodSelected={paymentMethodSelected}
       productsWithQuanty={productsWithQuanty}
       setPaymentMethodSelected={setPaymentMethodSelected}
       subTotal={subTotal}
+      totalDiscount={totalDiscount}
       total={total}
     />
   );

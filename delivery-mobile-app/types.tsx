@@ -55,7 +55,7 @@ export type RootStackParamList = {
   [SEARCH_PRODUCT_BY_CATEGORY]: {
     category: PRODUCT_CATEGORY;
   };
-  [USER_REQUIRED_FIELDS_FORM]: { goTo: SCREEN_NAMES };
+  [USER_REQUIRED_FIELDS_FORM]: { goTo?: SCREEN_NAMES };
   [VERIFY_CODE]: {
     phone: string;
     goTo?: SCREEN_NAMES;
