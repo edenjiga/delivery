@@ -50,8 +50,8 @@ const style = StyleSheet.create({
     paddingHorizontal: 10,
   },
   marker: {
-    width: 22,
-    height: 22,
+    width: 20,
+    height: 20,
     marginRight: 5,
   },
   markerText: {

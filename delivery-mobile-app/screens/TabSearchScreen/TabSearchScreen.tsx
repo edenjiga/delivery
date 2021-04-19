@@ -101,8 +101,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   marker: {
-    width: 19,
-    height: 19,
+    width: 20,
+    height: 20,
     marginRight: 5,
   },
   markerText: {
