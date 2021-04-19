@@ -104,8 +104,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   marker: {
-    height: 45,
-    width: 50,
+    height: 35,
+    width: 35,
     resizeMode: 'contain',
   },
   text: {

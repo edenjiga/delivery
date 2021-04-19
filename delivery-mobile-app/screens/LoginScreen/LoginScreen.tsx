@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     backgroundColor: Colors.orange,
-    height: '20%',
+    height: '30%',
     justifyContent: 'center',
   },
   info: {

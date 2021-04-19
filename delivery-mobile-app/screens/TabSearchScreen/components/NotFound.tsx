@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: Colors.darkGrey,
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 15,
   },

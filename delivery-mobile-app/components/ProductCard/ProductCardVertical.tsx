@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import useCartOperationForProduct from '@/hooks/useCartOperationForProduct';
 import { Product } from '@edenjiga/delivery-common';
 import React, { FC } from 'react';

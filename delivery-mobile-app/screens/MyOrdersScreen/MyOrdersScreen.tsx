@@ -2,8 +2,7 @@ import { GoBackButton } from '@/components';
 import Colors from '@/constants/Colors';
 import { OrderPublicFields } from '@edenjiga/delivery-common';
 import React, { FC } from 'react';
-import { StyleSheet } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { StyleSheet, ScrollView } from 'react-native';
 import OrderDetail from './components/OrderDetail';
 
 type Props = {

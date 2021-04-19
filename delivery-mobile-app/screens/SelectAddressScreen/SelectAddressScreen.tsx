@@ -23,8 +23,10 @@ const SelectAddressScren: FC<Props> = ({
   onPressAddress,
 }: Props) => {
   return (
-    <View style={style.principalView}>
-      <GoBackButton title="SELECCIONA UNA DIRECCIÓN" />
+    <View style={style.container}>
+      <View style={style.header}>
+        <GoBackButton title="SELECCIONA UNA DIRECCIÓN" />
+      </View>
       <View style={style.elementContainerView}>
         {address.map(({ name, nomenclature, coordinates, note }) => (
           <AddressCard
@@ -53,13 +55,16 @@ const SelectAddressScren: FC<Props> = ({
 };
 
 const style = StyleSheet.create({
-  elementContainerView: {
-    alignItems: 'center',
-    display: 'flex',
-  },
-  principalView: {
+  container: {
     backgroundColor: Colors.whiteGrey,
     flex: 1,
+  },
+  elementContainerView: {
+    alignItems: 'center',
+  },
+  header: {
+    borderBottomColor: Colors.lineGrey,
+    borderBottomWidth: 1,
   },
 });
 

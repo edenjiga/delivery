@@ -6,8 +6,7 @@ import storageService from '@/utils/storageService';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useCallback } from 'react';
-import { StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 const AddressSelected: FC = () => {
   const address = storageService.getAddress();
@@ -22,7 +21,16 @@ const AddressSelected: FC = () => {
   return (
     <View style={style.container}>
       <TouchableOpacity onPress={onPress} style={style.touchable}>
-        <Text>{address?.name}</Text>
+        <View style={style.headerLocation}>
+          <Image
+            style={style.marker}
+            resizeMode="contain"
+            source={require('assets/images/marker.png')}
+          />
+          <Text style={style.markerText}>
+            Nueva Granada
+          </Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -30,12 +38,25 @@ const AddressSelected: FC = () => {
 
 const style = StyleSheet.create({
   container: {
-    borderBottomColor: Colors.grey,
+    borderBottomColor: Colors.lineGrey,
     borderBottomWidth: 1,
   },
   touchable: {
-    marginHorizontal: 10,
-    width: '50%',
+    paddingVertical: 10,
+  },
+  headerLocation: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+  },
+  marker: {
+    width: 22,
+    height: 22,
+    marginRight: 5,
+  },
+  markerText: {
+    color: Colors.darkGrey,
+    marginTop: 2,
   },
 });
 

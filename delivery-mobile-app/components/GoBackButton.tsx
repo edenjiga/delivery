@@ -18,12 +18,14 @@ const GoBackButton: FC<Props> = ({ backWitheArrow, title, viewStyles }) => {
 
   return (
     <View style={[style.container, viewStyles]}>
-      <TouchableOpacity style={style.back} onPress={() => navigation.goBack()}>
-        <Image
-          style={style.backBnt}
-          resizeMode="contain"
-          source={backWitheArrow ? whiteBackArrow : orangeArrow}
-        />
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <View style={style.imageBack}>
+          <Image
+            style={style.backBnt}
+            resizeMode="contain"
+            source={backWitheArrow ? whiteBackArrow : orangeArrow}
+          />
+        </View>
       </TouchableOpacity>
       <Text style={style.title}>{title}</Text>
     </View>
@@ -31,21 +33,18 @@ const GoBackButton: FC<Props> = ({ backWitheArrow, title, viewStyles }) => {
 };
 
 const style = StyleSheet.create({
-  back: {
-    borderRadius: 6,
-    height: 40,
-    justifyContent: 'center',
-    paddingHorizontal: 10,
+  imageBack: {
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    marginLeft: 10,
   },
   backBnt: {
     height: 23,
     width: 23,
   },
   container: {
-    alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    alignItems: 'center'
   },
   title: {
     color: Colors.black,

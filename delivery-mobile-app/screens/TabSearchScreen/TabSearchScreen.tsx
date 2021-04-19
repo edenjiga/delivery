@@ -1,10 +1,17 @@
-import { View } from '@/components/Themed';
+import { View, Text } from '@/components/Themed';
 import { Product } from '@edenjiga/delivery-common';
 import React, { FC } from 'react';
 import { NotFound } from './components';
-import { TextInput, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import {
+  TextInput,
+  ScrollView,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import { ProductCardHorizontal } from '@/components';
 import Colors from '@/constants/Colors';
+import { GoBackButton } from '@/components';
 
 type Props = {
   isLoading: boolean;
@@ -22,7 +29,18 @@ const TabSearchScreen: FC<Props> = ({
   const showNotFound = !products.length && text;
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.header}>
+        <GoBackButton />
+        <View style={styles.headerLocation}>
+          <Image
+            style={styles.marker}
+            resizeMode="contain"
+            source={require('assets/images/marker.png')}
+          />
+          <Text style={styles.markerText}>Nueva Granada</Text>
+        </View>
+      </View>
+      <View style={styles.box}>
         <Image
           style={styles.search}
           resizeMode="contain"
@@ -32,12 +50,13 @@ const TabSearchScreen: FC<Props> = ({
           style={styles.input}
           onChangeText={onChangeText}
           defaultValue={''}
+          placeholderTextColor={Colors.lightgrey}
           placeholder={'¿Qué deseas disfrutar hoy?'}
         />
         <View style={styles.close}>
           <TouchableOpacity
             onPress={() => {
-              alert('You tapped the button!');
+              console.log('You tapped the button!');
             }}
           >
             <Image
@@ -49,15 +68,17 @@ const TabSearchScreen: FC<Props> = ({
         </View>
       </View>
 
-      {!isLoading && (
-        <View>
-          {products.map((product) => (
-            <ProductCardHorizontal key={product._id} product={product} />
-          ))}
+      <ScrollView>
+        {!isLoading && (
+          <View>
+            {products.map((product) => (
+              <ProductCardHorizontal key={product._id} product={product} />
+            ))}
 
-          {showNotFound ? <NotFound /> : null}
-        </View>
-      )}
+            {showNotFound ? <NotFound /> : null}
+          </View>
+        )}
+      </ScrollView>
     </View>
   );
 };
@@ -67,6 +88,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.white,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomColor: Colors.lineGrey,
+    borderBottomWidth: 1,
+  },
+  headerLocation: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  marker: {
+    width: 19,
+    height: 19,
+    marginRight: 5,
+  },
+  markerText: {
+    color: Colors.darkGrey,
+    marginTop: 2,
+  },
+  box: {
+    paddingHorizontal: 10,
   },
   search: {
     width: 22,
@@ -81,11 +125,10 @@ const styles = StyleSheet.create({
     borderColor: Colors.lineGrey,
     borderRadius: 14,
     borderWidth: 1,
+    minHeight: 40,
     paddingVertical: 5,
     paddingHorizontal: 45,
     marginVertical: 20,
-    marginHorizontal: 10,
-    minHeight: 40,
   },
   close: {
     position: 'absolute',
