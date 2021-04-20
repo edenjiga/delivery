@@ -1,6 +1,7 @@
 import { View, Text } from '@/components/Themed';
 import { Product } from '@edenjiga/delivery-common';
 import React, { FC } from 'react';
+import storageService from '@/utils/storageService';
 import { NotFound } from './components';
 import {
   TextInput,
@@ -19,6 +20,7 @@ type Props = {
   products: Array<Product>;
   text: string;
 };
+const address = storageService.getAddress();
 
 const TabSearchScreen: FC<Props> = ({
   onChangeText,
@@ -37,7 +39,7 @@ const TabSearchScreen: FC<Props> = ({
             resizeMode="contain"
             source={require('assets/images/marker.png')}
           />
-          <Text style={styles.markerText}>Nueva Granada</Text>
+          <Text style={styles.markerText}>{address?.name}</Text>
         </View>
       </View>
       <View style={styles.box}>

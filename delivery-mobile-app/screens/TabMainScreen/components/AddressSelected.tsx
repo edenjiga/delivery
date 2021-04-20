@@ -28,7 +28,7 @@ const AddressSelected: FC = () => {
             source={require('assets/images/marker.png')}
           />
           <Text style={style.markerText}>
-            Nueva Granada
+            {address?.name}
           </Text>
         </View>
       </TouchableOpacity>
