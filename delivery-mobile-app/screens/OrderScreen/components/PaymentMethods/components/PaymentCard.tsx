@@ -5,14 +5,14 @@ import React, { FC } from 'react';
 import { Image, Pressable, StyleSheet } from 'react-native';
 import dollarBill from '@/assets/images/dollar-bill-1.png';
 import dataphone from '@/assets/images/dataphone-icon.png';
+
 type Props = {
   method: PAYMENT_METHODS;
   selected?: boolean;
   onPress(): void;
 };
 
-const PaymentCard: FC<Props> = ({ children, method, onPress, selected }) => {
-  // const text =
+const PaymentCard: FC<Props> = ({ method, onPress, selected }) => {
   let text;
   let image;
 
@@ -31,7 +31,7 @@ const PaymentCard: FC<Props> = ({ children, method, onPress, selected }) => {
           <View style={style.greenDot}></View>
         ) : (
           <View style={style.dot}>
-            <View style={style.witheDot}></View>
+            <View style={style.whiteDot}></View>
           </View>
         )}
       </View>
@@ -49,7 +49,11 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     width: 25,
   },
-  dotView: { alignItems: 'center', justifyContent: 'center', width: '20%' },
+  dotView: { 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    width: '20%' 
+  },
   greenDot: {
     alignItems: 'center',
     backgroundColor: Colors.green,
@@ -58,7 +62,7 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     width: 25,
   },
-  witheDot: {
+  whiteDot: {
     backgroundColor: Colors.white,
     borderRadius: 50,
     height: 20,
@@ -66,6 +70,13 @@ const style = StyleSheet.create({
   },
   pressable: {
     flexDirection: 'row',
+    backgroundColor: Colors.white,
+    margin: 5,
+    padding: 10,
+    borderRadius: 6,
+    borderColor: Colors.lineGrey,
+    borderWidth: 1,
+    width: 140,
   },
 });
 

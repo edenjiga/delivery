@@ -37,9 +37,8 @@ const CategorySection: FC = () => (
 
 const style = StyleSheet.create({
   container: {
-    paddingBottom: 10,
+    paddingVertical: 10,
     paddingHorizontal: 10,
-    paddingTop: 20,
   },
   containers: {
     flexDirection: 'row',

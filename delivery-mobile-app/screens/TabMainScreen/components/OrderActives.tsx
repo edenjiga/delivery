@@ -1,6 +1,5 @@
 import React, { FC, useCallback, useMemo } from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Text } from '@/components/Themed';
+import { View, Text } from '@/components/Themed';
 import useOrdersFromRedux from '@/hooks/useOrdersFromRedux';
 import { ORDER_STATUS } from '@edenjiga/delivery-common';
 import { RootStackParamList } from '@/types';
@@ -8,7 +7,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 
 import SCREEN_NAMES from '@/constants/screenNames';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Colors from '@/constants/Colors';
 
 const OrderActives: FC = () => {
@@ -33,29 +32,55 @@ const OrderActives: FC = () => {
 
   return orderActives.length ? (
     <TouchableOpacity style={style.container} onPress={goToMyOrders}>
-      <Text>
-        {orderActives.length}
+      <View style={style.content}>
+        <Text style={style.detailNumber}>{orderActives.length}</Text>
         <Text style={style.detailText}>ORDEN EN PROCESO</Text>
-      </Text>
+      </View>
+      <View style={style.content}>
+        <Image
+          style={style.arrow}
+          resizeMode="contain"
+          source={require('assets/images/backWhite.png')}
+        />
+      </View>
     </TouchableOpacity>
   ) : null;
 };
 
 const style = StyleSheet.create({
   container: {
-    // alignContent: 'flex-start',
     backgroundColor: Colors.lightGreen,
-    borderRadius: 8,
-    // flexDirection: 'row',
-    height: 31,
-    justifyContent: 'center',
-    marginHorizontal: 10,
-    paddingHorizontal: 10,
+    borderRadius: 20,
+    margin: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  detailNumber: {
+    width: 30,
+    height: 30,
+    borderRadius: 30,
+    backgroundColor: Colors.green,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    color: Colors.white,
+    fontWeight: 'bold',
   },
   detailText: {
     color: Colors.white,
     fontWeight: 'bold',
-    // fontSize: 13,
+    marginLeft: 10,
+    fontSize: 15,
+  },
+  arrow: {
+    height: 18,
+    width: 18,
+    transform: [{ rotate: '180deg' }],
   },
 });
 export default OrderActives;

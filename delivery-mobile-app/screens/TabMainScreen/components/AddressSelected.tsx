@@ -27,9 +27,7 @@ const AddressSelected: FC = () => {
             resizeMode="contain"
             source={require('assets/images/marker.png')}
           />
-          <Text style={style.markerText}>
-            {address?.name}
-          </Text>
+          <Text style={style.markerText}>{address?.name}</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -42,7 +40,7 @@ const style = StyleSheet.create({
     borderBottomWidth: 1,
   },
   touchable: {
-    paddingVertical: 10,
+    paddingVertical: 15,
   },
   headerLocation: {
     flexDirection: 'row',

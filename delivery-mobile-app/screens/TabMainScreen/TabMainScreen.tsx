@@ -28,8 +28,8 @@ export default function TabMainScreen(): JSX.Element {
         <SafeAreaView>
           <ScrollView>
             <AddressSelected />
-            <CategorySection />
             <OrderActives />
+            <CategorySection />
             {/* <SearchProduct /> */}
             <SpecialOffers />
             <PopularProducts />
