@@ -34,9 +34,8 @@ const GoBackButton: FC<Props> = ({ backWitheArrow, title, viewStyles }) => {
 
 const style = StyleSheet.create({
   imageBack: {
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    marginLeft: 10,
+    padding: 10,
+    marginLeft: 5,
   },
   backBnt: {
     height: 23,
@@ -44,7 +43,8 @@ const style = StyleSheet.create({
   },
   container: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: Colors.white,
   },
   title: {
     color: Colors.black,
