@@ -33,7 +33,9 @@ const OrderActives: FC = () => {
   return orderActives.length ? (
     <TouchableOpacity style={style.container} onPress={goToMyOrders}>
       <View style={style.content}>
-        <Text style={style.detailNumber}>{orderActives.length}</Text>
+        <View style={style.number}>
+          <Text style={style.detailNumber}>{orderActives.length}</Text>
+        </View>
         <Text style={style.detailText}>ORDEN EN PROCESO</Text>
       </View>
       <View style={style.content}>
@@ -61,13 +63,15 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  detailNumber: {
-    width: 30,
-    height: 30,
+  number: {
     borderRadius: 30,
     backgroundColor: Colors.green,
-    textAlign: 'center',
-    textAlignVertical: 'center',
+    height: 30,
+    width: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  detailNumber: {
     color: Colors.white,
     fontWeight: 'bold',
   },

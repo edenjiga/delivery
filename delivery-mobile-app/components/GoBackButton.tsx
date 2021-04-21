@@ -34,7 +34,8 @@ const GoBackButton: FC<Props> = ({ backWitheArrow, title, viewStyles }) => {
 
 const style = StyleSheet.create({
   imageBack: {
-    padding: 10,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
     marginLeft: 5,
   },
   backBnt: {
