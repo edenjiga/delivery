@@ -2,7 +2,6 @@
 import React, { FC } from 'react';
 import { Text } from '@/components/Themed';
 import {
-  Button,
   SafeAreaView,
   View,
   StyleSheet,
@@ -91,18 +90,23 @@ const OrderScreen: FC<Props> = ({
 
           <View style={style.deliveryBox}>
             <Text style={style.titleDetails}>MÉTODO DEL PAGO:</Text>
-            <PaymentMethods
-              paymentMethodSelected={paymentMethodSelected}
-              onValueChange={(itemValue) => setPaymentMethodSelected(itemValue)}
-            />
+            <View style={style.pay}>
+              <PaymentMethods
+                paymentMethodSelected={paymentMethodSelected}
+                onValueChange={(itemValue) =>
+                  setPaymentMethodSelected(itemValue)
+                }
+              />
+            </View>
           </View>
 
-          <View style={style.buttonContainer}>
-            <TouchableOpacity style={style.button} onPress={onCreateOrder}>
-              <Text style={style.btnText}>Crear orden</Text>
-            </TouchableOpacity>
+          <View style={style.orderContent}>
+            <View style={style.buttonContainer}>
+              <TouchableOpacity style={style.button} onPress={onCreateOrder}>
+                <Text style={style.btnText}>Crear orden</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-
         </View>
       </SafeAreaView>
     </View>
@@ -154,11 +158,14 @@ const style = StyleSheet.create({
     marginBottom: 10,
     fontSize: 15,
   },
+  pay: {
+    paddingVertical: 10,
+  },
   textNom: {
     color: Colors.darkGrey,
   },
   text: {
-    color: Colors.black,
+    color: Colors.darkGrey,
     marginTop: 2,
     marginLeft: 24,
   },
@@ -187,10 +194,8 @@ const style = StyleSheet.create({
     backgroundColor: Colors.orange,
   },
   buttonContainer: {
-    backgroundColor: Colors.white,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 42,
   },
   button: {
     backgroundColor: Colors.lightGreen,
@@ -203,6 +208,9 @@ const style = StyleSheet.create({
     color: Colors.white,
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  orderContent: {
+    marginTop: 50,
   },
 });
 

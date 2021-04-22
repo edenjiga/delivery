@@ -21,21 +21,16 @@ import Colors from '@/constants/Colors';
 export default function TabMainScreen(): JSX.Element {
   return (
     <View style={styles.container}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.container}
-      >
-        <SafeAreaView>
-          <ScrollView>
-            <AddressSelected />
-            <OrderActives />
-            <CategorySection />
-            {/* <SearchProduct /> */}
-            <SpecialOffers />
-            <PopularProducts />
-          </ScrollView>
-        </SafeAreaView>
-      </KeyboardAvoidingView>
+      <SafeAreaView>
+        <ScrollView>
+          <AddressSelected />
+          <OrderActives />
+          <CategorySection />
+          {/* <SearchProduct /> */}
+          <SpecialOffers />
+          <PopularProducts />
+        </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }

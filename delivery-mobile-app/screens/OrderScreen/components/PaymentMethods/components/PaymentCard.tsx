@@ -35,48 +35,56 @@ const PaymentCard: FC<Props> = ({ method, onPress, selected }) => {
           </View>
         )}
       </View>
-      <Text>{text}</Text>
-      <Image source={image} />
+      <View style={style.box}>
+        <Image source={image} />
+        <Text>{text}</Text>
+      </View>
     </Pressable>
   );
 };
 const style = StyleSheet.create({
-  dot: {
-    alignItems: 'center',
-    backgroundColor: Colors.orangeDark,
-    borderRadius: 50,
-    height: 25,
-    justifyContent: 'center',
-    width: 25,
-  },
-  dotView: { 
-    alignItems: 'center', 
-    justifyContent: 'center', 
-    width: '20%' 
-  },
-  greenDot: {
-    alignItems: 'center',
-    backgroundColor: Colors.green,
-    borderRadius: 50,
-    height: 25,
-    justifyContent: 'center',
-    width: 25,
-  },
-  whiteDot: {
-    backgroundColor: Colors.white,
-    borderRadius: 50,
-    height: 20,
-    width: 20,
-  },
   pressable: {
     flexDirection: 'row',
     backgroundColor: Colors.white,
-    margin: 5,
-    padding: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
     borderRadius: 6,
     borderColor: Colors.lineGrey,
     borderWidth: 1,
     width: 140,
+    shadowOffset:{  width: 0,  height: 0,  },
+    shadowColor: Colors.lightgrey,
+    shadowOpacity: .6,
+    elevation: 2,
+  },
+  dotView: { 
+    alignItems: 'center', 
+    justifyContent: 'center',
+  },
+  dot: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.green,
+    borderRadius: 25,
+    height: 25,
+    width: 25,
+  },
+  greenDot: {
+    backgroundColor: Colors.green,
+    borderRadius: 25,
+    height: 25,
+    width: 25,
+  },
+  whiteDot: {
+    backgroundColor: Colors.white,
+    borderRadius: 20,
+    height: 20,
+    width: 20,
+  },
+  box: {
+    width: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

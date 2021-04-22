@@ -2,8 +2,13 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Provider } from 'react-redux';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { StyleSheet } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+} from 'react-native';
 
 import useCachedResources from './hooks/useCachedResources';
 import Navigation from './navigation';
@@ -22,19 +27,27 @@ function App() {
     return (
       <SafeAreaProvider>
         <SocketEventHandle />
-        <SafeAreaView style={styles.SafeAreaViewStyle}>
+        <SafeAreaView style={styles.topSafeArea} />
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.container}
+          >
           <Navigation />
-          <StatusBar backgroundColor={Colors.orangeDark} />
+          <StatusBar />
           <Loader />
-        </SafeAreaView>
+        </KeyboardAvoidingView>
       </SafeAreaProvider>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  SafeAreaViewStyle: {
+  container: {
     flex: 1,
+  },
+  topSafeArea: {
+    backgroundColor: Colors.orangeDark,
+    paddingBottom: 30,
   },
 });
 
