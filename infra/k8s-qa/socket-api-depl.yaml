@@ -44,5 +44,5 @@ spec:
   ports:
     - name: socket-api
       protocol: TCP
-      port: 8000
-      targetPort: 8000
+      port: 8002
+      targetPort: 8002

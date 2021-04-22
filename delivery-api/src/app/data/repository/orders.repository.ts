@@ -66,7 +66,7 @@ export class OrdersRepository {
           .subscribe((guid) => {
             console.log('published message with guid:', guid);
           });
-        this.logger.log(`${orderEvent} ${order._id}`);
+        this.logger.log(`${orderEvent.subject} ${order._id}`);
       } catch (error) {
         this.logger.error(error);
       }
