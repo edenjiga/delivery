@@ -6,4 +6,9 @@ export class AppController {
   findAll(): string {
     return 'Its working';
   }
+
+  @Get('socket')
+  sock() {
+    return 'socket is working';
+  }
 }
