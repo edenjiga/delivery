@@ -76,6 +76,18 @@ spec:
                 secretKeyRef:
                   name: delivery-secrets
                   key: HASH_SALT
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_CLUSTER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: NATS_CLUSTER_ID
+            - name: NATS_STREAM_URL
+              value: http://nats-srv:4222
+
       imagePullSecrets:
         - name: registry-credentials
 ---

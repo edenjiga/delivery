@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: socket-api-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: socket-api
+  template:
+    metadata:
+      labels:
+        app: socket-api
+    spec:
+      containers:
+        - name: socket-api
+          image: registry.gitlab.com/edenjiga1/delivery-app/socket-api:qa
+          imagePullPolicy: Always
+          env:
+            - name: DELIVERY_API
+              value: http://delivery-api-srv:8000
+            - name: NATS_STREAM_URL
+              value: http://nats-srv:4222
+            - name: NATS_CLUSTER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: socket-api-secrets
+                  key: NATS_CLUSTER_ID
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+
+      imagePullSecrets:
+        - name: registry-credentials
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: socket-api-srv
+spec:
+  selector:
+    app: socket-api
+  ports:
+    - name: socket-api
+      protocol: TCP
+      port: 8000
+      targetPort: 8000

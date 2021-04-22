@@ -22,10 +22,12 @@
   },
   "dependencies": {
     "@aws-sdk/client-pinpoint": "^3.0.0",
-    "@edenjiga/delivery-common": "^1.0.42",
+    "@edenjiga/delivery-common": "^1.0.45",
+    "@nestjs-plugins/nestjs-nats-streaming-transport": "^1.0.19",
     "@nestjs/common": "^7.6.13",
     "@nestjs/core": "^7.6.13",
     "@nestjs/jwt": "^7.2.0",
+    "@nestjs/microservices": "^7.6.15",
     "@nestjs/mongoose": "^7.2.0",
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.6.13",

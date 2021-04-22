@@ -7,6 +7,7 @@ import { UsersRepository } from './users.repository';
 import { OrdersRepository } from './orders.repository';
 import * as MongoPaginateV2 from 'mongoose-paginate-v2';
 import * as MongoAutopopulate from 'mongoose-autopopulate';
+import { NatsStreamingTransport } from '@nestjs-plugins/nestjs-nats-streaming-transport';
 
 const commonModule = [UsersRepository, OrdersRepository];
 @Module({
@@ -28,6 +29,13 @@ const commonModule = [UsersRepository, OrdersRepository];
       { name: MODEL_NAMES.USERS, schema: UsersSchema },
       { name: MODEL_NAMES.ORDERS, schema: OrdersSchema },
     ]),
+    NatsStreamingTransport.register({
+      clientId: environment.nats.clientId,
+      clusterId: environment.nats.clusterId,
+      connectOptions: {
+        url: environment.nats.url,
+      },
+    }),
   ],
   exports: [...commonModule],
   providers: [...commonModule],

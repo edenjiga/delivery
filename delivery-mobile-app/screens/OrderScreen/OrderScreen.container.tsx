@@ -80,7 +80,7 @@ export default ({ navigation }: Props) => {
 
     const data: CreateOrderDto = {
       products,
-      address,
+      address: address!,
       deliveryValue,
       price: total,
       payment: {
