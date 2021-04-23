@@ -6,10 +6,6 @@ metadata:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/use-regex: 'true'
-
-
 spec:
   tls:
     - secretName: edgarjimenezg-com-tls
@@ -21,11 +17,11 @@ spec:
     - host: qa.edgarjimenezg.com
       http:
         paths:
-          - path: /socket(/|$)(.*)
+          - path: /socket.io
             backend:
               serviceName: socket-api-srv
               servicePort: 8002
-          - path: /?(.*)
+          - path: /(.*)
             backend:
               serviceName: delivery-api-srv
               servicePort: 8000
