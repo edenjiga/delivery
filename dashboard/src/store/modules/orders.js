@@ -53,7 +53,6 @@ const actions = {
     try {
       const { docs } = await getUnfinishOrders()
 
-      console.log(docs)
       commit(MUTATIONS_KEYS.LOAD_UNFINISHED_ORDERS, _.mapKeys(docs, '_id'))
     } catch (error) {
       Promise.reject(error)
