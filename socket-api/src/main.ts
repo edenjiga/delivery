@@ -8,7 +8,6 @@ import environment from './enviroment';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
 
   const port = process.env.PORT || 8002;
 
@@ -30,6 +29,8 @@ async function bootstrap() {
   };
 
   app.connectMicroservice<MicroserviceOptions>(options);
+  app.enableCors();
+
   await app.startAllMicroservicesAsync();
   await app.listen(port);
 
