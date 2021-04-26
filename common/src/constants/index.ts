@@ -4,4 +4,5 @@ export * from "./orderStatus";
 export * from "./paymentMethods";
 export * from "./paymentStatus";
 export * from "./socketEvents";
+export * from "./settings";
 export * from "./userRoles";

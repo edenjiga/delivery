@@ -4,6 +4,7 @@ import { Test } from '@nestjs/testing';
 import { AppModule } from '@/app.module';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { AuthBadEmailOrPassword } from '@/shared';
+import { Publisher } from '@nestjs-plugins/nestjs-nats-streaming-transport';
 
 describe('Auth controllers', () => {
   let app: INestApplication;
@@ -11,7 +12,11 @@ describe('Auth controllers', () => {
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
-    }).compile();
+    })
+      .overrideProvider(Publisher) //NatsStreamingTransport inyect Publisher as provider
+      .useValue({})
+      .compile();
+
     app = moduleRef.createNestApplication();
     app.useGlobalPipes(
       new ValidationPipe({

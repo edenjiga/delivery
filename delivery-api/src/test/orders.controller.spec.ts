@@ -38,6 +38,7 @@ import {
   PaymentError,
   PaymentNotCompletedError,
 } from '@/shared/errors/payments.error';
+import { Publisher } from '@nestjs-plugins/nestjs-nats-streaming-transport';
 describe('orders controller', () => {
   let app: INestApplication;
 
@@ -61,7 +62,10 @@ describe('orders controller', () => {
       .useValue(productsDataSource)
       .overrideProvider(HttpService)
       .useValue(httpService)
+      .overrideProvider(Publisher) //NatsStreamingTransport inyect Publisher as provider
+      .useValue({})
       .compile();
+
     app = moduleRef.createNestApplication();
     app.useGlobalPipes(
       new ValidationPipe({

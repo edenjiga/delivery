@@ -48,6 +48,8 @@ process.env.JWT_SECRET_KEY = '123';
 process.env.AWS_REGION = 'us-east-1';
 process.env.WOMPI_EVENTS_KEY = 'test_events_0WuHl2464dzFxkYjVQWVHRJnVe3i4BeH';
 process.env.HASH_SALT = '$2b$10$50i2D8Eb9Zp9X2fj3NWgIu';
+process.env.NATS_CLIENT_ID = 'delivery';
+process.env.NATS_CLUSTER_ID = 'delivery';
 beforeAll(async () => {
   try {
     mongod = new MongoMemoryReplSet({
