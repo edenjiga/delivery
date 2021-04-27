@@ -3,8 +3,8 @@ import { ORDER_STATUS } from '@edenjiga/delivery-common';
 ORDER_STATUS;
 
 export default {
-  [ORDER_STATUS.CANCELED]: 'CANCELADO',
-  [ORDER_STATUS.COMPLETED]: 'COMPLETADO',
-  [ORDER_STATUS.IN_PROGRESS]: 'EN PROGRESO',
-  [ORDER_STATUS.CREATED]: 'CREADA',
+  [ORDER_STATUS.CANCELED]: 'Cancelado',
+  [ORDER_STATUS.COMPLETED]: 'Entregado',
+  [ORDER_STATUS.IN_PROGRESS]: 'En camino',
+  [ORDER_STATUS.CREATED]: 'En espera',
 };

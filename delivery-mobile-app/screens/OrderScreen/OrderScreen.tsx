@@ -176,11 +176,13 @@ const style = StyleSheet.create({
   info: {
     color: Colors.darkGrey,
     fontSize: 15,
+    marginBottom: 5,
   },
   infoPay: {
     fontWeight: '700',
     color: Colors.darkGrey,
     fontSize: 15,
+    marginTop: 10,
   },
   infoDiscount: {
     color: Colors.red,
@@ -189,6 +191,7 @@ const style = StyleSheet.create({
     fontWeight: '700',
     color: Colors.green,
     fontSize: 16,
+    marginTop: 10,
   },
   order: {
     backgroundColor: Colors.orange,
@@ -210,7 +213,7 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
   },
   orderContent: {
-    marginTop: 50,
+    top: 40,
   },
 });
 
