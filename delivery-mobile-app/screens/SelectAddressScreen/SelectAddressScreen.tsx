@@ -61,6 +61,7 @@ const style = StyleSheet.create({
   },
   elementContainerView: {
     alignItems: 'center',
+    marginTop: 20,
   },
   header: {
     borderBottomColor: Colors.lineGrey,

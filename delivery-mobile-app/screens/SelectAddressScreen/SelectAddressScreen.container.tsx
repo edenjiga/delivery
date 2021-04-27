@@ -22,8 +22,8 @@ const SelectAddressScreenContainer: FC<Props> = ({ navigation }) => {
   const actions = useMemo(
     () => [
       {
-        text: 'Agregar direccion',
-        //   icon: require("./images/ic_language_white.png"),
+        text: 'Agregar dirección',
+        icon: require("assets/images/marker.png"),
         name: 'add_address',
         position: 1,
       },
