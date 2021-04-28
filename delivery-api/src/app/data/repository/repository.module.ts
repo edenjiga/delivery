@@ -3,13 +3,16 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { OrdersSchema, UsersSchema } from '@/models';
 import environment from '@/environment';
 import MODEL_NAMES from '@/constants/modelNames';
-import { UsersRepository } from './users.repository';
-import { OrdersRepository } from './orders.repository';
 import * as MongoPaginateV2 from 'mongoose-paginate-v2';
 import * as MongoAutopopulate from 'mongoose-autopopulate';
 import { NatsStreamingTransport } from '@nestjs-plugins/nestjs-nats-streaming-transport';
+import { RedisService } from './redis';
 
-const commonModule = [UsersRepository, OrdersRepository];
+import { OrdersRepository } from './orders.repository';
+import { SettingsRepository } from './settings.respository';
+import { UsersRepository } from './users.repository';
+
+const commonModule = [SettingsRepository, UsersRepository, OrdersRepository];
 @Module({
   imports: [
     MongooseModule.forRoot(environment.mongo.url, {
@@ -38,6 +41,6 @@ const commonModule = [UsersRepository, OrdersRepository];
     }),
   ],
   exports: [...commonModule],
-  providers: [...commonModule],
+  providers: [...commonModule, RedisService],
 })
 export class RepositoryModule {}

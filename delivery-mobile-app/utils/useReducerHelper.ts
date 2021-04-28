@@ -1,5 +1,5 @@
-import { Reducer } from "react";
-const basicReducer: Reducer<any, any> = (state: object, newState: object) => {
+import { Reducer } from 'react';
+const basicReducer: Reducer<any, any> = (state: any, newState: any) => {
   return { ...state, ...newState };
 };
 

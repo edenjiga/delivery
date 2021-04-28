@@ -1,19 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { daysSchedules } from '@edenjiga/delivery-common';
-
+import { SettingsRepository } from '@/data/repository/settings.respository';
+jest.mock('redis', () => jest.requireActual('redis-mock'));
 @Injectable()
 export class SettingsService {
-  constructor() {}
+  constructor(private settingsRepository: SettingsRepository) {}
 
-  public isStoreOpen(): boolean {
+  public async isStoreOpen(): Promise<boolean> {
     const date = new Date();
 
     const dateMilitarTime = date.getHours() * 100 + date.getMinutes();
     const day = date.getDay();
     const daySchedule = daysSchedules[day];
-    return daySchedule.some(
-      ({ openHour, closeHour }) =>
-        dateMilitarTime >= openHour && dateMilitarTime < closeHour,
+
+    const result = await this.settingsRepository.getMobileAppStayOpen();
+    return (
+      result ||
+      daySchedule.some(
+        ({ openHour, closeHour }) =>
+          dateMilitarTime >= openHour && dateMilitarTime < closeHour,
+      )
     );
   }
 }

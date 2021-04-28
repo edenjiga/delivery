@@ -9,11 +9,14 @@ const bcrypt = require('bcrypt');
 import modelNames from '@/constants/modelNames';
 import { IOrderDoc, IUserDoc } from '@/models';
 import { Products } from './src/test/remote/products';
+import { redisMock } from './src/test/__mocks__/redis-mock';
 import {
   CreateOrderDto,
   PAYMENT_METHODS,
   UserPublicFields,
 } from '@edenjiga/delivery-common';
+
+jest.mock('redis', () => redisMock);
 
 let identification = 0;
 declare global {
