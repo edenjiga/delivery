@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { daysSchedules } from '@edenjiga/delivery-common';
 import { SettingsRepository } from '@/data/repository/settings.respository';
-jest.mock('redis', () => jest.requireActual('redis-mock'));
 @Injectable()
 export class SettingsService {
   constructor(private settingsRepository: SettingsRepository) {}

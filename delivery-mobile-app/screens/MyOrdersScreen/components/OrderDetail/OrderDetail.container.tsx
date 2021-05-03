@@ -29,7 +29,7 @@ const OrderDetailContainer: FC<Props> = ({ order }) => {
     Alert.alert('¿Seguro deseas cancelar esta orden?', '', [
       {
         text: 'NO',
-        onPress: () => console.log('Cancel Pressed'),
+        onPress: () => {},
         style: 'cancel',
       },
       { text: 'SI', onPress: () => cancelOrder() },

@@ -15,12 +15,11 @@ import onGoing from '@/assets/images/circle-truck.png';
 type Props = {
   order: OrderPublicFields;
   onPressCancel(): void;
-  imageStatus: object;
 };
 
-const OrderDetail: FC<Props> = ({ order, onPressCancel, imageStatus }) => {
+const OrderDetail: FC<Props> = ({ order, onPressCancel }) => {
   let statusTextStyle;
-
+  let imageStatus;
   switch (order.status) {
     case ORDER_STATUS.COMPLETED:
       statusTextStyle = style.statusTextGreen;
@@ -33,10 +32,10 @@ const OrderDetail: FC<Props> = ({ order, onPressCancel, imageStatus }) => {
     case ORDER_STATUS.CREATED:
       statusTextStyle = style.statusTextBrown;
       imageStatus = wait;
+      break;
     default:
       statusTextStyle = style.statusTextOrange;
       imageStatus = onGoing;
-      break;
   }
 
   return (
@@ -45,11 +44,15 @@ const OrderDetail: FC<Props> = ({ order, onPressCancel, imageStatus }) => {
         <View style={style.order}>
           <View style={style.orderInfo}>
             <Text style={style.number}>ORDEN #1:</Text>
-            <Text style={style.units}>3 unidades</Text>
+            <Text style={style.units}>
+              {order.productsWithUnit.length} unidades
+            </Text>
           </View>
           <View style={style.orderAddress}>
             <Text style={style.nomenclature}>{order.address.nomenclature}</Text>
-            <Text style={style.date}>{parseTime(order.createdAt, '{y}-{m}-{d} {h}:{i}')}</Text>
+            <Text style={style.date}>
+              {parseTime(order.createdAt, '{y}-{m}-{d} {h}:{i}')}
+            </Text>
           </View>
         </View>
         {order.productsWithUnit.map(({ product, unitsPurchased }) => (
