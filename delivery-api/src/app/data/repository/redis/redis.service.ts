@@ -12,11 +12,14 @@ export class RedisService {
   getAsync;
 
   constructor() {
+    this.logger.log(`redis url: ${environment.redis.URL}`);
     this.client = redis.createClient(environment.redis.URL);
 
     this.client.on('connect', () => this.logger.log('Redis connected'));
     this.client.on('reconnecting', () => this.logger.log('Redis reconnecting'));
-    this.client.on('error', () => this.logger.error('Redis error'));
+    this.client.on('error', (error) =>
+      this.logger.error(`Redis error ${error}`),
+    );
     this.client.on('end', () => this.logger.error('Redis end'));
 
     this.getAsync = promisify(this.client.get).bind(this.client);
