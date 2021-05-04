@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import environment from '@/environment';
 import { Injectable, Logger } from '@nestjs/common';
 import * as redis from 'redis';
