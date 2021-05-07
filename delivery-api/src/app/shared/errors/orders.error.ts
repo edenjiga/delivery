@@ -49,3 +49,10 @@ export class InvalidPaymentError extends OrdersError {
     super(InvalidPaymentError.code, message);
   }
 }
+
+export class StoreCloseError extends OrdersError {
+  public static readonly code = 'store-close';
+  constructor(message?: string) {
+    super(StoreCloseError.code, message);
+  }
+}

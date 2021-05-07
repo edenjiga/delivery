@@ -10,13 +10,13 @@ services:
       - '27003:27003'
     volumes:
       - mongo_data:/data/db
-  # redis:
-  #   image: redis:alpine
-  #   command: ['redis-server', '--appendonly', 'yes']
-  #   ports:
-  #     - '6379:6379'
-  #   volumes:
-  #     - redis-data:/data
+  redis:
+    image: redis:alpine
+    command: ['redis-server', '--appendonly', 'yes']
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/data
   nats-streaming:
     image: nats-streaming:0.17.0
     command:

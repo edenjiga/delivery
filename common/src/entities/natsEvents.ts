@@ -28,3 +28,12 @@ export class OrderUpdatedNatsEvent extends NatsEvent {
   readonly subject = NATS_SUBJECTS.ORDER_UPDATED;
   readonly data: IOrder;
 }
+
+export class SettingMobileAppStayUpdatedEvent extends NatsEvent {
+  constructor(data: boolean) {
+    super();
+    this.data = data;
+  }
+  readonly subject = NATS_SUBJECTS.SETTING_MOBILE_APP_STAY_OPEN;
+  readonly data: boolean;
+}

@@ -10,7 +10,8 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 
-import { SmsService } from '@/services';
+import { SettingsService, SmsService } from '@/services';
+
 import { UserIncompleteError } from '@/shared/errors/user.error';
 import { ProductsDataSource } from '@/data';
 import {
@@ -20,6 +21,7 @@ import {
   OrderNotCancellableError,
   OrderNotFoundError,
   ProductOutStockError,
+  StoreCloseError,
 } from '@/shared';
 
 import { Products } from './remote/products';
@@ -50,6 +52,8 @@ describe('orders controller', () => {
 
   const productsDataSource: any = {};
   let httpService: HttpService;
+  let settingsService: SettingsService;
+
   let defaultData;
 
   beforeAll(async () => {
@@ -74,11 +78,14 @@ describe('orders controller', () => {
     );
     await app.init();
     httpService = moduleRef.get<HttpService>(HttpService);
+    settingsService = moduleRef.get<SettingsService>(SettingsService);
   });
 
   beforeEach(() => {
     productsDataSource.getProducts = jest.fn(() => Promise.resolve(Products));
     productsDataSource.soldProducts = jest.fn();
+
+    settingsService.isStoreOpen = jest.fn().mockResolvedValue(true);
   });
 
   describe('GET /orders', () => {
@@ -251,6 +258,25 @@ describe('orders controller', () => {
       });
     });
 
+    it('should return a 400 if the settingsService.isStoreOpen return false', async () => {
+      settingsService.isStoreOpen = jest.fn().mockResolvedValue(false);
+
+      const { token } = await global.createUserAndGenerateJwtToken(app);
+
+      const response = await request(app.getHttpServer())
+        .post('/orders')
+        .set({
+          Authorization: `bearer ${token}`,
+        })
+        .send({
+          ...defaultData,
+          products: [{ id: Products[0].id, unitsPurchased: 1 }],
+        });
+
+      expect(response.status).toEqual(400);
+      expect(response.body).toEqual(new StoreCloseError().getResponse());
+    });
+
     it('should return a 400 if the products array have no unitsPurchased property', async () => {
       const { token } = await global.createUserAndGenerateJwtToken(app);
 
@@ -283,7 +309,6 @@ describe('orders controller', () => {
         .set(global.createHeaderWithAuthorization(token))
         .send(defaultData);
       expect(response.status).toBe(400);
-
       expect(response.body).toEqual(new UserIncompleteError().getResponse());
     });
 

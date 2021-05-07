@@ -4,7 +4,6 @@ import {
   NATS_SUBJECTS,
   OrderCreatedNatsEvent,
   OrderUpdatedNatsEvent,
-  SettingMobileAppStayUpdatedEvent,
   SOCKET_EVENTS,
 } from '@edenjiga/delivery-common';
 import { SocketEmitterBase } from '@/SocketEmitter';
@@ -36,21 +35,6 @@ export class NatsListenerController {
       SOCKET_EVENTS.ORDER_UPDATED,
       data,
     );
-    context.message.ack();
-  }
-
-  @EventPattern<SettingMobileAppStayUpdatedEvent['subject']>(
-    NATS_SUBJECTS.SETTING_MOBILE_APP_STAY_OPEN,
-  )
-  async settingMobileAppStayOpenUpdated(
-    @Payload() data: SettingMobileAppStayUpdatedEvent['data'],
-    @Ctx() context: NatsStreamingContext,
-  ) {
-    this.socketEmitter.emitEventToAdmin(
-      SOCKET_EVENTS.SETTING_MOBILE_APP_STAY_OPEN_UPDATED,
-      data,
-    );
-
     context.message.ack();
   }
 }

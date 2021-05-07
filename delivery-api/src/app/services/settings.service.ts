@@ -21,4 +21,8 @@ export class SettingsService {
       )
     );
   }
+
+  async setMobileAppStayOpen(mobileAppStayOpen: string) {
+    return this.settingsRepository.setMobileAppStayOpen(mobileAppStayOpen);
+  }
 }

@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import environment from '@/environment';
 import { Injectable, Logger } from '@nestjs/common';
 import * as redis from 'redis';
@@ -10,10 +9,10 @@ export class RedisService {
 
   private client: redis.RedisClient;
 
-  getAsync;
+  private getAsync;
+  private setAsync;
 
   constructor() {
-    this.logger.log(`redis url: ${environment.redis.URL}`);
     this.client = redis.createClient(environment.redis.URL);
 
     this.client.on('connect', () => this.logger.log('Redis connected'));
@@ -24,9 +23,14 @@ export class RedisService {
     this.client.on('end', () => this.logger.error('Redis end'));
 
     this.getAsync = promisify(this.client.get).bind(this.client);
+    this.setAsync = promisify(this.client.set).bind(this.client);
   }
 
   public get(key): Promise<string> {
     return this.getAsync(key);
+  }
+
+  public set(key: string, value: string) {
+    return this.setAsync(key, value);
   }
 }
