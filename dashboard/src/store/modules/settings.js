@@ -1,5 +1,6 @@
 import variables from '@/styles/element-variables.scss'
 import defaultSettings from '@/settings'
+import { SOCKET_EVENTS } from '@edenjiga/delivery-common'
 
 const { showSettings, tagsView, fixedHeader, sidebarLogo } = defaultSettings
 
@@ -8,7 +9,8 @@ const state = {
   showSettings: showSettings,
   tagsView: tagsView,
   fixedHeader: fixedHeader,
-  sidebarLogo: sidebarLogo
+  sidebarLogo: sidebarLogo,
+  isStoreOpen: false
 }
 
 const mutations = {
@@ -17,6 +19,13 @@ const mutations = {
     if (state.hasOwnProperty(key)) {
       state[key] = value
     }
+  },
+
+  [`SOCKET_${SOCKET_EVENTS.SETTING_MOBILE_APP_STAY_OPEN_UPDATED}`]: (
+    state,
+    data
+  ) => {
+    state.isStoreOpen = data
   }
 }
 
@@ -32,4 +41,3 @@ export default {
   mutations,
   actions
 }
-

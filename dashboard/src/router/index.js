@@ -101,7 +101,6 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
-
   {
     path: '/icon',
     component: Layout,
@@ -111,6 +110,23 @@ export const asyncRoutes = [
         component: () => import('@/views/icons/index'),
         name: 'Icons',
         meta: { title: 'Icons', icon: 'icon', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/settings',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/settings/index'),
+        name: 'Settings',
+        meta: {
+          icon: 'el-icon-setting',
+          title: 'Configuracion',
+          noCache: true,
+          roles: ['admin']
+        }
       }
     ]
   },
