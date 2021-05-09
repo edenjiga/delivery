@@ -16,6 +16,7 @@ import { store } from './store';
 import Loader from './components/Loader';
 import Colors from './constants/Colors';
 import SocketEventHandle from './components/SocketEventHandle';
+import Modal from './components/Modal';
 import './store/sagas';
 
 function App() {
@@ -26,12 +27,13 @@ function App() {
   } else {
     return (
       <SafeAreaProvider>
+        <Modal />
         <SocketEventHandle />
         <SafeAreaView style={styles.topSafeArea} />
-          <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            style={styles.container}
-          >
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.container}
+        >
           <Navigation />
           <StatusBar />
           <Loader />

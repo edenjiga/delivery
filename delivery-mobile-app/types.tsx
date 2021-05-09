@@ -22,6 +22,11 @@ const {
   VERIFY_CODE,
 } = SCREEN_NAMES;
 
+export interface IModalState {
+  isVisible: boolean;
+  text?: string;
+  buttonText?: string;
+}
 export interface ICartState {
   [key: string]: ProductWithQuantity;
 }

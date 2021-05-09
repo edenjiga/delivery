@@ -8,10 +8,33 @@ import { getUserByToken } from '@/api/user';
 import { loginUserAsync } from '@/store/actions/user';
 import { useDispatch } from 'react-redux';
 import { fetchUnfinishedOrdersAsync } from '@/store/actions/orders';
+import { getSettings } from '@/api/settings';
+import { setModalState } from '@/store/actions/modal';
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const dispatch = useDispatch();
+
+  const fetchSettings = async () => {
+    try {
+      const settings = (await getSettings()) as any;
+      if (!settings.isStoreOpen) {
+        dispatch(
+          setModalState({
+            isVisible: true,
+            text:
+              'En el momento no tenemos servicio, Puedes seguir usando la app sin problemas, pero no podras generar una orden',
+          }),
+        );
+      }
+      // , daysSchedules[new Date().getDay()]);
+    } catch (err) {
+      setModalState({
+        isVisible: true,
+        text: 'Ups algo fallo',
+      });
+    }
+  };
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
@@ -33,6 +56,7 @@ export default function useCachedResources() {
             lato: require('../assets/fonts/Lato-Regular.ttf'),
           }),
           storageService.initialize(),
+          fetchSettings(),
         ]);
 
         const user = await getUser();
