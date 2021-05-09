@@ -58,7 +58,7 @@ const TabSearchScreen: FC<Props> = ({
         <View style={styles.close}>
           <TouchableOpacity
             onPress={() => {
-              console.log('You tapped the button!');
+              onChangeText('');
             }}
           >
             <Image
