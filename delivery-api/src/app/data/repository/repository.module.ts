@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { OrdersSchema, UsersSchema } from '@/models';
+import { OrdersSchema, SuggestionsSchema, UsersSchema } from '@/models';
 import environment from '@/environment';
 import MODEL_NAMES from '@/constants/modelNames';
 import * as MongoPaginateV2 from 'mongoose-paginate-v2';
@@ -10,9 +10,15 @@ import { RedisService } from './redis';
 
 import { OrdersRepository } from './orders.repository';
 import { SettingsRepository } from './settings.respository';
+import { SuggestionsRepository } from './suggestions.repository';
 import { UsersRepository } from './users.repository';
 
-const commonModule = [SettingsRepository, UsersRepository, OrdersRepository];
+const commonModule = [
+  SettingsRepository,
+  SuggestionsRepository,
+  UsersRepository,
+  OrdersRepository,
+];
 @Module({
   imports: [
     MongooseModule.forRoot(environment.mongo.url, {
@@ -31,6 +37,7 @@ const commonModule = [SettingsRepository, UsersRepository, OrdersRepository];
       // { name: MODEL_NAMES.STORES, schema: StoreSchema },
       { name: MODEL_NAMES.USERS, schema: UsersSchema },
       { name: MODEL_NAMES.ORDERS, schema: OrdersSchema },
+      { name: MODEL_NAMES.SUGGESTIONS, schema: SuggestionsSchema },
     ]),
     NatsStreamingTransport.register({
       clientId: environment.nats.clientId,

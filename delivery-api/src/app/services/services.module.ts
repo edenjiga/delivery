@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SmsService } from './sms.service';
-import { SettingsService } from './settings.service';
 import { ProductsService } from './products.service';
+import { SuggestionsService } from './suggestions.service';
+import { SettingsService } from './settings.service';
 import { UsersService } from './users.service';
 import DataModule from '@/data/data.module';
 import { OrdersService } from './orders.service';
@@ -16,6 +17,7 @@ const commons = [
   OrdersService,
   ProductsService,
   SettingsService,
+  SuggestionsService,
   SmsService,
   UsersService,
   WompiService,
