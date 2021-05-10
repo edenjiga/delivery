@@ -59,8 +59,6 @@ const TabSearchScreen: FC<Props> = ({
         <View style={styles.close}>
           <TouchableOpacity
             onPress={() => {
-              console.log(text);
-              console.log('se llama onPRess');
               onChangeText('');
             }}
           >
