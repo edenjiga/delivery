@@ -6,8 +6,9 @@ import Colors from '@/constants/Colors';
 
 type Props = {
   onChangeText(text: string): void;
+  handleResendSms(): void;
 };
-const VerifyCodeScreen: FC<Props> = ({ onChangeText }) => (
+const VerifyCodeScreen: FC<Props> = ({ onChangeText, handleResendSms }) => (
   <View style={styles.container}>
     <SafeAreaView>
       <GoBackButton backWitheArrow={true} viewStyles={styles.goBackButton} />
@@ -36,12 +37,7 @@ const VerifyCodeScreen: FC<Props> = ({ onChangeText }) => (
         </View>
 
         <Text style={styles.text}>¿No te llegó el código?</Text>
-        <Text
-          onPress={() => {
-            alert('calmao pues bebe!');
-          }}
-          style={styles.reenviar}
-        >
+        <Text onPress={handleResendSms} style={styles.reenviar}>
           Reenviar código
         </Text>
       </View>
