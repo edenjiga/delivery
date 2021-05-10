@@ -52,12 +52,15 @@ const TabSearchScreen: FC<Props> = ({
           style={styles.input}
           onChangeText={onChangeText}
           defaultValue={''}
+          value={text}
           placeholderTextColor={Colors.lightgrey}
           placeholder={'¿Qué deseas disfrutar hoy?'}
         />
         <View style={styles.close}>
           <TouchableOpacity
             onPress={() => {
+              console.log(text);
+              console.log('se llama onPRess');
               onChangeText('');
             }}
           >

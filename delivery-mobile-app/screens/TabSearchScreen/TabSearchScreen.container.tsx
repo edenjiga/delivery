@@ -1,9 +1,9 @@
-import React, { useCallback, useReducer } from "react";
-import { getProducts } from "@/api/products";
-import useReducerHelper from "@/utils/useReducerHelper";
-import { Product } from "@edenjiga/delivery-common";
+import React, { useCallback, useReducer } from 'react';
+import { getProducts } from '@/api/products';
+import useReducerHelper from '@/utils/useReducerHelper';
+import { Product } from '@edenjiga/delivery-common';
 
-import TabSearchScreen from "./TabSearchScreen";
+import TabSearchScreen from './TabSearchScreen';
 
 type State = {
   text: string;
@@ -13,7 +13,7 @@ type State = {
 };
 
 const initialState: State = {
-  text: "",
+  text: '',
   products: [],
   isLoading: true,
 };
@@ -21,7 +21,7 @@ const initialState: State = {
 const TabSearchScreenContainer = () => {
   const [state, setState] = useReducer(
     useReducerHelper.basicReducer,
-    initialState
+    initialState,
   );
 
   const { isLoading, products, text, timer }: State = state;
@@ -29,6 +29,9 @@ const TabSearchScreenContainer = () => {
   const onChangeText = useCallback(
     (value) => {
       clearTimeout(timer);
+      setState({
+        text: value,
+      });
 
       const newTimer = setTimeout(async () => {
         setState({ isLoading: true });
@@ -41,14 +44,12 @@ const TabSearchScreenContainer = () => {
           return setState({
             isLoading: false,
             products,
-            text: value,
           });
         }
 
         setState({
           isLoading: false,
           products: [],
-          text: value,
         });
       }, 1000);
 
@@ -56,7 +57,7 @@ const TabSearchScreenContainer = () => {
         timer: newTimer,
       });
     },
-    [timer]
+    [timer],
   );
 
   return (
