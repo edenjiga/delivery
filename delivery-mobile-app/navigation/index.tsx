@@ -14,6 +14,7 @@ import {
   SearchProductByCategoryScreen,
   MyOrdersScreen,
   ProductDetailScreen,
+  SuggestionScreen,
 } from '../screens';
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
@@ -66,6 +67,11 @@ function RootNavigator() {
       <Stack.Screen
         name={SCREEN_NAMES.SELECT_ADDRESS}
         component={SelectAddressScreen}
+      />
+
+      <Stack.Screen
+        name={SCREEN_NAMES.USER_SUGGESTION}
+        component={SuggestionScreen}
       />
       <Stack.Screen
         name={SCREEN_NAMES.USER_REQUIRED_FIELDS_FORM}

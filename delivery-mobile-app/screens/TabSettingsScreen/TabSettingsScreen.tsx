@@ -14,6 +14,7 @@ type Props = {
   onGoToSelectAddress(): void;
   onGoToEditUserInfo(): void;
   onGoToMyOrders(): void;
+  onGoToSuggestionScreen(): void;
   user: UserPublicFields;
 };
 
@@ -24,6 +25,7 @@ const TabsSettingsScreen: FC<Props> = ({
   onGoToSelectAddress,
   onGoToEditUserInfo,
   onGoToMyOrders,
+  onGoToSuggestionScreen,
   user,
 }) => {
   if (loadingStatus === RequestStatus.REQUEST_LOADED) {
@@ -100,11 +102,7 @@ const TabsSettingsScreen: FC<Props> = ({
         </View>
 
         <View style={styles.info}>
-          <TouchableOpacity
-            onPress={() => {
-              console.log('You tapped the button!');
-            }}
-          >
+          <TouchableOpacity onPress={onGoToSuggestionScreen}>
             <View style={styles.addressCont}>
               <View style={styles.address}>
                 <Image

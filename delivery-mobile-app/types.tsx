@@ -19,6 +19,7 @@ const {
   SELECT_ADDRESS,
   SEARCH_PRODUCT_BY_CATEGORY,
   USER_REQUIRED_FIELDS_FORM,
+  USER_SUGGESTION,
   VERIFY_CODE,
 } = SCREEN_NAMES;
 
@@ -61,6 +62,7 @@ export type RootStackParamList = {
     category: PRODUCT_CATEGORY;
   };
   [USER_REQUIRED_FIELDS_FORM]: { goTo?: SCREEN_NAMES };
+  [USER_SUGGESTION]: {};
   [VERIFY_CODE]: {
     phone: string;
     goTo?: SCREEN_NAMES;

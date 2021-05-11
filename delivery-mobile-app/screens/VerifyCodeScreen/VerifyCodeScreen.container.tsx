@@ -11,10 +11,10 @@ import * as userActions from '@/store/actions/user';
 import { RemoveLastTwoAndAddGoTo } from '@/utils/navigationActions';
 import { Alert } from 'react-native';
 
-interface Props {
+type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
   route: RouteProp<RootStackParamList, SCREEN_NAMES.VERIFY_CODE>;
-}
+};
 const second = 1000;
 const VerifyCodeScreenContainer: FC<Props> = ({ navigation, route }) => {
   const dispatch = useDispatch();

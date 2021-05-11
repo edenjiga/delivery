@@ -36,6 +36,11 @@ const TabSettingsScreenContainer: FC<Props> = ({ navigation }) => {
     [navigation],
   );
 
+  const onGoToSuggestionScreen = useCallback(
+    () => navigation.navigate(SCREEN_NAMES.USER_SUGGESTION, {}),
+    [navigation],
+  );
+
   return (
     <TabSettingsScreen
       address={address}
@@ -43,6 +48,7 @@ const TabSettingsScreenContainer: FC<Props> = ({ navigation }) => {
       onGoToEditUserInfo={onGoToEditUserInfo}
       onGoToSelectAddress={onGoToSelectAddress}
       onGoToMyOrders={onGoToMyOrders}
+      onGoToSuggestionScreen={onGoToSuggestionScreen}
       onPressLogOut={onPressLogOut}
       user={user}
     />
