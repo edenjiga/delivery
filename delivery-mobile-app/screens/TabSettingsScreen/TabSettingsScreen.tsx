@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
 import { Text, View } from '@/components/Themed';
-import { TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { TouchableOpacity, StyleSheet, Image, Linking } from 'react-native';
 import RequestStatus from '@/constants/RequestStatus';
 import { Address, UserPublicFields } from '@edenjiga/delivery-common';
 import { NotLogin } from './components';
 import { GoBackButton } from '@/components';
 import Colors from '@/constants/Colors';
+import environment from '@/environment';
 
 type Props = {
   address: Address | null;
@@ -126,21 +127,39 @@ const TabsSettingsScreen: FC<Props> = ({
         <View style={styles.info}>
           <Text style={styles.contact}>Contáctanos</Text>
           <View style={styles.socialMedia}>
-            <Image
-              style={styles.mediaImage}
-              resizeMode={'contain'}
-              source={require('assets/images/whatsapp.png')}
-            ></Image>
-            <Image
-              style={styles.mediaImage}
-              resizeMode={'contain'}
-              source={require('assets/images/instagram.png')}
-            ></Image>
-            <Image
-              style={styles.mediaImage}
-              resizeMode={'contain'}
-              source={require('assets/images/gmail.png')}
-            ></Image>
+            <TouchableOpacity
+              onPress={() =>
+                Linking.openURL(
+                  `whatsapp://send?text=${environment.whatappDefaultText}&phone=${environment.whatsappNumber}`,
+                )
+              }
+            >
+              <Image
+                style={styles.mediaImage}
+                resizeMode={'contain'}
+                source={require('assets/images/whatsapp.png')}
+              ></Image>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                Linking.openURL(`instagram://${environment.instagramUrl}`)
+              }
+            >
+              <Image
+                style={styles.mediaImage}
+                resizeMode={'contain'}
+                source={require('assets/images/instagram.png')}
+              ></Image>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => Linking.openURL(`mailto:${environment.email}`)}
+            >
+              <Image
+                style={styles.mediaImage}
+                resizeMode={'contain'}
+                source={require('assets/images/gmail.png')}
+              ></Image>
+            </TouchableOpacity>
           </View>
           <Text style={styles.web}>www.kangaroo.co</Text>
         </View>

@@ -57,7 +57,7 @@ const VerifyCodeScreenContainer: FC<Props> = ({ navigation, route }) => {
 
   const handleResendSms = useCallback(async () => {
     if (distance > 0) {
-      Alert.alert(
+      return Alert.alert(
         `Debes esperar ${
           distance / 1000
         } segundos antes de pedir un nuevo codigo`,
