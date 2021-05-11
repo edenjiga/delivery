@@ -33,14 +33,6 @@ const TabSearchScreen: FC<Props> = ({
     <View style={styles.container}>
       <View style={styles.header}>
         <GoBackButton />
-        <View style={styles.headerLocation}>
-          <Image
-            style={styles.marker}
-            resizeMode="contain"
-            source={require('assets/images/marker.png')}
-          />
-          <Text style={styles.markerText}>{address?.name}</Text>
-        </View>
       </View>
       <View style={styles.box}>
         <Image

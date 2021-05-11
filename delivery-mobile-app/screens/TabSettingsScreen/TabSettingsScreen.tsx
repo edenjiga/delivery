@@ -185,9 +185,11 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 60,
-    backgroundColor: Colors.orangeDark,
+    backgroundColor: Colors.whiteGrey,
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: Colors.orange,
   },
   userImage: {
     width: 45,
