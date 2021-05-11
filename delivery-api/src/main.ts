@@ -7,8 +7,6 @@ import { AppModule } from './app';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.use(csurf());
-
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -16,6 +14,7 @@ async function bootstrap() {
   );
 
   app.enableCors();
+  app.use(csurf());
   const port = process.env.PORT || 8000;
   await app.listen(port);
 
