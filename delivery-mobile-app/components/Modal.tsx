@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textTransform: 'uppercase',
     lineHeight: 20,
+    fontWeight: 'bold',
   },
   textDescription: {
     width: '70%',

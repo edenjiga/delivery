@@ -53,7 +53,7 @@ export default function useCachedResources() {
           // Load fonts
           Font.loadAsync({
             ...Ionicons.font,
-            lato: require('../assets/fonts/Lato-Regular.ttf'),
+            lato: require('../assets/fonts/Lato-Regular.ttf'), 
           }),
           storageService.initialize(),
           fetchSettings(),
