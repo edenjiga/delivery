@@ -53,13 +53,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   productCard: {
-    backgroundColor: Colors.lightgrey,
+    backgroundColor: Colors.bgGrey,
     flexDirection: 'row',
     paddingHorizontal: 5,
     paddingVertical: 15,
   },
   title: {
-    backgroundColor: Colors.lightgrey,
+    backgroundColor: Colors.bgGrey,
     color: Colors.black,
     fontSize: 20,
     fontWeight: 'bold',

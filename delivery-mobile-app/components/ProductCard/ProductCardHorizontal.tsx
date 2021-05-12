@@ -113,8 +113,9 @@ const styles = StyleSheet.create({
   addText: {
     color: Colors.white,
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: 'bold',
     textAlign: 'center',
+    marginBottom: 2,
   },
   box: {
     flexDirection: 'row',
@@ -144,8 +145,9 @@ const styles = StyleSheet.create({
   count: {
     color: Colors.white,
     fontSize: 22,
-    fontWeight: '600',
+    fontWeight: 'bold',
     textAlign: 'center',
+    marginBottom: 2,
   },
   counter: {
     backgroundColor: Colors.white,
