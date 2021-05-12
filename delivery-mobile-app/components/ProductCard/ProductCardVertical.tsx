@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   count: {
     color: Colors.white,
     fontSize: 28,
-    fontWeight: '600',
+    fontWeight: 'bold',
     textAlign: 'center',
   },
   counter: {

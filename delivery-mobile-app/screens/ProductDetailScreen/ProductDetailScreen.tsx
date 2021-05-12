@@ -208,15 +208,14 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   title: {
-    backgroundColor: Colors.lightgrey,
+    backgroundColor: Colors.bgGrey,
     color: Colors.black,
     fontSize: 20,
     fontWeight: 'bold',
     padding: 10,
   },
   box: {
-    backgroundColor: Colors.lightgrey,
-
+    backgroundColor: Colors.bgGrey,
     paddingBottom: 20,
   },
   priceCont: {

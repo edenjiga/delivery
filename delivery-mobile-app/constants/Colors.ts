@@ -22,6 +22,7 @@ export default {
   lightgrey: '#CCCBCB',
   darkGrey: '#686868',
   backGrey: '#F4F2F2',
+  bgGrey: '#E2DEDE',
   lineGrey: 'rgba(104,104,104,.2)',
   whiteGrey: '#F2F2F2',
   orange: '#F28A34',

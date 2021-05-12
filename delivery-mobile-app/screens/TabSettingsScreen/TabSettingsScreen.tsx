@@ -161,7 +161,6 @@ const TabsSettingsScreen: FC<Props> = ({
               ></Image>
             </TouchableOpacity>
           </View>
-          <Text style={styles.web}>www.kangaroo.co</Text>
         </View>
 
         {loadingStatus === RequestStatus.REQUEST_LOADED && (
@@ -226,10 +225,10 @@ const styles = StyleSheet.create({
     color: Colors.darkGrey,
   },
   userEdit: {
-    width: 32,
-    height: 32,
-    borderRadius: 32,
-    backgroundColor: Colors.grey,
+    width: 34,
+    height: 34,
+    borderRadius: 34,
+    backgroundColor: Colors.green,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -289,16 +288,10 @@ const styles = StyleSheet.create({
     height: 50,
     marginHorizontal: 10,
   },
-  web: {
-    textAlign: 'center',
-    color: Colors.darkGrey,
-    fontSize: 16,
-    marginTop: 15,
-  },
   logout: {
     marginHorizontal: 20,
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 50,
   },
   buttonAdd: {
     backgroundColor: Colors.orange,
