@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 import { Text, View } from '@/components/Themed';
 import { orderStatusText } from '@/constants';
 import Colors from '@/constants/Colors';
@@ -14,10 +15,10 @@ import onGoing from '@/assets/images/circle-truck.png';
 
 type Props = {
   order: OrderPublicFields;
-  onPressCancel(): void;
+  onPressActionButton(): void;
 };
 
-const OrderDetail: FC<Props> = ({ order, onPressCancel }) => {
+const OrderDetail: FC<Props> = ({ order, onPressActionButton }) => {
   let statusTextStyle;
   let imageStatus;
   switch (order.status) {
@@ -89,8 +90,15 @@ const OrderDetail: FC<Props> = ({ order, onPressCancel }) => {
           </View>
           {order.status === ORDER_STATUS.CREATED && (
             <View style={style.button}>
-              <TouchableOpacity onPress={onPressCancel}>
+              <TouchableOpacity onPress={onPressActionButton}>
                 <Text style={style.buttonText}>Cancelar</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+          {order.status === ORDER_STATUS.IN_PROGRESS && (
+            <View style={style.button}>
+              <TouchableOpacity onPress={onPressActionButton}>
+                <Text style={style.buttonText}>Contactar</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -101,60 +109,106 @@ const OrderDetail: FC<Props> = ({ order, onPressCancel }) => {
 };
 
 const style = StyleSheet.create({
-  container: {
-    marginTop: 15,
-    marginHorizontal: 10,
-  },
   box: {
-    padding: 10,
-    borderRadius: 6,
     backgroundColor: Colors.white,
+    borderRadius: 6,
+    padding: 10,
   },
-  order: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderColor: Colors.lineGrey,
-    marginBottom: 5,
-    paddingBottom: 10,
+  button: {
+    backgroundColor: Colors.orange,
+    borderRadius: 10,
+    paddingHorizontal: 25,
+    paddingVertical: 10,
   },
-  orderInfo: {
-    alignItems: 'flex-start',
-  },
-  orderAddress: {
-    alignItems: 'flex-end',
-  },
-  number: {
-    fontWeight: 'bold',
+  buttonText: {
+    color: Colors.white,
     fontSize: 16,
-    marginBottom: 5,
+    fontWeight: 'bold',
   },
-  units: {
-    fontSize: 14,
-    color: Colors.darkGrey,
-  },
-  nomenclature: {
-    marginBottom: 7,
-    color: Colors.darkGrey,
-    fontSize: 13,
+  container: {
+    marginHorizontal: 10,
+    marginTop: 15,
   },
   date: {
     color: Colors.darkGrey,
     fontSize: 13,
   },
   detail: {
-    width: '80%',
     color: Colors.darkGrey,
+    width: '80%',
   },
+  nomenclature: {
+    color: Colors.darkGrey,
+    fontSize: 13,
+    marginBottom: 7,
+  },
+  number: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  order: {
+    alignItems: 'flex-end',
+    borderBottomWidth: 1,
+    borderColor: Colors.lineGrey,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 5,
+    paddingBottom: 10,
+  },
+  orderAddress: {
+    alignItems: 'flex-end',
+  },
+  orderImage: {
+    height: 25,
+    marginRight: 8,
+    width: 25,
+  },
+  orderInfo: {
+    alignItems: 'flex-start',
+  },
+
   orderNumber: {
     color: Colors.darkGrey,
   },
-  totalContent: {
+  productView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderColor: Colors.lineGrey,
+  },
+  status: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  statusBox: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 10,
+  },
+  statusTextBrown: {
+    color: Colors.orangeDark,
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  statusTextGreen: {
+    color: Colors.green,
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  statusTextOrange: {
+    color: Colors.orange,
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  statusTextRed: {
+    color: Colors.red,
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  totalContent: {
     borderBottomWidth: 1,
+    borderColor: Colors.lineGrey,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 5,
     paddingVertical: 10,
   },
@@ -163,61 +217,13 @@ const style = StyleSheet.create({
     marginTop: 3,
   },
   totalPayNumber: {
-    fontWeight: 'bold',
     color: Colors.green,
+    fontWeight: 'bold',
     marginTop: 3,
   },
-  statusBox: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 10,
-  },
-  status: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  orderImage: {
-    width: 25,
-    height: 25,
-    marginRight: 8,
-  },
-  statusIcon: {
-    marginRight: 5,
-  },
-  button: {
-    borderRadius: 10,
-    backgroundColor: Colors.orange,
-    paddingVertical: 10,
-    paddingHorizontal: 25,
-  },
-  buttonText: {
-    color: Colors.white,
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  productView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  statusTextGreen: {
-    color: Colors.green,
-    fontWeight: 'bold',
-    fontSize: 15,
-  },
-  statusTextRed: {
-    color: Colors.red,
-    fontWeight: 'bold',
-    fontSize: 15,
-  },
-  statusTextBrown: {
-    color: Colors.orangeDark,
-    fontWeight: 'bold',
-    fontSize: 15,
-  },
-  statusTextOrange: {
-    color: Colors.orange,
-    fontWeight: 'bold',
-    fontSize: 15,
+  units: {
+    color: Colors.darkGrey,
+    fontSize: 14,
   },
 });
 

@@ -7,6 +7,7 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import Colors from '@/constants/Colors';
 
@@ -15,15 +16,19 @@ type Props = {
     latitude: number;
     longitude: number;
   };
+  currentCoords?: Region;
   onSubmit(): void;
   onRegionChangeComplete(region: Region): void;
+  onComeBackToCenter(): void;
   setValue(a: string, value: any): void;
 };
 
 const LocationForm: FC<Props> = ({
   coords,
+  currentCoords,
   onSubmit,
   onRegionChangeComplete,
+  onComeBackToCenter,
   setValue,
 }) => (
   <KeyboardAvoidingView>
@@ -37,6 +42,7 @@ const LocationForm: FC<Props> = ({
             latitudeDelta: 0.015,
             longitudeDelta: 0.0121,
           }}
+          region={currentCoords}
         />
         <View style={styles.markerPoint}>
           <Image
@@ -44,6 +50,10 @@ const LocationForm: FC<Props> = ({
             source={require('assets/images/marker.png')}
           />
         </View>
+        <Button
+          title="Juan ingacion por aqui el icono de volver al centro en el mapa"
+          onPress={onComeBackToCenter}
+        />
       </View>
 
       <View style={styles.inputContent}>
@@ -80,24 +90,21 @@ const LocationForm: FC<Props> = ({
 );
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   content: {
-    flex: 1,
-    backgroundColor: Colors.white,
     alignItems: 'center',
+    backgroundColor: Colors.white,
+    flex: 1,
+    justifyContent: 'center',
+  },
+  mapBox: {
+    alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
   },
   mapStyle: {
     flex: 1,
-    width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-  },
-  mapBox: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: Dimensions.get('window').width,
   },
   markerPoint: {
     position: 'absolute',

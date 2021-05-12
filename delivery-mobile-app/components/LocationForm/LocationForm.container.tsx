@@ -4,7 +4,7 @@ import { loaderService } from '@/utils/loader';
 import { getLocation } from '@/utils/location';
 import useReducerHelper from '@/utils/useReducerHelper';
 import { Address } from '@edenjiga/delivery-common';
-import React, { FC, useEffect, useReducer } from 'react';
+import React, { FC, useCallback, useEffect, useReducer } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { Alert } from 'react-native';
 import { Region } from 'react-native-maps';
@@ -19,7 +19,7 @@ interface IState {
     latitude: number;
     longitude: number;
   };
-  currentCoords?: Address['coordinates'];
+  currentCoords?: Region;
   isReady: boolean;
 }
 
@@ -87,7 +87,15 @@ const LocationFormContainer: FC<Props> = ({ onSubmit }) => {
       return;
     }
 
-    onSubmit({ ...data, coordinates: currentCoords });
+    const { latitude, longitude } = currentCoords;
+
+    onSubmit({
+      ...data,
+      coordinates: {
+        latitude: latitude.toString(),
+        longitude: longitude.toString(),
+      },
+    });
   };
 
   const onError: SubmitErrorHandler<LocationFormValues> = (errors) => {
@@ -99,11 +107,17 @@ const LocationFormContainer: FC<Props> = ({ onSubmit }) => {
     Alert.alert(message);
   };
 
+  const onComeBackToCenter = useCallback(() => {
+    setState({ currentCoords: coords });
+  }, [coords]);
+
   return isReady ? (
     <LocationForm
       coords={coords}
+      currentCoords={currentCoords}
       onSubmit={handleSubmit(onSubmitForm, onError)}
       onRegionChangeComplete={onRegionChangeComplete}
+      onComeBackToCenter={onComeBackToCenter}
       setValue={setValue}
     />
   ) : null;
