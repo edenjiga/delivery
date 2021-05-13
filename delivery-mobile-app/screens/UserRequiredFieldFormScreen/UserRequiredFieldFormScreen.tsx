@@ -8,6 +8,7 @@ import React from 'react';
 import { TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { GoBackButton } from '@/components';
 import Colors from '@/constants/Colors';
+import { FC } from 'react';
 
 type Props = {
   onSubmit(): void;
@@ -17,13 +18,13 @@ type Props = {
   identificationInitialValue?: string;
 };
 
-export default ({
+const UserRequiredFieldFormScreen: FC<Props> = ({
   onSubmit,
   emailInitialValue,
   identificationInitialValue,
   nameInitialValue,
   setValue,
-}: Props) => (
+}) => (
   <View style={styles.container}>
     <KeyboardAvoidingView>
       <GoBackButton backWitheArrow={true} viewStyles={styles.goBackButton} />
@@ -68,8 +69,9 @@ export default ({
             onChangeText={(value) => setValue('identification', value)}
             placeholder="Identification"
             keyboardType="phone-pad"
-            maxLength={10}
+            maxLength={15}
             defaultValue={identificationInitialValue}
+            editable={!!identificationInitialValue}
           />
         </View>
         <TouchableOpacity style={styles.buttonAdd} onPress={onSubmit}>
@@ -80,10 +82,12 @@ export default ({
   </View>
 );
 
+export default UserRequiredFieldFormScreen;
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: Colors.white,
+    flex: 1,
   },
   goBackButton: {
     backgroundColor: Colors.orange,

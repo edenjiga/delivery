@@ -25,8 +25,8 @@ const {
 
 export interface IModalState {
   isVisible: boolean;
-  text?: string;
-  buttonText?: string;
+  text: string;
+  buttonText: string;
 }
 export interface ICartState {
   [key: string]: ProductWithQuantity;

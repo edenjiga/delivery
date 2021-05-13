@@ -5,6 +5,7 @@ import { RootStackParamList } from '@/types';
 import storageService from '@/utils/storageService';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useCallback } from 'react';
+import { Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 import TabSettingsScreen from './TabSettingsScreen';
 
@@ -18,7 +19,17 @@ const TabSettingsScreenContainer: FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const onPressLogOut = useCallback(() => {
-    dispatch(userLogOutAction());
+    Alert.alert('¿Seguro desean cerrar sesión?', '', [
+      {
+        text: 'SI',
+        onPress: () => dispatch(userLogOutAction()),
+        style: 'cancel',
+      },
+      {
+        text: 'NO',
+        onPress: () => {},
+      },
+    ]);
   }, [dispatch]);
 
   const onGoToSelectAddress = useCallback(

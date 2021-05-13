@@ -18,6 +18,8 @@ interface IState {
   coords: {
     latitude: number;
     longitude: number;
+    latitudeDelta: 0.015;
+    longitudeDelta: 0.0121;
   };
   currentCoords?: Region;
   isReady: boolean;

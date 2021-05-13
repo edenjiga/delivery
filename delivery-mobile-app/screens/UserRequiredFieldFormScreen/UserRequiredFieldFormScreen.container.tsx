@@ -1,6 +1,7 @@
 import { updateUser } from '@/api/user';
 import SCREEN_NAMES from '@/constants/screenNames';
 import { RootState } from '@/store';
+import { setModalState } from '@/store/actions/modal';
 import { loginUserAsync } from '@/store/actions/user';
 import { IuserState, RootStackParamList } from '@/types';
 import storageService from '@/utils/storageService';
@@ -9,7 +10,6 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import UserRequiredFieldFormScreen from './UserRequiredFieldFormScreen';
 
@@ -67,7 +67,13 @@ export default ({ navigation, route }: Props) => {
       '',
     );
 
-    Alert.alert(message);
+    dispatch(
+      setModalState({
+        buttonText: 'Confirmar',
+        text: message,
+        isVisible: true,
+      }),
+    );
   };
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {

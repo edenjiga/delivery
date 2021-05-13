@@ -24,6 +24,7 @@ export default function useCachedResources() {
             isVisible: true,
             text:
               'En el momento no tenemos servicio, Puedes seguir usando la app sin problemas, pero no podras generar una orden',
+            buttonText: 'Confirmar',
           }),
         );
       }
