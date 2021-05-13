@@ -78,10 +78,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   container: {
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.8)',
     flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.4)',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   header: {
     alignItems: 'center',

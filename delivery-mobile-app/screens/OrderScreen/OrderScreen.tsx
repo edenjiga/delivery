@@ -179,7 +179,7 @@ const style = StyleSheet.create({
     marginBottom: 5,
   },
   infoPay: {
-    fontWeight: '700',
+    fontWeight: 'bold',
     color: Colors.darkGrey,
     fontSize: 15,
     marginTop: 10,
@@ -188,7 +188,7 @@ const style = StyleSheet.create({
     color: Colors.red,
   },
   infoTotal: {
-    fontWeight: '700',
+    fontWeight: 'bold',
     color: Colors.green,
     fontSize: 16,
     marginTop: 10,
