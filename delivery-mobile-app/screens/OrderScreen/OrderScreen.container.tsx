@@ -7,11 +7,11 @@ import { RootState } from '@/store';
 import { cleanCartAction } from '@/store/actions/cart';
 import { addOrder } from '@/store/actions/orders';
 import { RootStackParamList } from '@/types';
+import { ErrorMessageHandle } from '@/utils/errorMessages';
 import { CreateOrderDto, PAYMENT_METHODS } from '@edenjiga/delivery-common';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useMemo, useState } from 'react';
-import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import OrderScreen from './OrderScreen';
 
@@ -96,7 +96,8 @@ export default ({ navigation }: Props) => {
       dispatch(cleanCartAction());
       return navigation.replace(SCREEN_NAMES.ROOT);
     } catch (error) {
-      showModal('Ups algo fallo');
+      const message = ErrorMessageHandle(error.message);
+      showModal(message);
     }
   };
 
