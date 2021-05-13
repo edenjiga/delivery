@@ -2,7 +2,6 @@ import SCREEN_NAMES from '@/constants/screenNames';
 import useUserFromRedux from '@/hooks/useUserFromRedux';
 import { logOut as userLogOutAction } from '@/store/actions/user';
 import { RootStackParamList } from '@/types';
-import storageService from '@/utils/storageService';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useCallback } from 'react';
 import { Alert } from 'react-native';
@@ -14,7 +13,6 @@ interface Props {
 }
 
 const TabSettingsScreenContainer: FC<Props> = ({ navigation }) => {
-  const address = storageService.getAddress();
   const { loadingStatus, data: user } = useUserFromRedux();
   const dispatch = useDispatch();
 
@@ -54,7 +52,6 @@ const TabSettingsScreenContainer: FC<Props> = ({ navigation }) => {
 
   return (
     <TabSettingsScreen
-      address={address}
       loadingStatus={loadingStatus}
       onGoToEditUserInfo={onGoToEditUserInfo}
       onGoToSelectAddress={onGoToSelectAddress}

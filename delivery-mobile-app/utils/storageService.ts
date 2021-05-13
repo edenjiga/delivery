@@ -1,6 +1,8 @@
-import { Storage } from '@/constants';
-import * as SecureStore from 'expo-secure-store';
 import { Address } from '@edenjiga/delivery-common';
+import { Storage } from '@/constants';
+import { store } from '@/store';
+import * as SecureStore from 'expo-secure-store';
+import * as addressActions from '@/store/actions/address';
 
 const cache: { token: null | string; address: Address | null } = {
   token: null,
@@ -32,8 +34,13 @@ async function clearToken(): Promise<void> {
 
 async function initialize(): Promise<void> {
   cache.token = await SecureStore.getItemAsync(Storage.TOKEN_KEY);
-  const address = await SecureStore.getItemAsync(Storage.USER_ADDRESS);
-  cache.address = address ? JSON.parse(address) : null;
+  const addressString = await SecureStore.getItemAsync(Storage.USER_ADDRESS);
+
+  if (addressString) {
+    const address = JSON.parse(addressString);
+    store.dispatch(addressActions.setAddress(address));
+    cache.address = address;
+  }
 }
 
 const storageService = {

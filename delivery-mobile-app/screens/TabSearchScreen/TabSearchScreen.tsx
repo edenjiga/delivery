@@ -1,7 +1,6 @@
-import { View, Text } from '@/components/Themed';
+import { View } from '@/components/Themed';
 import { Product } from '@edenjiga/delivery-common';
 import React, { FC } from 'react';
-import storageService from '@/utils/storageService';
 import { NotFound } from './components';
 import {
   TextInput,
@@ -20,7 +19,6 @@ type Props = {
   products: Array<Product>;
   text: string;
 };
-const address = storageService.getAddress();
 
 const TabSearchScreen: FC<Props> = ({
   onChangeText,
@@ -80,50 +78,8 @@ const TabSearchScreen: FC<Props> = ({
 export default TabSearchScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.white,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomColor: Colors.lineGrey,
-    borderBottomWidth: 1,
-  },
-  headerLocation: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  marker: {
-    width: 20,
-    height: 20,
-    marginRight: 5,
-  },
-  markerText: {
-    color: Colors.darkGrey,
-    marginTop: 2,
-  },
   box: {
     paddingHorizontal: 10,
-  },
-  search: {
-    width: 22,
-    height: 22,
-    position: 'absolute',
-    left: 22,
-    top: 30,
-    zIndex: 1,
-  },
-  input: {
-    backgroundColor: Colors.whiteGrey,
-    borderColor: Colors.lineGrey,
-    borderRadius: 14,
-    borderWidth: 1,
-    minHeight: 40,
-    paddingVertical: 5,
-    paddingHorizontal: 45,
-    marginVertical: 20,
   },
   close: {
     position: 'absolute',
@@ -132,7 +88,35 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   closeIcon: {
-    width: 22,
     height: 22,
+    width: 22,
+  },
+  container: {
+    backgroundColor: Colors.white,
+    flex: 1,
+  },
+  header: {
+    borderBottomColor: Colors.lineGrey,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  input: {
+    backgroundColor: Colors.whiteGrey,
+    borderColor: Colors.lineGrey,
+    borderRadius: 14,
+    borderWidth: 1,
+    marginVertical: 20,
+    minHeight: 40,
+    paddingHorizontal: 45,
+    paddingVertical: 5,
+  },
+  search: {
+    height: 22,
+    left: 22,
+    position: 'absolute',
+    top: 30,
+    width: 22,
+    zIndex: 1,
   },
 });

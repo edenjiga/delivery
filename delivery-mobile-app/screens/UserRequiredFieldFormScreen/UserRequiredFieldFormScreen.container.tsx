@@ -1,5 +1,6 @@
 import { updateUser } from '@/api/user';
 import SCREEN_NAMES from '@/constants/screenNames';
+import useAddress from '@/hooks/useAddress';
 import { RootState } from '@/store';
 import { setModalState } from '@/store/actions/modal';
 import { loginUserAsync } from '@/store/actions/user';
@@ -29,6 +30,7 @@ type FormValues = {
 
 export default ({ navigation, route }: Props) => {
   const { goTo } = route.params;
+  const { address } = useAddress();
 
   const dispatch = useDispatch();
 
@@ -79,7 +81,6 @@ export default ({ navigation, route }: Props) => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const dataToSend: UserPublicFields = Object.assign({}, data);
 
-    const address = storageService.getAddress();
     if (!user.address?.length && address) {
       dataToSend.address = [address];
     }

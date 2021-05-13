@@ -1,10 +1,10 @@
 import SCREEN_NAMES from '@/constants/screenNames';
+import useAddress from '@/hooks/useAddress';
 import useUserFromRedux from '@/hooks/useUserFromRedux';
 import { RootStackParamList } from '@/types';
-import storageService from '@/utils/storageService';
 import { Address } from '@edenjiga/delivery-common';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useCallback, useMemo, useState } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import SelectAddressScreen from './SelectAddressScreen';
 
 type Props = {
@@ -12,18 +12,16 @@ type Props = {
 };
 
 const SelectAddressScreenContainer: FC<Props> = ({ navigation }) => {
+  const { address: selectedAddress, setAddress } = useAddress();
   const {
     data: { address = [] },
   } = useUserFromRedux();
-  const [selectedAddress, setSelectedAddress] = useState(
-    storageService.getAddress(),
-  );
 
   const actions = useMemo(
     () => [
       {
         text: 'Agregar dirección',
-        icon: require("assets/images/marker.png"),
+        icon: require('assets/images/marker.png'),
         name: 'add_address',
         position: 1,
       },
@@ -39,9 +37,12 @@ const SelectAddressScreenContainer: FC<Props> = ({ navigation }) => {
   );
 
   const onPressAddress = async (address: Address) => {
-    setSelectedAddress(address);
-    await storageService.setAddress(address);
-    navigation.goBack();
+    try {
+      await setAddress(address);
+      navigation.goBack();
+    } catch (err) {
+      //TODO fill error
+    }
   };
   return (
     <SelectAddressScreen

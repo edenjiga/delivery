@@ -1,15 +1,15 @@
 import { Text, View } from '@/components/Themed';
 import Colors from '@/constants/Colors';
 import SCREEN_NAMES from '@/constants/screenNames';
+import useAddress from '@/hooks/useAddress';
 import { RootStackParamList } from '@/types';
-import storageService from '@/utils/storageService';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useCallback } from 'react';
 import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 const AddressSelected: FC = () => {
-  const address = storageService.getAddress();
+  const { address } = useAddress();
 
   const navigation = useNavigation<
     StackNavigationProp<RootStackParamList, SCREEN_NAMES.ROOT>

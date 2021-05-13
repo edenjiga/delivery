@@ -1,11 +1,11 @@
 import { createOrder } from '@/api/orders';
 import RequestStatus from '@/constants/RequestStatus';
 import SCREEN_NAMES from '@/constants/screenNames';
+import useAddress from '@/hooks/useAddress';
 import { RootState } from '@/store';
 import { cleanCartAction } from '@/store/actions/cart';
 import { addOrder } from '@/store/actions/orders';
 import { RootStackParamList } from '@/types';
-import storageService from '@/utils/storageService';
 import { CreateOrderDto, PAYMENT_METHODS } from '@edenjiga/delivery-common';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -23,7 +23,7 @@ const deliveryValue = 3000;
 
 export default ({ navigation }: Props) => {
   const dispatch = useDispatch();
-  const address = useMemo(() => storageService.getAddress(), []);
+  const { address } = useAddress();
 
   const { user, cart } = useSelector<RootState, RootState>((state) => state);
   const { loadingStatus, data: userData } = user;
@@ -80,7 +80,7 @@ export default ({ navigation }: Props) => {
 
     const data: CreateOrderDto = {
       products,
-      address: address!,
+      address: address,
       deliveryValue,
       price: total,
       payment: {

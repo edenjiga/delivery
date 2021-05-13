@@ -2,14 +2,13 @@ import React, { FC } from 'react';
 import { Text, View } from '@/components/Themed';
 import { TouchableOpacity, StyleSheet, Image, Linking } from 'react-native';
 import RequestStatus from '@/constants/RequestStatus';
-import { Address, UserPublicFields } from '@edenjiga/delivery-common';
+import { UserPublicFields } from '@edenjiga/delivery-common';
 import { NotLogin } from './components';
 import { GoBackButton } from '@/components';
 import Colors from '@/constants/Colors';
 import environment from '@/environment';
 
 type Props = {
-  address: Address | null;
   onPressLogOut(): void;
   loadingStatus: RequestStatus;
   onGoToSelectAddress(): void;
@@ -20,7 +19,6 @@ type Props = {
 };
 
 const TabsSettingsScreen: FC<Props> = ({
-  address,
   loadingStatus,
   onPressLogOut,
   onGoToSelectAddress,
@@ -186,126 +184,126 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   userInfo: {
+    alignItems: 'center',
     backgroundColor: Colors.white,
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 20,
-    alignItems: 'center',
   },
   user: {
-    minWidth: 280,
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
+    minWidth: 280,
   },
   imageCont: {
-    width: 60,
-    height: 60,
-    borderRadius: 60,
-    backgroundColor: Colors.whiteGrey,
-    justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
+    backgroundColor: Colors.whiteGrey,
     borderColor: Colors.orange,
+    borderRadius: 60,
+    borderWidth: 1,
+    height: 60,
+    justifyContent: 'center',
+    width: 60,
   },
   userImage: {
-    width: 45,
     height: 45,
+    width: 45,
   },
   textCont: {
+    justifyContent: 'center',
     maxWidth: 220,
     paddingHorizontal: 15,
-    justifyContent: 'center',
   },
   userName: {
     fontWeight: 'bold',
     textTransform: 'uppercase',
   },
   userMail: {
-    fontSize: 13,
     color: Colors.darkGrey,
+    fontSize: 13,
   },
   userEdit: {
-    width: 34,
-    height: 34,
-    borderRadius: 34,
-    backgroundColor: Colors.green,
-    flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: Colors.green,
+    borderRadius: 34,
+    flexDirection: 'row',
+    height: 34,
     justifyContent: 'center',
+    width: 34,
   },
   edit: {
-    width: 22,
     height: 22,
+    width: 22,
   },
   info: {
-    top: 15,
-    marginHorizontal: 20,
-    paddingVertical: 20,
-    paddingHorizontal: 15,
     backgroundColor: Colors.white,
     borderRadius: 6,
     marginBottom: 10,
+    marginHorizontal: 20,
+    paddingHorizontal: 15,
+    paddingVertical: 20,
+    top: 15,
   },
   addressCont: {
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
   },
   address: {
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
   },
   image: {
-    width: 25,
     height: 25,
+    width: 25,
   },
   adressText: {
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    fontSize: 15,
-    marginLeft: 10,
     color: Colors.darkGrey,
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginLeft: 10,
+    textTransform: 'uppercase',
   },
   icon: {
-    width: 18,
     height: 18,
     transform: [{ rotate: '180deg' }],
+    width: 18,
   },
   contact: {
+    color: Colors.darkGrey,
+    fontSize: 15,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    fontSize: 15,
-    color: Colors.darkGrey,
   },
   socialMedia: {
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 10,
   },
   mediaImage: {
-    width: 50,
     height: 50,
     marginHorizontal: 10,
+    width: 50,
   },
   logout: {
-    marginHorizontal: 20,
     alignItems: 'center',
+    marginHorizontal: 20,
     marginTop: 50,
   },
   buttonAdd: {
     backgroundColor: Colors.orange,
     borderRadius: 10,
-    paddingVertical: 10,
-    minWidth: 180,
-    minHeight: 40,
     justifyContent: 'center',
+    minHeight: 40,
+    minWidth: 180,
+    paddingVertical: 10,
   },
   addText: {
     color: Colors.white,
     fontSize: 18,
-    textAlign: 'center',
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 
