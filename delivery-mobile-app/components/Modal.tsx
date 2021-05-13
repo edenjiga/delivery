@@ -9,7 +9,7 @@ import { Text, View } from '@/components/Themed';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { IModalState } from '@/types';
-import { setModalIsVisibleState, setModalState } from '@/store/actions/modal';
+import { setModalIsVisibleState } from '@/store/actions/modal';
 import Colors from '@/constants/Colors';
 
 const Modal: FC = () => {
@@ -72,20 +72,10 @@ const styles = StyleSheet.create({
     minHeight: 36,
     minWidth: 150,
   },
-  closeIcon: {
-    height: 26,
-    width: 26,
-  },
   closeText: {
     color: Colors.white,
     fontSize: 17,
     fontWeight: 'bold',
-  },
-  closeWrapper: {
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-    marginBottom: 10,
-    width: '100%',
   },
   container: {
     alignItems: 'center',
@@ -106,11 +96,6 @@ const styles = StyleSheet.create({
   infoIcon: {
     height: 40,
     width: 40,
-  },
-  textDescription: {
-    marginTop: 5,
-    textAlign: 'center',
-    width: '70%',
   },
   textInfo: {
     lineHeight: 20,
