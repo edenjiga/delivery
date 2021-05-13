@@ -42,7 +42,7 @@ declare global {
 }
 
 let mongod: MongoMemoryReplSet;
-const port = 27020;
+const port = 27030;
 const dbName = 'test';
 const MONGO_URL = `mongodb://127.0.0.1:${port}/test?replicaSet=testset`;
 

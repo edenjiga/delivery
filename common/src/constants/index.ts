@@ -1,4 +1,5 @@
 export * from "./creditCardStatus";
+export * from "./errorCodes";
 export * from "./natsSubjects";
 export * from "./orderStatus";
 export * from "./paymentMethods";
