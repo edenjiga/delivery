@@ -71,7 +71,7 @@ const UserRequiredFieldFormScreen: FC<Props> = ({
             keyboardType="phone-pad"
             maxLength={15}
             defaultValue={identificationInitialValue}
-            editable={!!identificationInitialValue}
+            editable={!identificationInitialValue}
           />
         </View>
         <TouchableOpacity style={styles.buttonAdd} onPress={onSubmit}>
