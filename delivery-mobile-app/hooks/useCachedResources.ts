@@ -33,6 +33,7 @@ export default function useCachedResources() {
       setModalState({
         isVisible: true,
         text: 'Ups algo fallo',
+        buttonText: 'Confirmar',
       });
     }
   };
