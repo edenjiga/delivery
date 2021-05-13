@@ -115,48 +115,49 @@ const OrderScreen: FC<Props> = ({
 
 const style = StyleSheet.create({
   container: {
+    backgroundColor: Colors.white,
     flex: 1,
-    backgroundColor: Colors.white,
-  },
-  header: {
-    backgroundColor: Colors.white,
-    paddingVertical: 5,
-    borderBottomColor: Colors.lineGrey,
-    borderBottomWidth: 1,
-  },
-  deliveryBox: {
-    borderBottomColor: Colors.lineGrey,
-    borderBottomWidth: 1,
-    backgroundColor: Colors.white,
-    padding: 20,
   },
   delivery: {
     backgroundColor: Colors.whiteGrey,
     borderRadius: 6,
-    paddingVertical: 10,
     paddingHorizontal: 20,
+    paddingVertical: 10,
   },
+  deliveryBox: {
+    backgroundColor: Colors.white,
+    borderBottomColor: Colors.lineGrey,
+    borderBottomWidth: 1,
+    padding: 20,
+  },
+  header: {
+    backgroundColor: Colors.white,
+    borderBottomColor: Colors.lineGrey,
+    borderBottomWidth: 1,
+    paddingVertical: 5,
+  },
+
   headerLocation: {
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
   },
   marker: {
-    width: 18,
     height: 18,
     marginRight: 5,
+    width: 18,
   },
   title: {
     color: Colors.black,
-    textTransform: 'uppercase',
     fontWeight: 'bold',
     marginBottom: 5,
+    textTransform: 'uppercase',
   },
   titleDetails: {
     color: Colors.black,
-    textTransform: 'uppercase',
+    fontSize: 15,
     fontWeight: 'bold',
     marginBottom: 10,
-    fontSize: 15,
+    textTransform: 'uppercase',
   },
   pay: {
     paddingVertical: 10,
@@ -166,8 +167,8 @@ const style = StyleSheet.create({
   },
   text: {
     color: Colors.darkGrey,
-    marginTop: 2,
     marginLeft: 24,
+    marginTop: 2,
   },
   product: {
     flexDirection: 'row',
@@ -179,22 +180,19 @@ const style = StyleSheet.create({
     marginBottom: 5,
   },
   infoPay: {
-    fontWeight: 'bold',
     color: Colors.darkGrey,
     fontSize: 15,
+    fontWeight: 'bold',
     marginTop: 10,
   },
   infoDiscount: {
     color: Colors.red,
   },
   infoTotal: {
-    fontWeight: 'bold',
     color: Colors.green,
     fontSize: 16,
+    fontWeight: 'bold',
     marginTop: 10,
-  },
-  order: {
-    backgroundColor: Colors.orange,
   },
   buttonContainer: {
     alignItems: 'center',
@@ -203,9 +201,9 @@ const style = StyleSheet.create({
   button: {
     backgroundColor: Colors.lightGreen,
     borderRadius: 6,
+    color: Colors.white,
     paddingHorizontal: 60,
     paddingVertical: 10,
-    color: Colors.white,
   },
   btnText: {
     color: Colors.white,

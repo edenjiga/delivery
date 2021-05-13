@@ -6,24 +6,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Text, View } from '@/components/Themed';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store';
-import { IModalState } from '@/types';
+import { useDispatch } from 'react-redux';
 import { setModalIsVisibleState } from '@/store/actions/modal';
 import Colors from '@/constants/Colors';
+import useModal from '@/hooks/useModal';
 
 const Modal: FC = () => {
-  const dispatch = useDispatch();
-  const { isVisible, text: modalText } = useSelector<RootState, IModalState>(
-    (state) => state.modal,
-  );
-
-  const setIsVisible = useCallback(
-    (value: boolean) => {
-      dispatch(setModalIsVisibleState(value));
-    },
-    [dispatch],
-  );
+  const { isVisible, text, setIsVisible } = useModal();
 
   return (
     <DefaultModal visible={isVisible} transparent={true}>
@@ -37,7 +26,7 @@ const Modal: FC = () => {
             />
           </View>
 
-          <Text style={styles.textInfo}>{modalText}</Text>
+          <Text style={styles.textInfo}>{text}</Text>
           <TouchableOpacity
             style={styles.close}
             onPress={() => setIsVisible(false)}
