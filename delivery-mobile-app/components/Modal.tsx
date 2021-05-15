@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC } from 'react';
 import {
   Modal as DefaultModal,
   StyleSheet,
@@ -6,8 +6,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Text, View } from '@/components/Themed';
-import { useDispatch } from 'react-redux';
-import { setModalIsVisibleState } from '@/store/actions/modal';
 import Colors from '@/constants/Colors';
 import useModal from '@/hooks/useModal';
 

@@ -12,7 +12,7 @@ export class SmsService {
   ) {}
 
   public generateRandomNumer() {
-    return (1000 + Math.floor(Math.random() * 899999)).toString();
+    return (100000 + Math.floor(Math.random() * 899999)).toString();
   }
 
   public sendSms(
