@@ -37,7 +37,7 @@ const TabsSettingsScreen: FC<Props> = ({
               <Image
                 style={styles.userImage}
                 resizeMode={'contain'}
-                source={require('assets/images/kangaroo.png')}
+                source={require('assets/images/kangaroo_profile.png')}
               ></Image>
             </View>
             <View style={styles.textCont}>
@@ -196,18 +196,14 @@ const styles = StyleSheet.create({
     minWidth: 280,
   },
   imageCont: {
-    alignItems: 'center',
-    backgroundColor: Colors.whiteGrey,
-    borderColor: Colors.orange,
     borderRadius: 60,
-    borderWidth: 1,
-    height: 60,
+    backgroundColor: Colors.whiteGrey,
     justifyContent: 'center',
-    width: 60,
+    alignItems: 'center',
   },
   userImage: {
-    height: 45,
-    width: 45,
+    width: 65,
+    height: 65,
   },
   textCont: {
     justifyContent: 'center',
