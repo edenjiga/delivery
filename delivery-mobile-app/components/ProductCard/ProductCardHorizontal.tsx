@@ -42,7 +42,7 @@ const ProductCardHorizontal: FC<Props> = ({ product }) => {
                   ? {
                       uri: product.Imagen.url,
                     }
-                  : require('assets/images/vehicle.png')
+                  : require('assets/images/kangaroo_empty.png')
               }
             />
             {!!product.discount && (
