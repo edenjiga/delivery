@@ -37,6 +37,9 @@ const VerifyCodeScreen: FC<Props> = ({ onChangeText, handleResendSms }) => (
         </View>
 
         <Text style={styles.text}>¿No te llegó el código?</Text>
+        <Text style={styles.counterText}>
+          Reenviar código en<Text style={styles.counter}> 59 segundos</Text>
+        </Text>
         <Text onPress={handleResendSms} style={styles.reenviar}>
           Reenviar código
         </Text>
@@ -57,11 +60,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.orange,
     height: '30%',
-    justifyContent: 'center',
+    paddingTop: 40,
   },
   title: {
     color: Colors.white,
-    fontSize: 24,
+    fontSize: 22,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
   },
   info: {
     marginTop: 30,
@@ -70,6 +75,14 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 15,
+  },
+  counterText: {
+    fontSize: 15,
+    textAlign: 'center',
+    marginTop: 10,
+  },
+  counter: {
+    color: Colors.red,
   },
   inputCont: {
     marginVertical: 30,
@@ -80,15 +93,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 10,
     top: 10,
-    left: 10,
+    left: 15,
   },
   input: {
     borderWidth: 1,
     borderColor: Colors.grey,
-    borderRadius: 10,
+    borderRadius: 40,
     height: 40,
     backgroundColor: Colors.whiteGrey,
-    paddingLeft: 40,
+    paddingLeft: 45,
     fontSize: 15,
   },
   reenviar: {
@@ -96,6 +109,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     marginTop: 10,
+    color: Colors.grey,
   },
 });
 
