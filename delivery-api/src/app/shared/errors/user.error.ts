@@ -10,7 +10,7 @@ class UserError extends BadRequestException {
 }
 
 export class UserIncompleteError extends UserError {
-  public static readonly code = ErrorCodes['user-incomplete'];
+  public static readonly code = ErrorCodes.USER_INCOMPLETE;
   constructor(message?: string) {
     super(UserIncompleteError.code, message);
   }

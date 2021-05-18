@@ -16,7 +16,7 @@ export class AuthInvalidTokenError extends AuthError {
 }
 
 export class AuthBadEmailOrPassword extends AuthError {
-  public static readonly code = ErrorCodes['invalid-email-or-password'];
+  public static readonly code = ErrorCodes.INVALID_EMAIL_OR_PASSWORD;
   constructor() {
     super(AuthBadEmailOrPassword.code);
   }
