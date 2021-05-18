@@ -16,7 +16,7 @@ const NotLogin: FC<Props> = ({ onPress }) => (
       <Image
         style={style.search}
         resizeMode="contain"
-        source={require('assets/images/vehicle.png')}
+        source={require('assets/images/kangaroo_empty.png')}
       />
       <View style={style.infoText}>
         <Text style={style.title}>

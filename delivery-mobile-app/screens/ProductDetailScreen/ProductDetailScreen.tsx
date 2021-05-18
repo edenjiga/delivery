@@ -37,7 +37,7 @@ const ProductDetailScreen: FC<Props> = ({
           source={
             product.Imagen?.formats.large
               ? { uri: product.Imagen.formats.large.url }
-              : require('@/assets/images/vehicle.png')
+              : require('@/assets/images/kangaroo_empty.png')
           }
           resizeMode={'contain'}
         ></Image>
