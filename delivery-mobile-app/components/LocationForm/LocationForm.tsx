@@ -1,4 +1,4 @@
-import { View, Text, KeyboardAvoidingView } from '@/components/Themed';
+import { View, Text } from '@/components/Themed';
 import React, { FC } from 'react';
 import MapView, { Region } from 'react-native-maps';
 import {
@@ -7,7 +7,6 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
-  Button,
 } from 'react-native';
 import Colors from '@/constants/Colors';
 
@@ -31,62 +30,64 @@ const LocationForm: FC<Props> = ({
   onComeBackToCenter,
   setValue,
 }) => (
-  <KeyboardAvoidingView>
-    <View style={styles.content}>
-      <View style={styles.mapBox}>
-        <MapView
-          onRegionChangeComplete={onRegionChangeComplete}
-          style={styles.mapStyle}
-          initialRegion={{
-            ...coords,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
-          }}
-          region={currentCoords}
-        />
-        <View style={styles.markerPoint}>
-          <Image
-            style={styles.marker}
-            source={require('assets/images/marker.png')}
-          />
-        </View>
-        <Button
-          title="Juan ingacion por aqui el icono de volver al centro en el mapa"
-          onPress={onComeBackToCenter}
+  <View style={styles.content}>
+    <View style={styles.mapBox}>
+      <MapView
+        onRegionChangeComplete={onRegionChangeComplete}
+        style={styles.mapStyle}
+        initialRegion={{
+          ...coords,
+          latitudeDelta: 0.015,
+          longitudeDelta: 0.0121,
+        }}
+        region={currentCoords}
+      />
+      <View style={styles.markerPoint}>
+        <Image
+          style={styles.marker}
+          source={require('assets/images/marker.png')}
         />
       </View>
-
-      <View style={styles.inputContent}>
-        <Text style={styles.text}>Digita tu dirección:</Text>
-        <TextInput
-          placeholderTextColor={Colors.grey}
-          style={styles.input}
-          onChangeText={(value) => setValue('nomenclature', value)}
-          placeholder="Cra 30 #75-02"
-        />
-        <TextInput
-          style={styles.inputDescription}
-          multiline
-          numberOfLines={4}
-          maxLength={150}
-          placeholderTextColor={Colors.grey}
-          onChangeText={(value) => setValue('note', value)}
-          placeholder="Agrega instrucciones especificas de tu dirección: referencias, apartamento, urbanización, barrio, etc"
-        />
-        <TextInput
-          placeholderTextColor={Colors.grey}
-          style={styles.input}
-          onChangeText={(value) => setValue('name', value)}
-          placeholder="Nombra tu dirección (opcional): Casa, trabajo"
-        />
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={onSubmit}>
-            <Text style={styles.btnText}>Confirmar</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.centerBtn}>
+        <TouchableOpacity onPress={onComeBackToCenter}>
+          <Image
+            style={styles.center}
+            source={require('assets/images/location.png')}
+          />
+        </TouchableOpacity>
       </View>
     </View>
-  </KeyboardAvoidingView>
+
+    <View style={styles.inputContent}>
+      <Text style={styles.text}>Digita tu dirección:</Text>
+      <TextInput
+        placeholderTextColor={Colors.grey}
+        style={styles.input}
+        onChangeText={(value) => setValue('nomenclature', value)}
+        placeholder="Cra 30 #75-02"
+      />
+      <TextInput
+        style={styles.inputDescription}
+        multiline
+        numberOfLines={4}
+        maxLength={150}
+        placeholderTextColor={Colors.grey}
+        onChangeText={(value) => setValue('note', value)}
+        placeholder="Agrega instrucciones especificas de tu dirección: referencias, apartamento, urbanización, barrio, etc"
+      />
+      <TextInput
+        placeholderTextColor={Colors.grey}
+        style={styles.input}
+        onChangeText={(value) => setValue('name', value)}
+        placeholder="Nombra tu dirección (opcional): Casa, trabajo"
+      />
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={onSubmit}>
+          <Text style={styles.btnText}>Confirmar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </View>
 );
 
 const styles = StyleSheet.create({
@@ -113,6 +114,19 @@ const styles = StyleSheet.create({
   marker: {
     height: 35,
     width: 35,
+    resizeMode: 'contain',
+  },
+  centerBtn: {
+    backgroundColor: Colors.white,
+    position: 'absolute',
+    borderRadius: 30,
+    bottom: 10,
+    right: 15,
+  },
+  center: {
+    margin: 6,
+    height: 30,
+    width: 30,
     resizeMode: 'contain',
   },
   text: {
