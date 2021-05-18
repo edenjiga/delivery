@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     color: Colors.darkGrey,
     fontSize: 15,
     paddingTop: 15,
+    textAlignVertical: 'top'
   },
   buttonContainer: {
     alignItems: 'center',

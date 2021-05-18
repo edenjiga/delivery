@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.orange,
     height: '30%',
-    justifyContent: 'center',
+    paddingTop: 50,
   },
   info: {
     marginTop: 30,
@@ -75,7 +75,9 @@ const styles = StyleSheet.create({
   },
   title: {
     color: Colors.white,
-    fontSize: 24,
+    fontSize: 22,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
   },
   text: {
     textAlign: 'center',
@@ -89,23 +91,23 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 10,
     top: 10,
-    left: 10,
+    left: 15,
   },
   input: {
     borderWidth: 1,
     borderColor: Colors.grey,
-    borderRadius: 10,
+    borderRadius: 40,
     height: 40,
     backgroundColor: Colors.whiteGrey,
-    paddingLeft: 40,
+    paddingLeft: 45,
     fontSize: 15,
   },
   buttonAdd: {
     backgroundColor: Colors.orange,
-    borderRadius: 6,
+    borderRadius: 8,
     height: 40,
     justifyContent: 'center',
-    marginHorizontal: 30,
+    marginHorizontal: 40,
     marginBottom: 30,
   },
   addText: {

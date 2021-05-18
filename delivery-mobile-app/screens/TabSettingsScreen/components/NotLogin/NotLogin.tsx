@@ -10,22 +10,14 @@ type Props = {
 const NotLogin: FC<Props> = ({ onPress }) => (
   <View style={style.viewContainer}>
     <View style={style.firstView}>
-      <Text style={style.welcomeText}>Bienvenido!</Text>
+      <Text style={style.welcomeText}>¡Bienvenido!</Text>
     </View>
-    <View style={style.searchBox}>
+    <View style={style.logoBox}>
       <Image
-        style={style.search}
+        style={style.logo}
         resizeMode="contain"
-        source={require('assets/images/kangaroo_empty.png')}
+        source={require('assets/images/logo_kangaroo.png')}
       />
-      <View style={style.infoText}>
-        <Text style={style.title}>
-          Súper <Text style={style.span}>APP</Text>
-        </Text>
-        <Text style={style.text}>
-          App millonaria de campeones para campeones
-        </Text>
-      </View>
     </View>
     <View style={style.secondView}>
       <TouchableOpacity style={style.pressable} onPress={onPress}>
@@ -42,62 +34,47 @@ const style = StyleSheet.create({
   firstView: {
     alignItems: 'center',
     backgroundColor: Colors.orange,
-    height: '50%',
-    paddingTop: 80,
+    height: '40%',
+    paddingTop: 100,
   },
   pressable: {
     alignItems: 'center',
     backgroundColor: Colors.orange,
-    borderRadius: 6,
-    height: 36,
+    borderRadius: 40,
+    height: 40,
     justifyContent: 'center',
-    width: 130,
+    width: 180,
+    marginBottom: 20,
   },
   pressableText: {
     color: Colors.white,
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   secondView: {
     alignItems: 'center',
-    flexDirection: 'row',
-    height: '50%',
-    justifyContent: 'space-evenly',
-    marginTop: 80,
+    top: 220,
   },
   viewContainer: {
     flex: 1,
+    backgroundColor: Colors.white,
   },
   welcomeText: {
     color: Colors.white,
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
+    textTransform: 'uppercase',
   },
-  searchBox: {
+  logoBox: {
     position: 'absolute',
-    top: '25%',
+    top: '28%',
     right: 0,
     left: 0,
     alignItems: 'center',
   },
-  search: {
-    width: 260,
-    height: 260,
-  },
-  infoText: {
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 28,
-    color: Colors.orange,
-    marginBottom: 5,
-  },
-  span: {
-    color: Colors.violet,
-  },
-  text: {
-    fontSize: 16,
-    paddingHorizontal: 20,
-    textAlign: 'center',
+  logo: {
+    width: 270,
+    height: 270,
   },
 });
 
