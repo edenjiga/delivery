@@ -12,6 +12,6 @@ export class SettingsUseCases {
 
   public async getSettings() {
     const isStoreOpen = await this.settingsService.isStoreOpen();
-    return { isStoreOpen };
+    return { isStoreOpen, nativeAppVersion: '1.0.0' };
   }
 }

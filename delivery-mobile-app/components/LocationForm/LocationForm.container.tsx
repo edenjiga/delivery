@@ -29,6 +29,8 @@ const initialState: IState = {
   coords: {
     latitude: 10.329696,
     longitude: -75.411985,
+    latitudeDelta: 0.015,
+    longitudeDelta: 0.0121,
   },
   isReady: false,
 };

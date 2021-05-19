@@ -99,9 +99,14 @@ export class OrdersUseCases {
     //get the products id
 
     const productsIds = dataProducts.map(({ id }) => id);
-    const products = await this.productsServices.getByIds(productsIds);
 
+    const products = await this.productsServices.getByIds(productsIds);
     //verify the product unit available
+
+    if (!products) {
+      throw new ProductOutStockError();
+    }
+
     const productsWithUnit = this.verifyProductInStock(dataProducts, products);
 
     const {
