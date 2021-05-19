@@ -33,7 +33,7 @@ const getEnvVars = (env = Constants.manifest.releaseChannel) => {
   return {
     ...defaultEnv,
     ...envValues,
-    nativeAppVersion: Constants.nativeAppVersion,
+    nativeAppVersion: Constants.manifest.version,
   };
 };
 
