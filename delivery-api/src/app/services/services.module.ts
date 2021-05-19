@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { MobileErrorsService } from './mobileErrors.service';
 import { SmsService } from './sms.service';
 import { ProductsService } from './products.service';
 import { SuggestionsService } from './suggestions.service';
@@ -14,6 +15,7 @@ import { JwtModule } from '@nestjs/jwt';
 
 const commons = [
   AuthService,
+  MobileErrorsService,
   OrdersService,
   ProductsService,
   SettingsService,

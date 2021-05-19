@@ -10,14 +10,17 @@ import { RedisService } from './redis';
 
 import { OrdersRepository } from './orders.repository';
 import { SettingsRepository } from './settings.respository';
+import { MobileErrorsRepository } from './mobileErrors.repository';
 import { SuggestionsRepository } from './suggestions.repository';
 import { UsersRepository } from './users.repository';
+import { MobileErrorsSchema } from '@/models/mobileErrors';
 
 const commonModule = [
   SettingsRepository,
   SuggestionsRepository,
   UsersRepository,
   OrdersRepository,
+  MobileErrorsRepository,
 ];
 @Module({
   imports: [
@@ -38,6 +41,7 @@ const commonModule = [
       { name: MODEL_NAMES.USERS, schema: UsersSchema },
       { name: MODEL_NAMES.ORDERS, schema: OrdersSchema },
       { name: MODEL_NAMES.SUGGESTIONS, schema: SuggestionsSchema },
+      { name: MODEL_NAMES.MOBILE_ERRORS, schema: MobileErrorsSchema },
     ]),
     NatsStreamingTransport.register({
       clientId: environment.nats.clientId,
