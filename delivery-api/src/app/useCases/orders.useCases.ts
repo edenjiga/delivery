@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import {
   OrdersService,
   ProductsService,
+  SettingsService,
   UsersService,
   WompiService,
 } from '@/services';
@@ -14,6 +15,7 @@ import {
   ProductOutStockError,
   UpdateOrderDto,
   OrderBadStatusUpdateError,
+  StoreCloseError,
 } from '@/shared';
 import {
   PaymentError,
@@ -47,6 +49,7 @@ export class OrdersUseCases {
     private productsServices: ProductsService,
     private usersService: UsersService,
     private orderService: OrdersService,
+    private settingsService: SettingsService,
     private wompiService: WompiService,
   ) {}
 
@@ -82,6 +85,12 @@ export class OrdersUseCases {
   }
 
   public async createOrder(user: IUserDoc, data: CreateOrderDto) {
+    const isStoreOpen = await this.settingsService.isStoreOpen();
+
+    if (!isStoreOpen) {
+      throw new StoreCloseError();
+    }
+
     const { products: dataProducts, price, payment, address } = data;
     if (!user.identification || !user.email || !user.name) {
       throw new UserIncompleteError();
@@ -90,9 +99,14 @@ export class OrdersUseCases {
     //get the products id
 
     const productsIds = dataProducts.map(({ id }) => id);
-    const products = await this.productsServices.getByIds(productsIds);
 
+    const products = await this.productsServices.getByIds(productsIds);
     //verify the product unit available
+
+    if (!products) {
+      throw new ProductOutStockError();
+    }
+
     const productsWithUnit = this.verifyProductInStock(dataProducts, products);
 
     const {
@@ -119,7 +133,7 @@ export class OrdersUseCases {
 
     // Verify Address
 
-    const orderData: IOrder = {
+    const orderData: Omit<IOrder, '_id'> = {
       discountValue: totalDiscount,
       deliveryValue: this.deliveryValue,
       payment: {

@@ -5,12 +5,16 @@ import { ServicesModule } from '../services';
 import { AuthUseCases } from './auth.useCases';
 import { OrdersUseCases } from './orders.useCases';
 import { ProductsUseCases } from './products.useCases';
+import { SettingsUseCases } from './settings.useCases';
+import { SuggestionsUseCases } from './suggestions.useCases';
 import { UsersUseCases } from './users.useCases';
 import { WompiUseCases } from './wompi.useCases';
 
 const commonsModule = [
   AuthUseCases,
   OrdersUseCases,
+  SettingsUseCases,
+  SuggestionsUseCases,
   ProductsUseCases,
   UsersUseCases,
   WompiUseCases,

@@ -1,33 +1,71 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { Provider } from "react-redux";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+/* eslint-disable react/display-name */
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { Provider } from 'react-redux';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+} from 'react-native';
 
-import useCachedResources from "./hooks/useCachedResources";
-import useColorScheme from "./hooks/useColorScheme";
-import Navigation from "./navigation";
-import { store } from "./store";
-import Loader from "./components/Loader";
+import useCachedResources from './hooks/useCachedResources';
+import Navigation from './navigation';
+import { store } from './store';
+import Colors from './constants/Colors';
+import './store/sagas';
+
+import {
+  Loader,
+  Modal,
+  UpdateAppComponent,
+  SocketEventHandle,
+} from './components';
 
 function App() {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
+  const { isLoadingComplete, appVersionMatch } = useCachedResources();
 
   if (!isLoadingComplete) {
     return null;
-  } else {
+  }
+
+  if (appVersionMatch) {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-        <Loader />
+        <Modal />
+        <SocketEventHandle />
+        <SafeAreaView style={styles.topSafeArea} />
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.container}
+        >
+          <Navigation />
+          <StatusBar />
+          <Loader />
+        </KeyboardAvoidingView>
       </SafeAreaProvider>
     );
   }
+
+  return <UpdateAppComponent />;
 }
 
-export default () => (
-  <Provider store={store}>
-    <App />
-  </Provider>
-);
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  topSafeArea: {
+    backgroundColor: Colors.orangeDark,
+    paddingBottom: 30,
+  },
+});
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export default function Component() {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+}

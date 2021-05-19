@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import 'reflect-metadata';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { MongoMemoryReplSet } from 'mongodb-memory-server';
@@ -10,11 +9,14 @@ const bcrypt = require('bcrypt');
 import modelNames from '@/constants/modelNames';
 import { IOrderDoc, IUserDoc } from '@/models';
 import { Products } from './src/test/remote/products';
+import { redisMock } from './src/test/__mocks__/redis-mock';
 import {
   CreateOrderDto,
   PAYMENT_METHODS,
   UserPublicFields,
 } from '@edenjiga/delivery-common';
+
+jest.mock('redis', () => redisMock);
 
 let identification = 0;
 declare global {
@@ -40,7 +42,7 @@ declare global {
 }
 
 let mongod: MongoMemoryReplSet;
-const port = 27020;
+const port = 27030;
 const dbName = 'test';
 const MONGO_URL = `mongodb://127.0.0.1:${port}/test?replicaSet=testset`;
 
@@ -49,6 +51,8 @@ process.env.JWT_SECRET_KEY = '123';
 process.env.AWS_REGION = 'us-east-1';
 process.env.WOMPI_EVENTS_KEY = 'test_events_0WuHl2464dzFxkYjVQWVHRJnVe3i4BeH';
 process.env.HASH_SALT = '$2b$10$50i2D8Eb9Zp9X2fj3NWgIu';
+process.env.NATS_CLIENT_ID = 'delivery';
+process.env.NATS_CLUSTER_ID = 'delivery';
 beforeAll(async () => {
   try {
     mongod = new MongoMemoryReplSet({

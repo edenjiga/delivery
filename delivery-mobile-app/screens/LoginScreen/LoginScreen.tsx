@@ -1,8 +1,14 @@
-import { Text, View } from "@/components/Themed";
-import React from "react";
-import { Button } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Text } from '@/components/Themed';
+import React from 'react';
+import {
+  TouchableOpacity,
+  TextInput,
+  SafeAreaView,
+  StyleSheet,
+  Image,
+} from 'react-native';
+import { GoBackButton } from '@/components';
+import Colors from '@/constants/Colors';
 
 type Props = {
   onChangePhoneText(text: string): void;
@@ -10,17 +16,103 @@ type Props = {
 };
 
 export default ({ onChangePhoneText, handleLogin }: Props) => (
-  <SafeAreaView>
-    <View>
-      <TextInput
-        keyboardType="phone-pad"
-        autoCapitalize="none"
-        maxLength={10}
-        onChangeText={onChangePhoneText}
-        placeholder="Ingresar numemero de celular"
-      />
+  <View style={styles.container}>
+    <SafeAreaView>
+      <GoBackButton backWitheArrow={true} viewStyles={styles.goBackButton} />
+      <View style={styles.header}>
+        <Text style={styles.title}>¡Bienvenido!</Text>
+      </View>
+      <View style={styles.info}>
+        <Text style={styles.text}>
+          Te enviaremos un código de verificación al número de celular que
+          ingreses
+        </Text>
+        <View style={styles.inputCont}>
+          <Image
+            style={styles.phone}
+            resizeMode="contain"
+            source={require('assets/images/phone.png')}
+          />
+          <TextInput
+            style={styles.input}
+            keyboardType="phone-pad"
+            autoCapitalize="none"
+            maxLength={10}
+            onChangeText={onChangePhoneText}
+            placeholder="Ingresar numero de celular"
+            placeholderTextColor={Colors.grey}
+          />
+        </View>
+        <TouchableOpacity style={styles.buttonAdd} onPress={handleLogin}>
+          <Text style={styles.addText}>Enviar</Text>
+        </TouchableOpacity>
 
-      <Button title="Enviar" onPress={handleLogin} />
-    </View>
-  </SafeAreaView>
+        <Text style={styles.text}>
+          Al confirmar aceptas que te enviemos un código de verificación vía SMS
+        </Text>
+      </View>
+    </SafeAreaView>
+  </View>
 );
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: Colors.white,
+    flex: 1,
+  },
+  goBackButton: {
+    backgroundColor: Colors.orange,
+  },
+  header: {
+    alignItems: 'center',
+    backgroundColor: Colors.orange,
+    height: '30%',
+    paddingTop: 50,
+  },
+  info: {
+    marginTop: 30,
+    paddingHorizontal: 50,
+  },
+  title: {
+    color: Colors.white,
+    fontSize: 22,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+  },
+  text: {
+    textAlign: 'center',
+  },
+  inputCont: {
+    marginVertical: 30,
+  },
+  phone: {
+    width: 20,
+    height: 20,
+    position: 'absolute',
+    zIndex: 10,
+    top: 10,
+    left: 15,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: Colors.grey,
+    borderRadius: 40,
+    height: 40,
+    backgroundColor: Colors.whiteGrey,
+    paddingLeft: 45,
+    fontSize: 15,
+  },
+  buttonAdd: {
+    backgroundColor: Colors.orange,
+    borderRadius: 8,
+    height: 40,
+    justifyContent: 'center',
+    marginHorizontal: 40,
+    marginBottom: 30,
+  },
+  addText: {
+    color: Colors.white,
+    fontSize: 18,
+    textAlign: 'center',
+  },
+});

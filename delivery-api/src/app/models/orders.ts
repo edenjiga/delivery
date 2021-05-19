@@ -8,7 +8,7 @@ import {
   PAYMENT_STATUS,
 } from '@edenjiga/delivery-common';
 
-export interface IOrderDoc extends IOrder, Document {}
+export interface IOrderDoc extends Omit<IOrder, '_id'>, Document {}
 
 const OrdersSchema = new Schema(
   {

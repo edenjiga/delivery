@@ -1,16 +1,31 @@
-import * as React from "react";
-import { StyleSheet } from "react-native";
+import React from 'react';
+import {
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 
-import { View } from "@/components/Themed";
-import { PopularProducts, SpecialOffers, SearchProduct } from "./components";
-import { ScrollView } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View } from '@/components/Themed';
+import {
+  AddressSelected,
+  CategorySection,
+  PopularProducts,
+  SpecialOffers,
+  SearchProduct,
+  OrderActives,
+} from './components';
+import Colors from '@/constants/Colors';
 
-export default function TabOneScreen() {
+export default function TabMainScreen(): JSX.Element {
   return (
     <View style={styles.container}>
       <SafeAreaView>
         <ScrollView>
+          <AddressSelected />
+          <OrderActives />
+          <CategorySection />
           {/* <SearchProduct /> */}
           <SpecialOffers />
           <PopularProducts />
@@ -22,17 +37,7 @@ export default function TabOneScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: Colors.white,
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
   },
 });

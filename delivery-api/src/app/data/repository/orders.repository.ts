@@ -1,11 +1,16 @@
 import { MODEL_NAMES } from '@/constants';
-import EVENTS from '@/constants/events';
-import { EventsGateway } from '@/events';
 import { IOrderDoc } from '@/models';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UsersRepository } from './users.repository';
+import {
+  OrderCreatedNatsEvent,
+  OrderUpdatedNatsEvent,
+} from '@edenjiga/delivery-common';
+
+import { Publisher } from '@nestjs-plugins/nestjs-nats-streaming-transport';
+
 interface IOrderModel extends Model<IOrderDoc> {
   paginate(query, options): Promise<any>;
 }
@@ -25,8 +30,7 @@ export class OrdersRepository {
     private orderModel: IOrderModel,
     @InjectModel(MODEL_NAMES.USERS)
     private userRepository: UsersRepository,
-
-    private eventGateway: EventsGateway,
+    private publisher: Publisher,
   ) {
     if (process.env.NODE_ENV === 'test') return;
 
@@ -39,15 +43,17 @@ export class OrdersRepository {
         const { fullDocument, operationType } = event;
         const user = await this.userRepository.findById(fullDocument.userId);
 
-        let orderEvent = '';
+        let orderEvent;
+        const order = { ...fullDocument, user };
 
         switch (operationType) {
           case OPERATIONS_TYPES.INSERT:
-            orderEvent = EVENTS.ORDER_CREATED;
+            orderEvent = new OrderCreatedNatsEvent(order);
             break;
           case OPERATIONS_TYPES.UPDATE:
           case OPERATIONS_TYPES.REPLACE:
-            orderEvent = EVENTS.ORDER_UPDATED;
+            orderEvent = new OrderUpdatedNatsEvent(order);
+
             break;
           default:
             this.logger.warn(
@@ -55,14 +61,12 @@ export class OrdersRepository {
             );
         }
 
-        const order = { ...fullDocument, user };
-        this.eventGateway.emitEventToUserAndAdmin(
-          order.userId,
-          orderEvent,
-          order,
-        );
-
-        this.logger.log(`${orderEvent} ${order._id}`);
+        this.publisher
+          .emit(orderEvent.subject, orderEvent.data)
+          .subscribe((guid) => {
+            console.log('published message with guid:', guid);
+          });
+        this.logger.log(`${orderEvent.subject} ${order._id}`);
       } catch (error) {
         this.logger.error(error);
       }

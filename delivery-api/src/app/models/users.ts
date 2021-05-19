@@ -24,7 +24,7 @@ const creditCardSchema = new Schema({
 });
 
 const addressSchema = new Schema({
-  name: String,
+  name: { type: String, required: true },
   note: { type: String, required: true },
   nomenclature: { type: String, required: true },
   coordinates: {

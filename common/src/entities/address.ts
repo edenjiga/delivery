@@ -1,7 +1,7 @@
 export interface Address {
-  name?: String;
-  note: String;
-  nomenclature: String;
+  name: string;
+  note: string;
+  nomenclature: string;
   coordinates: Coordinate;
 }
 

@@ -24,9 +24,11 @@
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "This app uses the location to suggest an address to the user."
       },
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "1"
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

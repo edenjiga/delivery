@@ -8,12 +8,16 @@ module.exports = {
     'react-native/react-native': true,
   },
   extends: [
-    'plugin:react-native/all',
+    'prettier',
     'eslint:recommended',
+    'plugin:react-native/all',
+    'plugin:sonarjs/recommended',
     'plugin:react/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
-    'plugin:react-hooks/recommended',
+    'plugin:import/typescript',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -26,20 +30,22 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', 'react-native'],
+  plugins: ['prettier', 'react', 'react-hooks', 'sonarjs', 'react-native'],
   rules: {
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies,
+    'react/prop-types': 'off',
+    'react/display-name': 'off',
     quotes: ['error', 'single'],
     'comma-dangle': ['error', 'always-multiline'],
     'react-native/no-raw-text': [
       2,
       {
-        skip: ['CustomText'],
+        skip: ['MonoText'],
       },
     ],
   },
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   settings: {
     react: {
       createClass: 'createReactClass', // Regex for Component Factory to use,
@@ -63,8 +69,12 @@ module.exports = {
       { name: 'Link', linkAttribute: 'to' },
     ],
     'import/resolver': {
+      typescript: {},
       'babel-module': {},
+      node: {
+        extensions: ['.js', '.jsx', 'ts', '.tsx'],
+      },
     },
-    'import/ignore': ['react-native'],
+    'import/ignore': ['react-native', 'react'],
   },
 };

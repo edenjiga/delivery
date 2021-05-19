@@ -14,9 +14,11 @@ spec:
     spec:
       containers:
         - name: delivery-api
-          image: registry.digitalocean.com/delivery/delivery-api:qa
+          image: registry.gitlab.com/edenjiga1/delivery-app/delivery-api:qa
           imagePullPolicy: Always
           env:
+            - name: TZ
+              value: America/Bogota
             - name: PRODUCT_API_URL
               value: http://products-srv:1337
             - name: MONGO_URL
@@ -76,8 +78,26 @@ spec:
                 secretKeyRef:
                   name: delivery-secrets
                   key: HASH_SALT
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_CLUSTER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: NATS_CLUSTER_ID
+            - name: NATS_STREAM_URL
+              value: http://nats-srv:4222
+
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: REDIS_URL
+
       imagePullSecrets:
-        - name: delivery
+        - name: registry-credentials
 ---
 apiVersion: v1
 kind: Service

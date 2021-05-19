@@ -3,13 +3,18 @@ import { Test } from '@nestjs/testing';
 import { AppModule } from '@/app.module';
 import { INestApplication } from '@nestjs/common';
 import { PAYMENT_METHODS, PAYMENT_STATUS } from '@edenjiga/delivery-common';
+import { Publisher } from '@nestjs-plugins/nestjs-nats-streaming-transport';
+
 describe('wompi.controller', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
-    }).compile();
+    })
+      .overrideProvider(Publisher) //NatsStreamingTransport inyect Publisher as provider
+      .useValue({})
+      .compile();
 
     app = moduleRef.createNestApplication();
     await app.init();

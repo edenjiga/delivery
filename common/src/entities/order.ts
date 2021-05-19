@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { Type } from "class-transformer";
 import {
   IsArray,
@@ -36,7 +37,7 @@ export class IPayment {
 export class CreateOrderAddressDto {
   @IsString()
   @IsOptional()
-  name?: Address["name"];
+  name: Address["name"];
 
   @IsString()
   nomenclature: Address["nomenclature"];
@@ -82,6 +83,7 @@ export class CreateOrderDto {
 }
 
 export class IOrder {
+  _id: string;
   address: Address;
   deliveryDate?: Date;
   deliveryValue: number;
@@ -102,3 +104,9 @@ export class IOrder {
     product: Product;
   }>;
 }
+
+export class OrderPublicFields extends IOrder {
+  createdAt: string;
+}
+
+export type PartialOrderPublicFields = Partial<OrderPublicFields>;

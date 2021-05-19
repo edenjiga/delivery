@@ -6,6 +6,11 @@ import Constants from 'expo-constants';
 const defaultEnv = {
   // facebookAppId: '810634859679461',
   apiUrl: 'https://qa.edgarjimenezg.com',
+  socketUrl: 'https://qa.edgarjimenezg.com',
+  whatsappNumber: '573243343140',
+  whatappDefaultText: 'Hola quisiera pedir:',
+  instagramUrl: 'user?username=kangaroo_oficial',
+  email: 'kangarooayuda@gmail.com',
 };
 
 const getEnvVars = (env = Constants.manifest.releaseChannel) => {
@@ -24,7 +29,12 @@ const getEnvVars = (env = Constants.manifest.releaseChannel) => {
   //     envValues = qaEnv;
   //     break;
   // }
-  return { ...defaultEnv, ...envValues };
+
+  return {
+    ...defaultEnv,
+    ...envValues,
+    nativeAppVersion: Constants.nativeAppVersion,
+  };
 };
 
 export default getEnvVars;

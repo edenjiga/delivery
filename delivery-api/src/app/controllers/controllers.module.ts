@@ -5,6 +5,8 @@ import { AuthController } from './auth.controller';
 import { ProductsController } from './products.controller';
 import { UserController } from './users.controller';
 import { OrdersController } from './orders.controller';
+import { SettingsController } from './settings.controller';
+import { SuggestionsController } from './suggestions.controller';
 import { WompiController } from './wompi.controller';
 import { AuthModule } from '@/auth';
 
@@ -12,8 +14,10 @@ import { AuthModule } from '@/auth';
   imports: [AuthModule, UseCaseModule],
   controllers: [
     AuthController,
-    ProductsController,
     OrdersController,
+    ProductsController,
+    SettingsController,
+    SuggestionsController,
     UserController,
     WompiController,
   ],

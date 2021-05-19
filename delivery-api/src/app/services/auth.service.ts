@@ -15,12 +15,13 @@ export class AuthService {
   ) {}
 
   public async generateAuthToken(user: IUserDoc): Promise<string> {
-    const { _id, email, identification, name, phone, roles } = user;
+    const { _id, email, identification, name, phone, roles, address } = user;
 
     const token = randomBytes(156).toString('hex');
 
     const payload = {
       _id,
+      address,
       email,
       identification,
       name,

@@ -39,6 +39,15 @@
     },
     "description": {
       "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "CIGARETTES",
+        "ALCOHOL",
+        "MECCATOS",
+        "OTHERS"
+      ]
     }
   }
 }

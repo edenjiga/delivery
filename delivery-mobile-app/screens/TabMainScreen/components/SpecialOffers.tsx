@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { View, Text } from "@/components/Themed";
-import { getProducts } from "@/api/products";
-import { Product } from "@edenjiga/delivery-common";
-import { StyleSheet } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Colors from "@/constants/Colors";
-import { ProductCardVertical } from "@/components";
+import React, { useEffect, useState } from 'react';
+import { View, Text } from '@/components/Themed';
+import { getProducts } from '@/api/products';
+import { Product } from '@edenjiga/delivery-common';
+import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import Colors from '@/constants/Colors';
+import { ProductCardVertical } from '@/components';
 
-export default () => {
+export default function Component() {
   const [products, setProductState] = useState<Product[]>([]);
   useEffect(() => {
     const getProductsInPromotion = async () => {
@@ -29,36 +27,43 @@ export default () => {
   }, []);
   return (
     <SafeAreaView>
-      <Text>Ofertas especiales</Text>
-      <View style={{ height: 143 }}>
-        <ScrollView
-          horizontal={true}
-          style={styles.container}
-          showsHorizontalScrollIndicator={false}
-        >
-          {products.map((product) => (
-            <ProductCardVertical product={product} key={product._id} />
-          ))}
-        </ScrollView>
+      <View style={styles.container}>
+        <Text style={styles.title}>Ofertas especiales</Text>
+        <View style={styles.box}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <View style={styles.productCard}>
+              {products.map((product) => (
+                <ProductCardVertical product={product} key={product._id} />
+              ))}
+            </View>
+          </ScrollView>
+        </View>
       </View>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  productImage: {
-    width: 103,
-    height: 65,
+  box: {
+    backgroundColor: Colors.lightgrey,
+    justifyContent: 'center',
+    width: '100%',
   },
   container: {
-    flexDirection: "row",
-    backgroundColor: Colors.background,
-    width: 360,
+    flex: 1,
   },
-  products: {
-    margin: 10,
-    height: 103,
-    width: 103,
-    backgroundColor: "red",
+  productCard: {
+    backgroundColor: Colors.bgGrey,
+    flexDirection: 'row',
+    paddingHorizontal: 5,
+    paddingVertical: 15,
+  },
+  title: {
+    backgroundColor: Colors.bgGrey,
+    color: Colors.black,
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingHorizontal: 10,
+    paddingTop: 10,
   },
 });

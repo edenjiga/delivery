@@ -1,36 +1,33 @@
-import { ActionType, createReducer } from "typesafe-actions";
-import * as cartActions from "@/store/actions/cart";
-import { ICartState } from "@/types";
-import { omit } from "lodash";
+import { ActionType, createReducer } from 'typesafe-actions';
+import * as cartActions from '@/store/actions/cart';
+import { ICartState } from '@/types';
+import { omit } from 'lodash';
 
-const { addProductAction, decreaseProductAction } = cartActions;
-const actions = { addProductAction, decreaseProductAction };
-
-type Action = ActionType<typeof actions>;
+type Action = ActionType<typeof cartActions>;
 
 const initialState: ICartState = {};
 
 const reducer = createReducer<ICartState, Action>(initialState)
   .handleAction(cartActions.addProductAction, (state, action) => {
     const { payload } = action;
-    const { _id } = payload;
+    const { product, quantity: oldQuantity = 1 } = payload;
+    const { _id } = product;
 
-    let quantity = 1;
-
+    let quantity = oldQuantity;
     if (state[_id]) {
-      quantity = state[_id].quantity + 1;
+      quantity = state[_id].quantity + oldQuantity;
     }
 
-    return {
-      ...state,
-      [payload._id]: {
+    // this is to fix the bug in android if we just return the state with the product that is already in the state
+    return Object.assign({}, state, {
+      [product._id]: {
         quantity,
-        product: payload,
+        product,
       },
-    };
+    });
   })
   .handleAction(cartActions.decreaseProductAction, (state, { payload }) => {
-    let productWithQuantityToDecrease = state[payload];
+    const productWithQuantityToDecrease = state[payload];
     if (!productWithQuantityToDecrease) {
       return state;
     }
@@ -42,10 +39,13 @@ const reducer = createReducer<ICartState, Action>(initialState)
     }
 
     quantity--;
-    return {
-      ...state,
+
+    return Object.assign({}, state, {
       [payload]: { product: productWithQuantityToDecrease.product, quantity },
-    };
+    });
+  })
+  .handleAction(cartActions.cleanCartAction, () => {
+    return initialState;
   });
 
 export default reducer;

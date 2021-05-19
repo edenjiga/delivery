@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { View, Text } from "@/components/Themed";
-import { getProducts } from "@/api/products";
-import { Product } from "@edenjiga/delivery-common";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { ProductCardHorizontal } from "@/components";
+import React, { FC, useEffect, useState } from 'react';
+import { View, Text } from '@/components/Themed';
+import { getProducts } from '@/api/products';
+import { Product } from '@edenjiga/delivery-common';
+import { ProductCardHorizontal } from '@/components';
+import { StyleSheet, SafeAreaView } from 'react-native';
+import Colors from '@/constants/Colors';
 
-export default () => {
+const PopularProducts: FC = () => {
   const [products, setProductState] = useState<Product[]>([]);
   useEffect(() => {
     const getPopularProducts = async () => {
       try {
         const popular = await getProducts({
           _limit: 5,
-          _sort: "unitsInStock:desc",
+          _sort: 'unitsInStock:desc',
         });
         setProductState(popular);
       } catch (e) {
@@ -26,8 +27,8 @@ export default () => {
   }, []);
   return (
     <SafeAreaView>
-      <Text>Ofertas especiales</Text>
-      <View style={{ height: 143 }}>
+      <Text style={styles.title}>Populares</Text>
+      <View>
         {products.map((product) => (
           <ProductCardHorizontal key={product._id} product={product} />
         ))}
@@ -35,3 +36,16 @@ export default () => {
     </SafeAreaView>
   );
 };
+
+export default PopularProducts;
+
+const styles = StyleSheet.create({
+  title: {
+    borderBottomColor: Colors.lineGrey,
+    borderBottomWidth: 1,
+    color: Colors.black,
+    fontSize: 20,
+    fontWeight: 'bold',
+    padding: 10,
+  },
+});

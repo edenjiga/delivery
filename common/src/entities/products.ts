@@ -10,7 +10,15 @@ interface ProductImageFormat {
   url: string;
 }
 
+export enum PRODUCT_CATEGORY {
+  CIGARETTES = "CIGARETTES",
+  ALCOHOL = "ALCOHOL",
+  MECCATOS = "MECCATOS",
+  OTHERS = "OTHERS",
+}
+
 export interface Product {
+  category?: PRODUCT_CATEGORY;
   unitsInStock: number;
   description: string;
   _id: string;

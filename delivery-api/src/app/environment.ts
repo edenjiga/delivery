@@ -19,6 +19,14 @@ const environment = {
   jwt: {
     secretKey: process.env.JWT_SECRET_KEY,
   },
+  nats: {
+    url: process.env.NATS_STREAM_URL,
+    clientId: process.env.NATS_CLIENT_ID,
+    clusterId: process.env.NATS_CLUSTER_ID,
+  },
+  redis: {
+    URL: process.env.REDIS_URL,
+  },
   wompi: {
     url: process.env.WOMPI_URL,
     publicKey: process.env.WOMPI_PUBLIC_KEY,
