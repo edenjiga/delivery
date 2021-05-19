@@ -13,18 +13,24 @@ import {
 import useCachedResources from './hooks/useCachedResources';
 import Navigation from './navigation';
 import { store } from './store';
-import Loader from './components/Loader';
 import Colors from './constants/Colors';
-import SocketEventHandle from './components/SocketEventHandle';
-import Modal from './components/Modal';
 import './store/sagas';
 
+import {
+  Loader,
+  Modal,
+  UpdateAppComponent,
+  SocketEventHandle,
+} from './components';
+
 function App() {
-  const isLoadingComplete = useCachedResources();
+  const { isLoadingComplete, appVersionMatch } = useCachedResources();
 
   if (!isLoadingComplete) {
     return null;
-  } else {
+  }
+
+  if (appVersionMatch) {
     return (
       <SafeAreaProvider>
         <Modal />
@@ -41,6 +47,8 @@ function App() {
       </SafeAreaProvider>
     );
   }
+
+  return <UpdateAppComponent />;
 }
 
 const styles = StyleSheet.create({

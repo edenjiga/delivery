@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 
 import storageService from '@/utils/storageService';
 import { getUserByToken } from '@/api/user';
@@ -10,14 +10,23 @@ import { useDispatch } from 'react-redux';
 import { fetchUnfinishedOrdersAsync } from '@/store/actions/orders';
 import { getSettings } from '@/api/settings';
 import { setModalState } from '@/store/actions/modal';
+import environment from '@/environment';
 
 export default function useCachedResources() {
-  const [isLoadingComplete, setLoadingComplete] = React.useState(false);
+  const [isLoadingComplete, setLoadingComplete] = useState(false);
+  const [appVersionMatch, setAppVersionMatch] = useState(true);
   const dispatch = useDispatch();
 
   const fetchSettings = async () => {
     try {
       const settings = (await getSettings()) as any;
+
+      if (
+        settings.nativeAppVersion !== environment.nativeAppVersion?.toString()
+      ) {
+        setAppVersionMatch(false);
+      }
+
       if (!settings.isStoreOpen) {
         dispatch(
           setModalState({
@@ -38,7 +47,7 @@ export default function useCachedResources() {
     }
   };
   // Load any resources or data that we need prior to rendering the app
-  React.useEffect(() => {
+  useEffect(() => {
     async function loadResourcesAndDataAsync() {
       const getUser = async () => {
         try {
@@ -75,5 +84,5 @@ export default function useCachedResources() {
     loadResourcesAndDataAsync();
   }, []);
 
-  return isLoadingComplete;
+  return { isLoadingComplete, appVersionMatch };
 }

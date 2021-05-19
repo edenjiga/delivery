@@ -29,7 +29,12 @@ const getEnvVars = (env = Constants.manifest.releaseChannel) => {
   //     envValues = qaEnv;
   //     break;
   // }
-  return { ...defaultEnv, ...envValues };
+
+  return {
+    ...defaultEnv,
+    ...envValues,
+    nativeAppVersion: Constants.nativeAppVersion,
+  };
 };
 
 export default getEnvVars;
