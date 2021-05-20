@@ -10,6 +10,7 @@ import {
 } from '@edenjiga/delivery-common';
 
 import { Publisher } from '@nestjs-plugins/nestjs-nats-streaming-transport';
+import { checkField } from '@/shared/utils/checkField';
 
 interface IOrderModel extends Model<IOrderDoc> {
   paginate(query, options): Promise<any>;
@@ -31,69 +32,46 @@ export class OrdersRepository {
     @InjectModel(MODEL_NAMES.USERS)
     private userRepository: UsersRepository,
     private publisher: Publisher,
-  ) {
-    if (process.env.NODE_ENV === 'test') return;
-
-    const changeStream = this.orderModel.watch([], {
-      fullDocument: 'updateLookup',
-    });
-
-    changeStream.on('change', async (event: any) => {
-      try {
-        const { fullDocument, operationType } = event;
-        const user = await this.userRepository.findById(fullDocument.userId);
-
-        let orderEvent;
-        const order = { ...fullDocument, user };
-
-        switch (operationType) {
-          case OPERATIONS_TYPES.INSERT:
-            orderEvent = new OrderCreatedNatsEvent(order);
-            break;
-          case OPERATIONS_TYPES.UPDATE:
-          case OPERATIONS_TYPES.REPLACE:
-            orderEvent = new OrderUpdatedNatsEvent(order);
-
-            break;
-          default:
-            this.logger.warn(
-              `Unhandle mongo order operationType ${operationType}`,
-            );
-        }
-
-        this.publisher
-          .emit(orderEvent.subject, orderEvent.data)
-          .subscribe((guid) => {
-            console.log('published message with guid:', guid);
-          });
-        this.logger.log(`${orderEvent.subject} ${order._id}`);
-      } catch (error) {
-        this.logger.error(error);
-      }
-    });
-
-    //Error
-    changeStream.on('error', (error) => {
-      this.logger.error(error);
-    });
-  }
+  ) {}
 
   findById(orderId: string) {
     return this.orderModel.findById(orderId);
   }
 
-  public save(data) {
+  public async save(data): Promise<IOrderDoc> {
     const order = new this.orderModel(data);
-    return order.save();
+    await order.save();
+
+    if (checkField(order, '_id')) {
+      this.publish(new OrderCreatedNatsEvent(order));
+    }
+
+    return order;
   }
 
-  public updateById(id, data) {
-    return this.orderModel.findByIdAndUpdate(id, data, {
+  public async updateById(id, data): Promise<IOrderDoc> {
+    const order = await this.orderModel.findByIdAndUpdate(id, data, {
       new: true,
     });
+
+    if (checkField(order, '_id')) {
+      this.publish(new OrderUpdatedNatsEvent(order));
+    }
+
+    return order;
   }
 
   public paginate(query, options) {
     return this.orderModel.paginate(query, options);
+  }
+
+  private publish(orderEvent: OrderCreatedNatsEvent | OrderUpdatedNatsEvent) {
+    this.publisher
+      .emit(orderEvent.subject, orderEvent.data)
+      .subscribe((guid) => {
+        console.log('published message with guid:', guid);
+      });
+
+    this.logger.log(`${orderEvent.subject} ${orderEvent.data._id}`);
   }
 }
