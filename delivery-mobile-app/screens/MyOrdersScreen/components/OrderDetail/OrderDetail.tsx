@@ -44,7 +44,7 @@ const OrderDetail: FC<Props> = ({ order, onPressActionButton }) => {
       <View style={style.box}>
         <View style={style.order}>
           <View style={style.orderInfo}>
-            <Text style={style.number}>ORDEN #1:</Text>
+            {/* <Text style={style.number}>ORDEN #1:</Text> */}
             <Text style={style.units}>
               {order.productsWithUnit.length} unidades
             </Text>
@@ -142,11 +142,11 @@ const style = StyleSheet.create({
     fontSize: 13,
     marginBottom: 7,
   },
-  number: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
+  // number: {
+  //   fontSize: 16,
+  //   fontWeight: 'bold',
+  //   marginBottom: 5,
+  // },
   order: {
     alignItems: 'flex-end',
     borderBottomWidth: 1,
