@@ -21,7 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@edenjiga/delivery-common": "^1.0.56",
+    "@edenjiga/delivery-common": "^1.0.57",
     "@nestjs-plugins/nestjs-nats-streaming-transport": "^1.0.19",
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",

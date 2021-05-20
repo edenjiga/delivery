@@ -21,11 +21,11 @@ export default function useCachedResources() {
     try {
       const settings = (await getSettings()) as any;
 
-      // if (
-      //   settings.nativeAppVersion !== environment.nativeAppVersion?.toString()
-      // ) {
-      //   setAppVersionMatch(false);
-      // }
+      if (
+        settings.nativeAppVersion !== environment.nativeAppVersion?.toString()
+      ) {
+        // setAppVersionMatch(false);
+      }
 
       if (!settings.isStoreOpen) {
         dispatch(
