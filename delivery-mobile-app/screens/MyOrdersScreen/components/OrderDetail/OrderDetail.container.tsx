@@ -14,7 +14,7 @@ const OrderDetailContainer: FC<Props> = ({ order }) => {
   const dispatch = useDispatch();
   const onPressActionButton = useCallback(() => {
     switch (order.status) {
-      case ORDER_STATUS.CANCELED:
+      case ORDER_STATUS.CREATED:
         // eslint-disable-next-line no-case-declarations
         const cancelOrder = async () => {
           try {
