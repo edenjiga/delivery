@@ -24,7 +24,7 @@ export default function useCachedResources() {
       if (
         settings.nativeAppVersion !== environment.nativeAppVersion?.toString()
       ) {
-        setAppVersionMatch(false);
+       // setAppVersionMatch(false);
       }
 
       if (!settings.isStoreOpen) {
