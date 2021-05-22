@@ -1,6 +1,6 @@
 import { ErrorCodes } from '@edenjiga/delivery-common';
 
-export const ErrorMessageHandle = (message: string): string => {
+export const HandleErrorMessage = (message: string): string => {
   let customMessage = 'Ups algo fallo';
 
   switch (message) {

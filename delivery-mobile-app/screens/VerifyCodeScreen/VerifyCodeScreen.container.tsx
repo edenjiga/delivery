@@ -9,17 +9,19 @@ import { useDispatch } from 'react-redux';
 import VerifyCodeScreen from './VerifyCodeScreen';
 import * as userActions from '@/store/actions/user';
 import { RemoveLastTwoAndAddGoTo } from '@/utils/navigationActions';
-import { Alert } from 'react-native';
+import useModal from '@/hooks/useModal';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
   route: RouteProp<RootStackParamList, SCREEN_NAMES.VERIFY_CODE>;
 };
-const second = 1000;
+const second = 1;
 const VerifyCodeScreenContainer: FC<Props> = ({ navigation, route }) => {
   const dispatch = useDispatch();
+  const { showModal } = useModal();
+
   const [codeText, setCodeText] = useState('');
-  const [distance, setDistance] = useState(second * 60 * 2);
+  const [countDown, setCountDown] = useState(second * 60 * 2);
 
   const { phone, goTo } = route.params || {};
 
@@ -30,8 +32,8 @@ const VerifyCodeScreenContainer: FC<Props> = ({ navigation, route }) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      const newDistance = distance - second;
-      setDistance(newDistance);
+      const newCountDown = countDown - second;
+      setCountDown(newCountDown);
     }, 1000);
     return () => clearTimeout(timer);
   });
@@ -46,35 +48,34 @@ const VerifyCodeScreenContainer: FC<Props> = ({ navigation, route }) => {
 
         return navigation.dispatch(RemoveLastTwoAndAddGoTo(goTo));
       } catch (error) {
-        Alert.alert('Mal Codigo, Intentalo de nuevo');
+        showModal('Mal Codigo, Intentalo de nuevo');
       }
     };
 
     if (codeText.length === 6) {
       verifyCodeProcess(codeText, phone);
     }
-  }, [codeText, dispatch, goTo, navigation, phone]);
+  }, [codeText, dispatch, goTo, navigation, phone, showModal]);
 
   const handleResendSms = useCallback(async () => {
-    if (distance > 0) {
-      return Alert.alert(
-        `Debes esperar ${
-          distance / 1000
-        } segundos antes de pedir un nuevo codigo`,
+    if (countDown > 0) {
+      return showModal(
+        `Debes esperar ${countDown} segundos antes de pedir un nuevo codigo`,
       );
     }
 
     try {
       await sendSms(phone);
     } catch (err) {
-      Alert.alert('Error al solicitar el nuevo codigo');
+      showModal('Error al solicitar el nuevo codigo');
     }
-  }, [distance, phone]);
+  }, [countDown, phone, showModal]);
 
   return (
     <VerifyCodeScreen
       onChangeText={onChangeText}
       handleResendSms={handleResendSms}
+      countDown={countDown}
     />
   );
 };

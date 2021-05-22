@@ -1,11 +1,11 @@
 import React, { FC, useCallback, useState } from 'react';
-import { Alert } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import SCREEN_NAMES from '@/constants/screenNames';
 import { RootStackParamList } from '@/types';
 import LoginScreen from './LoginScreen';
 import { sendSms } from '@/api/auth';
+import useModal from '@/hooks/useModal';
 
 interface Props {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -14,6 +14,7 @@ interface Props {
 
 const LoginScreenContainer: FC<Props> = ({ navigation, route }) => {
   const [phoneText, setPhoneText] = useState('');
+  const { showModal } = useModal();
 
   const onChangePhoneText = useCallback(
     (newPhoneText) => setPhoneText(newPhoneText),
@@ -21,7 +22,7 @@ const LoginScreenContainer: FC<Props> = ({ navigation, route }) => {
   );
 
   const handleLogin = async () => {
-    if (phoneText.length !== 10) return Alert.alert('Numero invalido');
+    if (phoneText.length !== 10) return showModal('Numero invalido');
     try {
       await sendSms(phoneText);
       return navigation.navigate(SCREEN_NAMES.VERIFY_CODE, {
@@ -29,7 +30,7 @@ const LoginScreenContainer: FC<Props> = ({ navigation, route }) => {
         goTo: route.params?.goTo,
       });
     } catch (error) {
-      Alert.alert('Verifica tu numero telefónico e intenta de nuevo');
+      showModal('Verifica tu numero telefónico e intenta de nuevo');
     }
   };
 

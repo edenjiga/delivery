@@ -7,8 +7,13 @@ import Colors from '@/constants/Colors';
 type Props = {
   onChangeText(text: string): void;
   handleResendSms(): void;
+  countDown: number;
 };
-const VerifyCodeScreen: FC<Props> = ({ onChangeText, handleResendSms }) => (
+const VerifyCodeScreen: FC<Props> = ({
+  onChangeText,
+  handleResendSms,
+  countDown,
+}) => (
   <View style={styles.container}>
     <SafeAreaView>
       <GoBackButton backWitheArrow={true} viewStyles={styles.goBackButton} />
@@ -37,12 +42,17 @@ const VerifyCodeScreen: FC<Props> = ({ onChangeText, handleResendSms }) => (
         </View>
 
         <Text style={styles.text}>¿No te llegó el código?</Text>
-        <Text style={styles.counterText}>
-          Reenviar código en<Text style={styles.counter}> 59 segundos</Text>
-        </Text>
-        <Text onPress={handleResendSms} style={styles.reenviar}>
-          Reenviar código
-        </Text>
+
+        {countDown > 0 ? (
+          <Text style={styles.counterText}>
+            Reenviar código en
+            <Text style={styles.counter}> {countDown} segundos</Text>
+          </Text>
+        ) : (
+          <Text onPress={handleResendSms} style={styles.reenviar}>
+            Reenviar código
+          </Text>
+        )}
       </View>
     </SafeAreaView>
   </View>
@@ -73,13 +83,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 50,
   },
   text: {
-    textAlign: 'center',
     fontSize: 15,
+    textAlign: 'center',
   },
   counterText: {
     fontSize: 15,
-    textAlign: 'center',
     marginTop: 10,
+    textAlign: 'center',
   },
   counter: {
     color: Colors.red,
@@ -88,12 +98,12 @@ const styles = StyleSheet.create({
     marginVertical: 30,
   },
   phone: {
-    width: 20,
     height: 20,
-    position: 'absolute',
-    zIndex: 10,
-    top: 10,
     left: 15,
+    position: 'absolute',
+    top: 10,
+    width: 20,
+    zIndex: 10,
   },
   input: {
     borderWidth: 1,

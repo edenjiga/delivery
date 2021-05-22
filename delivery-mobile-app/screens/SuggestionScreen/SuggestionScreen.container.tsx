@@ -1,9 +1,10 @@
 import { addSuggestion } from '@/api/suggestions';
 import SCREEN_NAMES from '@/constants/screenNames';
+import useModal from '@/hooks/useModal';
 import { RootStackParamList } from '@/types';
+import { HandleErrorMessage } from '@/utils/errorMessages';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useCallback, useState } from 'react';
-import { Alert } from 'react-native';
 import SuggestionScreen from './SuggestionScreen';
 
 type Props = {
@@ -15,6 +16,7 @@ type Props = {
 
 const SuggestionScreenContainer: FC<Props> = ({ navigation }) => {
   const [text, setText] = useState('');
+  const { showModal } = useModal();
 
   const onPress = useCallback(async () => {
     try {
@@ -22,10 +24,10 @@ const SuggestionScreenContainer: FC<Props> = ({ navigation }) => {
       await addSuggestion({ text });
       return navigation.goBack();
     } catch (err) {
-      console.log(err);
-      Alert.alert('Ups algo salio mal agregando la sugerencia o el comentario');
+      const message = HandleErrorMessage(error.message);
+      showModal(message);
     }
-  }, [navigation, text]);
+  }, [navigation, showModal, text]);
 
   const onChangeText = useCallback((value: string) => {
     setText(value);

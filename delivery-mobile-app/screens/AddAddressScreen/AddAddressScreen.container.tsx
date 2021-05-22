@@ -1,16 +1,19 @@
+import React, { FC, useCallback } from 'react';
+
+import { HandleErrorMessage } from '@/utils/errorMessages';
+import useModal from '@/hooks/useModal';
 import useUserFromRedux from '@/hooks/useUserFromRedux';
 import { RootStackParamList } from '@/types';
 import { updateUserRequest } from '@/utils/user';
 import { Address } from '@edenjiga/delivery-common';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useCallback } from 'react';
-import { Alert } from 'react-native';
 import AddAddressScreen from './AddAddressScreen';
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
 };
 const AddAddressScreenContainer: FC<Props> = ({ navigation }) => {
   const { data: user } = useUserFromRedux();
+  const { showModal } = useModal();
 
   const onSubmit = useCallback(
     async (address: Address) => {
@@ -19,10 +22,11 @@ const AddAddressScreenContainer: FC<Props> = ({ navigation }) => {
         await updateUserRequest({ address: mergedAddress });
         navigation.goBack();
       } catch (error) {
-        Alert.alert('Ups Algo fallo intentado agregar tu nueva direccion');
+        const message = HandleErrorMessage(error.message);
+        showModal(message);
       }
     },
-    [navigation, user.address],
+    [navigation, showModal, user.address],
   );
 
   return <AddAddressScreen onSubmit={onSubmit} />;

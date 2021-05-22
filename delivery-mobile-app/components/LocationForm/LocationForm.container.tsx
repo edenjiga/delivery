@@ -1,3 +1,4 @@
+import useModal from '@/hooks/useModal';
 import { LocationFormValues } from '@/types';
 import { checkField } from '@/utils/checkField';
 import { loaderService } from '@/utils/loader';
@@ -6,7 +7,6 @@ import useReducerHelper from '@/utils/useReducerHelper';
 import { Address } from '@edenjiga/delivery-common';
 import React, { FC, useCallback, useEffect, useReducer } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { Alert } from 'react-native';
 import { Region } from 'react-native-maps';
 import LocationForm from './LocationForm';
 
@@ -36,6 +36,8 @@ const initialState: IState = {
 };
 
 const LocationFormContainer: FC<Props> = ({ onSubmit }) => {
+  const { showModal } = useModal();
+
   const { handleSubmit, register, setValue } = useForm<LocationFormValues>();
   const [state, setState] = useReducer(
     useReducerHelper.basicReducer,
@@ -50,9 +52,14 @@ const LocationFormContainer: FC<Props> = ({ onSubmit }) => {
         loaderService.show();
         const location = await getLocation();
         if (location?.coords) {
-          const { coords } = location;
+          const { coords: userCoords } = location;
           setState({
-            coords,
+            coords: {
+              latitude: userCoords.latitude,
+              longitude: userCoords.longitude,
+              latitudeDelta: 0.015,
+              longitudeDelta: 0.0121,
+            },
           });
         }
       } finally {
@@ -108,7 +115,7 @@ const LocationFormContainer: FC<Props> = ({ onSubmit }) => {
       '',
     );
 
-    Alert.alert(message);
+    showModal(message);
   };
 
   const onComeBackToCenter = useCallback(() => {

@@ -7,7 +7,7 @@ import { RootState } from '@/store';
 import { cleanCartAction } from '@/store/actions/cart';
 import { addOrder } from '@/store/actions/orders';
 import { RootStackParamList } from '@/types';
-import { ErrorMessageHandle } from '@/utils/errorMessages';
+import { HandleErrorMessage } from '@/utils/errorMessages';
 import { CreateOrderDto, PAYMENT_METHODS } from '@edenjiga/delivery-common';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -96,7 +96,7 @@ export default ({ navigation }: Props) => {
       dispatch(cleanCartAction());
       return navigation.replace(SCREEN_NAMES.ROOT);
     } catch (error) {
-      const message = ErrorMessageHandle(error.message);
+      const message = HandleErrorMessage(error.message);
       showModal(message);
     }
   };
