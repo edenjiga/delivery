@@ -72,4 +72,7 @@ UsersSchema.methods.toJSON = function () {
   return _.omit(userObject, ['password']);
 };
 
+UsersSchema.index({ email: 1 });
+UsersSchema.index({ phone: 1 });
+
 export { UsersSchema };

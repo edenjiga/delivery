@@ -15,4 +15,6 @@ const MobileErrorsSchema = new Schema(
   { timestamps: true },
 );
 
+MobileErrorsSchema.index({ timestamps: 1 });
+
 export { MobileErrorsSchema };

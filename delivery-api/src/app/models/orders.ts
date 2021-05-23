@@ -93,4 +93,5 @@ OrdersSchema.virtual('user', {
   autopopulate: true,
 });
 
+OrdersSchema.index({ userId: 1, status: 1 });
 export { OrdersSchema };

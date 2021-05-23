@@ -18,6 +18,10 @@ const SuggestionsSchema = new Schema(
       type: String,
       required: true,
     },
+    read: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     toJSON: { virtuals: true },
@@ -33,5 +37,7 @@ SuggestionsSchema.virtual('user', {
   justOne: true,
   autopopulate: true,
 });
+
+SuggestionsSchema.index({ userId: 1, read: 1 });
 
 export { SuggestionsSchema };
