@@ -5,4 +5,5 @@ export * from "./natsEvents";
 export * from "./order";
 export * from "./products";
 export * from "./suggestions";
+export * from "./settings";
 export * from "./user";

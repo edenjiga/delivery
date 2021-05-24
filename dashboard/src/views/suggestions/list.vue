@@ -148,7 +148,6 @@ export default {
       try {
         const response = await getSuggestions(query)
         this.list = response.docs
-        console.log(this.list)
       } catch (error) {
         this.listLoading = false
       } finally {

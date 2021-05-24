@@ -67,7 +67,7 @@ describe('orders controller', () => {
       .overrideProvider(HttpService)
       .useValue(httpService)
       .overrideProvider(Publisher) //NatsStreamingTransport inyect Publisher as provider
-      .useValue({})
+      .useValue({ emit: jest.fn().mockReturnValue({ subscribe: jest.fn() }) })
       .compile();
 
     app = moduleRef.createNestApplication();

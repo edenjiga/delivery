@@ -11,6 +11,7 @@ import { fetchUnfinishedOrdersAsync } from '@/store/actions/orders';
 import { getSettings } from '@/api/settings';
 import { setModalState } from '@/store/actions/modal';
 import environment from '@/environment';
+import { setSettings } from '@/store/actions/settings';
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -21,10 +22,13 @@ export default function useCachedResources() {
     try {
       const settings = (await getSettings()) as any;
 
+      //Load settings
+      dispatch(setSettings(settings));
+
       if (
         settings.nativeAppVersion !== environment.nativeAppVersion?.toString()
       ) {
-        // setAppVersionMatch(false);
+        setAppVersionMatch(false);
       }
 
       if (!settings.isStoreOpen) {
@@ -37,8 +41,8 @@ export default function useCachedResources() {
           }),
         );
       }
-      // , daysSchedules[new Date().getDay()]);
     } catch (err) {
+      //TODO throw error
       setModalState({
         isVisible: true,
         text: 'Ups algo fallo',
