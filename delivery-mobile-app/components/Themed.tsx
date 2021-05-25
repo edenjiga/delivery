@@ -25,7 +25,7 @@ export function Text(props: TextProps) {
   const { style, ...otherProps } = props;
   const color = Colors.black;
 
-  return <DefaultText style={[{ color }, style]} {...otherProps} />;
+  return <DefaultText style={[{ color, fontFamily: "lato" }, style]} {...otherProps} />;
 }
 
 export function TextInput(props: TextInputProps) {
@@ -33,7 +33,7 @@ export function TextInput(props: TextInputProps) {
 
   return (
     <DefaultTextInput
-      style={[styles.textInput, style]}
+      style={[styles.textInput, style, { fontFamily: "lato" }]}
       placeholderTextColor={placeholderTextColor || Colors.grey}
       {...otherProps}
     />

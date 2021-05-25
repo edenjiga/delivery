@@ -40,9 +40,6 @@ module.exports = {
     'comma-dangle': ['error', 'always-multiline'],
     'react-native/no-raw-text': [
       2,
-      {
-        skip: ['MonoText'],
-      },
     ],
   },
   parser: '@typescript-eslint/parser',
