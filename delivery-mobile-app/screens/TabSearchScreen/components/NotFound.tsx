@@ -6,6 +6,10 @@ import Colors from '@/constants/Colors';
 export default function Component() {
   return (
     <View style={styles.container}>
+       <Image
+        style={styles.background}
+        source={require('assets/images/background-wrong.png')}
+      />
       <View style={styles.infoCont}>
         <Text style={styles.title}>Lo sentimos</Text>
         <Text style={styles.description}>
@@ -14,7 +18,7 @@ export default function Component() {
         </Text>
         <Image
           style={styles.image}
-          source={require('assets/images/not-found.png')}
+          source={require('assets/images/something-wrong.png')}
         />
       </View>
     </View>
@@ -24,15 +28,17 @@ export default function Component() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 100,
     paddingHorizontal: 20,
+    minHeight: 560,
+  },
+  background: {
+    position: 'absolute',
   },
   infoCont: {
     justifyContent: 'center',
-    height: 280,
+    top: 80,
     alignItems: 'center',
   },
-
   description: {
     color: Colors.darkGrey,
     fontSize: 16,
@@ -40,15 +46,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   image: {
-    height: '100%',
-    marginTop: 60,
+    height: 240,
+    top: 50,
     resizeMode: 'contain',
-    width: '100%',
+    width: 240,
   },
   title: {
     color: Colors.darkGrey,
     fontSize: 30,
     fontWeight: 'bold',
-    marginBottom: 15,
+    marginBottom: 20,
   },
 });
