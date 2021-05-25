@@ -8,13 +8,14 @@ import {
 } from '@nestjs/common';
 import { SettingsUseCases } from '@/useCases';
 import { JwtAdminAuthGuard } from '@/auth/guards/jwt-admin-auth.guard';
+import { GetSettingsResponse } from '@edenjiga/delivery-common';
 
 @Controller('settings')
 export class SettingsController {
   constructor(private settingsUseCases: SettingsUseCases) {}
 
   @Get('')
-  public getSetting() {
+  public getSetting(): Promise<GetSettingsResponse> {
     return this.settingsUseCases.getSettings();
   }
 

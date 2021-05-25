@@ -44,7 +44,6 @@ interface IProductWithUnits {
 
 @Injectable()
 export class OrdersUseCases {
-  private deliveryValue = 3000;
   constructor(
     private productsServices: ProductsService,
     private usersService: UsersService,
@@ -86,6 +85,7 @@ export class OrdersUseCases {
 
   public async createOrder(user: IUserDoc, data: CreateOrderDto) {
     const isStoreOpen = await this.settingsService.isStoreOpen();
+    const deliveryValue = this.settingsService.getDeliveryValue();
 
     if (!isStoreOpen) {
       throw new StoreCloseError();
@@ -116,7 +116,7 @@ export class OrdersUseCases {
       productsWithUnit,
     );
 
-    if (price !== totalWithDiscount + this.deliveryValue) {
+    if (price !== totalWithDiscount + deliveryValue) {
       throw new BadPriceError();
     }
 
@@ -135,7 +135,7 @@ export class OrdersUseCases {
 
     const orderData: Omit<IOrder, '_id'> = {
       discountValue: totalDiscount,
-      deliveryValue: this.deliveryValue,
+      deliveryValue,
       payment: {
         paymentMethod: data.payment.paymentMethod,
         status: PAYMENT_STATUS.NOT_PAID,

@@ -13,7 +13,7 @@ describe('wompi.controller', () => {
       imports: [AppModule],
     })
       .overrideProvider(Publisher) //NatsStreamingTransport inyect Publisher as provider
-      .useValue({})
+      .useValue({ emit: jest.fn().mockReturnValue({ subscribe: jest.fn() }) })
       .compile();
 
     app = moduleRef.createNestApplication();

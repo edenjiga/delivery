@@ -5,6 +5,10 @@ import { SettingsRepository } from '@/data/repository/settings.respository';
 export class SettingsService {
   constructor(private settingsRepository: SettingsRepository) {}
 
+  getDeliveryValue(): number {
+    return 3000;
+  }
+
   public async isStoreOpen(): Promise<boolean> {
     const date = new Date();
 

@@ -3,6 +3,7 @@ import RequestStatus from '@/constants/RequestStatus';
 import SCREEN_NAMES from '@/constants/screenNames';
 import useAddress from '@/hooks/useAddress';
 import useModal from '@/hooks/useModal';
+import useSettings from '@/hooks/useSettings';
 import { RootState } from '@/store';
 import { cleanCartAction } from '@/store/actions/cart';
 import { addOrder } from '@/store/actions/orders';
@@ -20,12 +21,11 @@ interface Props {
   route: RouteProp<RootStackParamList, SCREEN_NAMES.ORDER>;
 }
 
-const deliveryValue = 3000;
-
 export default ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const { address } = useAddress();
   const { showModal } = useModal();
+  const { deliveryValue = 3000 } = useSettings();
 
   const { user, cart } = useSelector<RootState, RootState>((state) => state);
   const { loadingStatus, data: userData } = user;
@@ -49,7 +49,10 @@ export default ({ navigation }: Props) => {
     );
   }, [productsWithQuanty]);
 
-  const total = useMemo(() => subTotal + deliveryValue, [subTotal]);
+  const total = useMemo(() => subTotal + deliveryValue, [
+    deliveryValue,
+    subTotal,
+  ]);
 
   useEffect(() => {
     const goTo = SCREEN_NAMES.ORDER;
