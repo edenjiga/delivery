@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   buttonAdd: {
     borderRadius: 6,
     color: Colors.white,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
@@ -151,13 +151,13 @@ const styles = StyleSheet.create({
   },
   count: {
     color: Colors.black,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     paddingHorizontal: 14,
     paddingVertical: 10,
   },
   countNumber: {
     color: Colors.black,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
@@ -204,14 +204,14 @@ const styles = StyleSheet.create({
   productName: {
     color: Colors.black,
     fontSize: 22,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginBottom: 5,
   },
   title: {
     backgroundColor: Colors.bgGrey,
     color: Colors.black,
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     padding: 10,
   },
   box: {
@@ -227,12 +227,12 @@ const styles = StyleSheet.create({
   normalPrice: {
     color: Colors.black,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   discountPrice: {
     color: Colors.green,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginRight: 30,
   },
   specialPrice: {

@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   titulo: {
     fontSize: 24,
     marginBottom: 40,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     color: Colors.darkGrey,
   },
   subtitulo: {
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   mark: {
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     color: Colors.darkGrey,
   },
   close: {
@@ -77,6 +77,6 @@ const styles = StyleSheet.create({
   closeText: {
     color: Colors.white,
     fontSize: 17,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
 });

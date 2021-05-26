@@ -123,7 +123,7 @@ const style = StyleSheet.create({
   buttonText: {
     color: Colors.white,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   container: {
     marginHorizontal: 10,
@@ -144,7 +144,7 @@ const style = StyleSheet.create({
   },
   // number: {
   //   fontSize: 16,
-  //   fontWeight: 'bold',
+  //   fontFamily: 'latoBold',
   //   marginBottom: 5,
   // },
   order: {
@@ -187,22 +187,22 @@ const style = StyleSheet.create({
   statusTextBrown: {
     color: Colors.orangeDark,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   statusTextGreen: {
     color: Colors.green,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   statusTextOrange: {
     color: Colors.orange,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   statusTextRed: {
     color: Colors.red,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   totalContent: {
     borderBottomWidth: 1,
@@ -213,12 +213,12 @@ const style = StyleSheet.create({
     paddingVertical: 10,
   },
   totalPay: {
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginTop: 3,
   },
   totalPayNumber: {
     color: Colors.green,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginTop: 3,
   },
   units: {

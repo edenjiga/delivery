@@ -49,7 +49,7 @@ const style = StyleSheet.create({
   pressableText: {
     color: Colors.white,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   secondView: {
     alignItems: 'center',
@@ -62,7 +62,7 @@ const style = StyleSheet.create({
   welcomeText: {
     color: Colors.white,
     fontSize: 22,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     textTransform: 'uppercase',
   },
   logoBox: {

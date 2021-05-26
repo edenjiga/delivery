@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     color: Colors.black,
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     padding: 10,
   },
 });

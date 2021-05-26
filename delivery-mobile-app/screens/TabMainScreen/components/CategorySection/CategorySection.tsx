@@ -3,9 +3,11 @@ import { View } from '@/components/Themed';
 import { StyleSheet } from 'react-native';
 import { Category } from './components';
 
-import Licor from '@/assets/images/glass-bottles-of-beer-with-glass-and-ice-on-dark-background.png';
-import Chips from '@/assets/images/top-view-different-kind-chips-texture-horizontal.png';
+import Licor from '@/assets/images/liquor.png';
+import Chips from '@/assets/images/mecato.png';
 import Cigarrete from '@/assets/images/cigarette.png';
+import Other from '@/assets/images/other.png';
+
 import { PRODUCT_CATEGORY } from '@edenjiga/delivery-common';
 
 const CategorySection: FC = () => (
@@ -28,7 +30,7 @@ const CategorySection: FC = () => (
       />
       <Category
         name="Otros"
-        imageSource={Cigarrete}
+        imageSource={Other}
         category={PRODUCT_CATEGORY.OTHERS}
       />
     </View>

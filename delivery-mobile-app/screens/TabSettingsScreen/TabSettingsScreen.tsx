@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   userName: {
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     textTransform: 'uppercase',
   },
   userMail: {
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
   adressText: {
     color: Colors.darkGrey,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginLeft: 10,
     textTransform: 'uppercase',
   },
@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
   contact: {
     color: Colors.darkGrey,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     textTransform: 'uppercase',
   },
   socialMedia: {
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
   addText: {
     color: Colors.white,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     textAlign: 'center',
   },
 });

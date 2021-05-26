@@ -35,7 +35,7 @@ const style = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     color: Colors.darkGrey,
     marginBottom: 15,
   },

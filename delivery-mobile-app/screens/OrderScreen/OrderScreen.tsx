@@ -148,14 +148,14 @@ const style = StyleSheet.create({
   },
   title: {
     color: Colors.black,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginBottom: 5,
     textTransform: 'uppercase',
   },
   titleDetails: {
     color: Colors.black,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginBottom: 10,
     textTransform: 'uppercase',
   },
@@ -182,7 +182,7 @@ const style = StyleSheet.create({
   infoPay: {
     color: Colors.darkGrey,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginTop: 10,
   },
   infoDiscount: {
@@ -191,7 +191,7 @@ const style = StyleSheet.create({
   infoTotal: {
     color: Colors.green,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginTop: 10,
   },
   buttonContainer: {
@@ -208,7 +208,7 @@ const style = StyleSheet.create({
   btnText: {
     color: Colors.white,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   orderContent: {
     top: 40,

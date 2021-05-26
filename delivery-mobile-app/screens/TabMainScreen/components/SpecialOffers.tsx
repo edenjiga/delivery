@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bgGrey,
     color: Colors.black,
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     paddingHorizontal: 10,
     paddingTop: 10,
   },

@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   price: {
     color: Colors.green,
     fontSize: 17,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   subtotal: {
     borderBottomColor: Colors.lineGrey,

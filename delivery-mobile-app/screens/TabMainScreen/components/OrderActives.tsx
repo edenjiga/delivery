@@ -73,11 +73,11 @@ const style = StyleSheet.create({
   },
   detailNumber: {
     color: Colors.white,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   detailText: {
     color: Colors.white,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginLeft: 10,
     fontSize: 15,
   },

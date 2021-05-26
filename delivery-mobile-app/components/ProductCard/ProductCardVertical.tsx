@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   count: {
     color: Colors.white,
     fontSize: 28,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     textAlign: 'center',
   },
   counter: {
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   finalPrice: {
     color: Colors.green,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginRight: 10,
     ...Platform.select({
       ios: {
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
   name: {
     color: Colors.darkGrey,
     fontSize: 13,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginBottom: 5,
     ...Platform.select({
       ios: {
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   },
   priceWithNotDiscount: {
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   productImage: {
     borderTopLeftRadius: 6,

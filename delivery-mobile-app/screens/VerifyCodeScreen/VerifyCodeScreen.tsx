@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   title: {
     color: Colors.white,
     fontSize: 22,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     textTransform: 'uppercase',
   },
   info: {
