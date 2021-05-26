@@ -6,6 +6,7 @@ import {
   View as DefaultView,
   KeyboardAvoidingView as DefaultKeyboardAvoidingView,
   Platform,
+  StyleSheet
 } from 'react-native';
 
 import Colors from '../constants/Colors';
@@ -23,9 +24,8 @@ export type KeyboardAvoidingViewProps = ThemeProps &
 
 export function Text(props: TextProps) {
   const { style, ...otherProps } = props;
-  const color = Colors.black;
 
-  return <DefaultText style={[{ color, fontFamily: "lato" }, style]} {...otherProps} />;
+  return <DefaultText style={[styles.text, style]} {...otherProps} />;
 }
 
 export function TextInput(props: TextInputProps) {
@@ -33,7 +33,7 @@ export function TextInput(props: TextInputProps) {
 
   return (
     <DefaultTextInput
-      style={[styles.textInput, style, { fontFamily: "lato" }]}
+      style={[styles.text, style]}
       placeholderTextColor={placeholderTextColor || Colors.grey}
       {...otherProps}
     />
@@ -43,7 +43,7 @@ export function TextInput(props: TextInputProps) {
 export function View(props: ViewProps) {
   const { style, ...otherProps } = props;
 
-  return <DefaultView style={[styles.view, style]} {...otherProps} />;
+  return <DefaultView style={[ style ]} {...otherProps} />;
 }
 
 export function KeyboardAvoidingView(props: KeyboardAvoidingViewProps) {
@@ -52,17 +52,17 @@ export function KeyboardAvoidingView(props: KeyboardAvoidingViewProps) {
   return (
     <DefaultKeyboardAvoidingView
       behavior={behavior || (Platform.OS === 'ios' ? 'padding' : 'height')}
-      style={[styles.defaultKeyboardAvoidingView, style]}
+      style={[styles.view, style]}
       {...otherProps}
     />
   );
 }
 
-const styles = {
-  defaultKeyboardAvoidingView: { flex: 1 },
-  view: {},
-  textInput: {
-    borderColor: Colors.grey,
-    fontSize: 13,
+const styles = StyleSheet.create({
+  view: { 
+    flex: 1 
   },
-};
+  text: {
+    fontFamily: 'lato',
+  },
+});

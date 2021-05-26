@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Colors.black,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginBottom: 15,
     fontSize: 15,
   },

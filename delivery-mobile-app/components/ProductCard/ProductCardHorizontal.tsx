@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   addText: {
     color: Colors.white,
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     textAlign: 'center',
     marginBottom: 2,
   },
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   count: {
     color: Colors.white,
     fontSize: 22,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     textAlign: 'center',
     marginBottom: 2,
   },
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   discountPrice: {
     color: Colors.green,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   discountText: {
     color: Colors.white,
@@ -219,13 +219,13 @@ const styles = StyleSheet.create({
   name: {
     color: Colors.black,
     fontSize: 13,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     marginBottom: 5,
   },
   normalPrice: {
     color: Colors.black,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   productImage: {
     height: 100,

@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   closeText: {
     color: Colors.white,
     fontSize: 17,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   container: {
     flex: 1,

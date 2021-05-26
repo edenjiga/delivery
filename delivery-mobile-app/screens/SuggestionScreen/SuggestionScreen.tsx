@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   title: {
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
     textAlign: 'center',
     fontSize: 16,
     marginTop: 50,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   btnText: {
     color: Colors.white,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
 });
 

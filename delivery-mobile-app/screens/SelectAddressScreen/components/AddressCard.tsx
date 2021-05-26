@@ -75,7 +75,7 @@ const style = StyleSheet.create({
   },
   nameText: {
     marginBottom: 3,
-    fontWeight: 'bold',
+    fontFamily: 'latoBold',
   },
   nomenclatureText: {
     color: Colors.darkGrey,
