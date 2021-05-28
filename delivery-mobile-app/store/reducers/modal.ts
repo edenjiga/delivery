@@ -8,6 +8,7 @@ const initialState: IModalState = {
   isVisible: false,
   text: '',
   buttonText: '',
+  icon: 'info',
 };
 
 const reducer = createReducer<IModalState, Action>(initialState)

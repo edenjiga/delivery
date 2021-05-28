@@ -115,7 +115,7 @@ const LocationFormContainer: FC<Props> = ({ onSubmit }) => {
       '',
     );
 
-    showModal(message);
+    showModal({ text: message });
   };
 
   const onComeBackToCenter = useCallback(() => {

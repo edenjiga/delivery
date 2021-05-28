@@ -100,7 +100,7 @@ export default ({ navigation }: Props) => {
       return navigation.replace(SCREEN_NAMES.ROOT);
     } catch (error) {
       const message = HandleErrorMessage(error.message);
-      showModal(message);
+      showModal({ text: message });
     }
   };
 

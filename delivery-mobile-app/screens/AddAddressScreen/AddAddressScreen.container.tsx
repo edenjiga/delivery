@@ -23,7 +23,7 @@ const AddAddressScreenContainer: FC<Props> = ({ navigation }) => {
         navigation.goBack();
       } catch (error) {
         const message = HandleErrorMessage(error.message);
-        showModal(message);
+        showModal({ text: message });
       }
     },
     [navigation, showModal, user.address],

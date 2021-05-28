@@ -48,7 +48,7 @@ const VerifyCodeScreenContainer: FC<Props> = ({ navigation, route }) => {
 
         return navigation.dispatch(RemoveLastTwoAndAddGoTo(goTo));
       } catch (error) {
-        showModal('Mal Codigo, Intentalo de nuevo');
+        showModal({ text: 'Mal Codigo, Intentalo de nuevo' });
       }
     };
 
@@ -59,15 +59,15 @@ const VerifyCodeScreenContainer: FC<Props> = ({ navigation, route }) => {
 
   const handleResendSms = useCallback(async () => {
     if (countDown > 0) {
-      return showModal(
-        `Debes esperar ${countDown} segundos antes de pedir un nuevo codigo`,
-      );
+      return showModal({
+        text: `Debes esperar ${countDown} segundos antes de pedir un nuevo codigo`,
+      });
     }
 
     try {
       await sendSms(phone);
     } catch (err) {
-      showModal('Error al solicitar el nuevo codigo');
+      showModal({ text: 'Error al solicitar el nuevo codigo' });
     }
   }, [countDown, phone, showModal]);
 

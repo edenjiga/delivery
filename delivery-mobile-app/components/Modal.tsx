@@ -10,7 +10,7 @@ import Colors from '@/constants/Colors';
 import useModal from '@/hooks/useModal';
 
 const Modal: FC = () => {
-  const { isVisible, text, setIsVisible } = useModal();
+  const { isVisible, text, setIsVisible, icon } = useModal();
 
   return (
     <DefaultModal visible={isVisible} transparent={true}>

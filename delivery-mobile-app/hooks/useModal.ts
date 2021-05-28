@@ -11,12 +11,21 @@ const useModal = () => {
   );
 
   const showModal = useCallback(
-    (text: string, buttonText = 'Confirmar') => {
+    ({
+      text,
+      buttonText = 'Confirmar',
+      icon = 'info',
+    }: {
+      text: string;
+      buttonText?: string;
+      icon?: IModalState['icon'];
+    }) => {
       dispatch(
         setModalState({
           isVisible: true,
           text,
           buttonText,
+          icon,
         }),
       );
     },

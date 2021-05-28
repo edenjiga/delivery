@@ -22,7 +22,7 @@ const LoginScreenContainer: FC<Props> = ({ navigation, route }) => {
   );
 
   const handleLogin = async () => {
-    if (phoneText.length !== 10) return showModal('Numero invalido');
+    if (phoneText.length !== 10) return showModal({ text: 'Numero invalido' });
     try {
       await sendSms(phoneText);
       return navigation.navigate(SCREEN_NAMES.VERIFY_CODE, {
@@ -30,7 +30,7 @@ const LoginScreenContainer: FC<Props> = ({ navigation, route }) => {
         goTo: route.params?.goTo,
       });
     } catch (error) {
-      showModal('Verifica tu numero telefónico e intenta de nuevo');
+      showModal({ text: 'Verifica tu numero telefónico e intenta de nuevo' });
     }
   };
 

@@ -27,6 +27,7 @@ export interface IModalState {
   isVisible: boolean;
   text: string;
   buttonText: string;
+  icon: 'success' | 'info';
 }
 export interface ICartState {
   [key: string]: ProductWithQuantity;

@@ -25,7 +25,7 @@ const SuggestionScreenContainer: FC<Props> = ({ navigation }) => {
       return navigation.goBack();
     } catch (err) {
       const message = HandleErrorMessage(error.message);
-      showModal(message);
+      showModal({ text: message });
     }
   }, [navigation, showModal, text]);
 
