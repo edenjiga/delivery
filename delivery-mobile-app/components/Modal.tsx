@@ -11,7 +11,6 @@ import useModal from '@/hooks/useModal';
 
 const Modal: FC = () => {
   const { isVisible, text, setIsVisible, icon } = useModal();
-
   return (
     <DefaultModal visible={isVisible} transparent={true}>
       <View style={styles.container}>
@@ -20,10 +19,13 @@ const Modal: FC = () => {
             <Image
               style={styles.infoIcon}
               resizeMode="contain"
-              source={require('assets/images/info.png')}
+              source={
+                icon === 'success'
+                  ? require('assets/images/check.png')
+                  : require('assets/images/info.png')
+              }
             />
           </View>
-
           <Text style={styles.textInfo}>{text}</Text>
           <TouchableOpacity
             style={styles.close}
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
   },
   textInfo: {
     lineHeight: 20,
-    marginBottom: 15,
+    marginTop: 10,
     textAlign: 'center',
     textTransform: 'uppercase',
     width: '70%',
