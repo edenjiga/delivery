@@ -97,6 +97,8 @@ export default ({ navigation }: Props) => {
 
       dispatch(addOrder(newOrder));
       dispatch(cleanCartAction());
+
+      showModal({ text: 'Su orden ha sido creada', icon: 'success' });
       return navigation.replace(SCREEN_NAMES.ROOT);
     } catch (error) {
       const message = HandleErrorMessage(error.message);
