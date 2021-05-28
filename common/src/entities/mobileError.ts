@@ -3,7 +3,7 @@ import {
   IsObject,
   IsOptional,
   IsString,
-} from 'class-validator';
+} from "class-validator";
 
 export class MobileErrorDto {
   @IsString()
@@ -23,5 +23,5 @@ export class MobileErrorDto {
 
   @IsString()
   @IsOptional()
-  public userId: string;
+  public userId?: string;
 }

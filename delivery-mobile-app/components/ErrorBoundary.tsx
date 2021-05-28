@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Image } from 'react-native';
 import { View, Text } from '@/components/Themed';
 import Colors from '@/constants/Colors';
+import { saveError } from '@/api/errors';
 
 export default class ErrorBoundary extends Component {
   state = { hasError: false, error: undefined };
 
-  componentDidCatch({ message, data, stackTrace }, info) {
+  async componentDidCatch({ message, data, stackTrace }, info) {
     const OS = Platform.OS === 'ios' ? 'ios' : 'android';
     const platform = `${OS}, ${Platform.Version}`;
     const error = {
@@ -15,7 +16,13 @@ export default class ErrorBoundary extends Component {
       platform,
       stackTrace: stackTrace || info.componentStack.toString(),
     };
-    this.setState({ hasError: true, error });
+
+    try {
+      await saveError(error);
+    } catch (error) {
+    } finally {
+      this.setState({ hasError: true, error });
+    }
   }
 
   render() {
