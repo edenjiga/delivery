@@ -22,6 +22,7 @@ import {
   UpdateAppComponent,
   SocketEventHandle,
 } from './components';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   const { isLoadingComplete, appVersionMatch } = useCachedResources();
@@ -64,8 +65,10 @@ const styles = StyleSheet.create({
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function Component() {
   return (
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ErrorBoundary>
   );
 }
