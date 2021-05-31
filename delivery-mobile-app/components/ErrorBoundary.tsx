@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Image } from 'react-native';
 import { View, Text } from '@/components/Themed';
@@ -6,6 +7,11 @@ import { saveError } from '@/api/errors';
 
 export default class ErrorBoundary extends Component {
   state = { hasError: false, error: undefined };
+
+  static getDerivedStateFromError() {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
+  }
 
   async componentDidCatch({ message, data, stackTrace }, info) {
     const OS = Platform.OS === 'ios' ? 'ios' : 'android';
