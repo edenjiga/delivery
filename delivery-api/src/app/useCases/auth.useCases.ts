@@ -19,7 +19,7 @@ export class AuthUseCases {
 
     // to test the app in production
     if (phone === '3000000000') {
-      code = '0000';
+      code = '000000';
       return code;
     } else {
       code = this.smsService.generateRandomNumer();
