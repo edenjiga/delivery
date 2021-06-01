@@ -29,5 +29,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: strapi
     ports:
       - "27018:27017"
-    # volumes:
-    #   - ./data:/data/db
+    volumes:
+      - mongo_data:/data/db
+volumes:
+  mongo_data: ~

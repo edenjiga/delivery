@@ -36,6 +36,18 @@
       "type": "integer",
       "required": true,
       "min": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "CIGARETTES",
+        "ALCOHOL",
+        "MECCATOS",
+        "OTHERS"
+      ]
     }
   }
 }

@@ -1,0 +1,27 @@
+name: deploy-qa-manifests
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - 'infra/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Add DigitalOcean Cluster
+        run: doctl kubernetes cluster kubeconfig save ${{ secrets.DIGITALOCEAN_QA_CLUSTER }}
+
+      - name: Update infra folder
+        run: kubectl apply -f infra/k8s-qa
+
+        # run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s

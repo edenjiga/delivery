@@ -1,0 +1,4 @@
+const TOKEN_KEY = "TOKEN_KEY";
+const USER_ADDRESS = "USER_ADDRESS";
+
+export default { TOKEN_KEY, USER_ADDRESS };
