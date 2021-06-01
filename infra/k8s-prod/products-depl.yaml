@@ -24,6 +24,8 @@ spec:
               memory: 150Mi
               cpu: 100m
           env:
+            - name: NODE_ENV
+              value: production
             - name: DATABASE_HOST
               valueFrom:
                 secretKeyRef:

@@ -28,7 +28,7 @@ export class SmsDataSource {
         },
         MessageConfiguration: {
           SMSMessage: {
-            Body: `Tu código de verificaciión de Kangaroo es: ${code}`,
+            Body: `Tu código de verificación de Kangaroo es: ${code}`,
             MessageType: 'TRANSACTIONAL',
           },
         },
