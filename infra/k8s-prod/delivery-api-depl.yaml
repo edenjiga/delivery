@@ -99,7 +99,7 @@ spec:
               value: http://nats-srv:4222
 
             - name: REDIS_URL
-              value: http://redis:6379
+              value: http://redis-srv:6379
 
       imagePullSecrets:
         - name: registry-credentials

@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "delivery-mobile-app",
-    "slug": "delivery-mobile-app",
+    "name": "Kangaroo Delivery",
+    "slug": "kangaroo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "kangaroo",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -13,13 +13,13 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 10000
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.edenjiga.delivery.mobile",
+      "bundleIdentifier": "com.kangaroo.delivery.mobile",
       "config": {
-        "googleMapsApiKey": "AIzaSyBg2X6DoC78VR_1Q-u7UxCgzKhPLmAom3k"
+        "googleMapsApiKey": "AIzaSyB-TJ5Pl7SQ59Q_E_L4Y_iKoVchji8GNHM"
       },
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "This app uses the location to suggest an address to the user."
@@ -35,10 +35,10 @@
       },
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyBg2X6DoC78VR_1Q-u7UxCgzKhPLmAom3k"
+          "apiKey": "AIzaSyB-TJ5Pl7SQ59Q_E_L4Y_iKoVchji8GNHM"
         }
       },
-      "package": "com.edenjiga.delivery.mobile",
+      "package": "com.kangaroo.delivery.mobile",
       "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"]
     },
     "web": {
