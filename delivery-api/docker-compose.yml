@@ -1,0 +1,57 @@
+version: '3.1'
+services:
+  mongo:
+    image: flqw/docker-mongo-local-replicaset
+    environment:
+      - MONGO_INITDB_DATABASE=delivery
+    ports:
+      - '27001:27001'
+      - '27002:27002'
+      - '27003:27003'
+    volumes:
+      - mongo_data:/data/db
+  redis:
+    image: redis:alpine
+    command: ['redis-server', '--appendonly', 'yes']
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/data
+  nats-streaming:
+    image: nats-streaming:0.17.0
+    command:
+      - '-p'
+      - '4222'
+      - '-m'
+      - '8222'
+      - '-hbi'
+      - '5s'
+      - '-hbt'
+      - '5s'
+      - '-hbf'
+      - '2'
+      - '-SD'
+      - '-cid'
+      - 'delivery'
+    ports:
+      - '4222:4222'
+      - '8222:8222'
+  api:
+    build:
+      dockerfile: Dockerfile_Dev
+      context: .
+    depends_on:
+      - mongo
+      - redis
+    environment:
+      NODE_ENV: local
+      MONGO_URL: mongodb://mongo:27001,mongo:27002,mongo:27003
+      MONGO_DB_NAME: delivery
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+volumes:
+  mongo_data: ~
+  redis-data: ~

@@ -1,0 +1,23 @@
+version: "3.1"
+services:
+  nats-streaming:
+    image: nats-streaming:0.17.0
+    command:
+      - "-p"
+      - "4222"
+      - "-m"
+      - "8222"
+      - "-hbi"
+      - "5s"
+      - "-hbt"
+      - "5s"
+      - "-hbf"
+      - "2"
+      - "-SD"
+      - "-cid"
+      - "delivery"
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    # volumes:
+    #   - "./nats-streaming-1:/data"
