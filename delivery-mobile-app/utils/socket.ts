@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
-
-const socket = io('https://qa.edgarjimenezg.com', {});
+import environment from '@/environment';
+const socket = io(environment.socketUrl, {});
 socket.on('connect', function () {
   console.log('connect');
 });
