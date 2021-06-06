@@ -154,8 +154,8 @@ const style = StyleSheet.create({
   },
   titleDetails: {
     color: Colors.black,
-    fontSize: 15,
     fontFamily: 'latoBold',
+    fontSize: 15,
     marginBottom: 10,
     textTransform: 'uppercase',
   },
