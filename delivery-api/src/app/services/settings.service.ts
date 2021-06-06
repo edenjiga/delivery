@@ -6,7 +6,7 @@ export class SettingsService {
   constructor(private settingsRepository: SettingsRepository) {}
 
   getDeliveryValue(): number {
-    return 3000;
+    return 0;
   }
 
   public async isStoreOpen(): Promise<boolean> {
