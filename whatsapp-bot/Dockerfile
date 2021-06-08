@@ -1,4 +1,4 @@
-FROM node:12-slim
+FROM node:lts-slim
 
 # Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
 # Note: this installs the necessary libs to make the bundled version of Chromium that Puppeteer
@@ -33,11 +33,11 @@ RUN npm i puppeteer \
     && chown -R pptruser:pptruser /node_modules
 
 # Run everything after as non-privileged user.
-USER pptruser
-
 WORKDIR /app
 COPY --chown=node:node package*.json ./
 RUN npm install
 COPY --chown=node:node . .
+USER pptruser
+
 CMD ["npm", "run", "start"]
 
