@@ -33,6 +33,7 @@ RUN npm i puppeteer \
     && chown -R pptruser:pptruser /node_modules
 
 # Run everything after as non-privileged user.
+
 WORKDIR /app
 COPY --chown=node:node package*.json ./
 RUN npm install
