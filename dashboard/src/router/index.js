@@ -9,6 +9,7 @@ import Layout from '@/layout'
 /* Router Modules */
 import ordersRouter from './modules/orders'
 import suggestionsRouter from './modules/suggestions'
+import whatsappRouter from './modules/whatsapp'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -135,6 +136,7 @@ export const asyncRoutes = [
   /** when your routing map is too long, you can split it into small modules **/
   ordersRouter,
   suggestionsRouter,
+  whatsappRouter,
   {
     path: '/error',
     component: Layout,
