@@ -21,6 +21,10 @@ spec:
             backend:
               serviceName: socket-api-srv
               servicePort: 8002
+          - path: /whatsapp
+            backend:
+              serviceName: whatsapp-bot-srv
+              servicePort: 1000
           - path: /(.*)
             backend:
               serviceName: delivery-api-srv

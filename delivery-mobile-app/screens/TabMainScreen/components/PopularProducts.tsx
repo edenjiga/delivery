@@ -12,7 +12,6 @@ const PopularProducts: FC = () => {
     const getPopularProducts = async () => {
       try {
         const popular = await getProducts({
-          _limit: 5,
           _sort: 'unitsInStock:desc',
         });
         setProductState(popular);
