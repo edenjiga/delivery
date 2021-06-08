@@ -8,20 +8,33 @@ import express from "express";
 
 const app = express();
 
-app.get("/qr", async (req, res) => {
-  const qrStream = new PassThrough();
-  const qr = getQR();
-  const result = await QRCode.toFileStream(qrStream, qr, {
-    type: "png",
-    width: 200,
-    errorCorrectionLevel: "H",
-  });
+app.get("/whatsapp/qr", async (req, res, next) => {
+  try {
+    const qrStream = new PassThrough();
+    const qr = getQR();
+    const result = await QRCode.toFileStream(qrStream, qr, {
+      type: "png",
+      width: 200,
+      errorCorrectionLevel: "H",
+    });
 
-  qrStream.pipe(res);
+    qrStream.pipe(res);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
 });
-app.get("/status", async (req, res) => {
-  const status = await getStatus();
+app.get("/whatsapp/status", async (req, res, next) => {
+  try {
+    const status = await getStatus();
+    res.send(status);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+});
 
-  res.send(status);
+app.use((error: any, req: Express.Request, res: any, next: any) => {
+  return res.status(500).send({ error: error.message });
 });
 export default app;
