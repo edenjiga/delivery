@@ -1,12 +1,14 @@
 import "dotenv/config";
 import QRCode from "qrcode";
-
+import cors from "cors";
 import { PassThrough } from "stream";
 import { getQR, getStatus } from "./whatsappClient";
 
 import express from "express";
 
 const app = express();
+
+app.use(cors({}));
 
 app.get("/whatsapp/qr", async (req, res, next) => {
   try {
