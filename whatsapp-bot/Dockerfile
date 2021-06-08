@@ -35,7 +35,7 @@ RUN npm i puppeteer \
 # Run everything after as non-privileged user.
 USER pptruser
 
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY --chown=node:node package*.json ./
 RUN npm install
 COPY --chown=node:node . .
