@@ -39,7 +39,7 @@ COPY --chown=node:node package*.json ./
 RUN npm install
 COPY --chown=node:node . .
 RUN npm run build
-USER pptruser
+# USER pptruser
 
 CMD ["npm", "run", "start"]
 
