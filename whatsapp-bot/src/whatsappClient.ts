@@ -20,6 +20,9 @@ if (fs.existsSync(SESSION_FILE_PATH)) {
 let client = new Client({
   session: sessionData,
   restartOnAuthFail: true,
+  puppeteer: {
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  },
 });
 
 // Save session values to the file upon successful auth
