@@ -12,7 +12,7 @@ app.get("/whatsapp/qr", async (req, res, next) => {
   try {
     const qrStream = new PassThrough();
     const qr = getQR();
-    const result = await QRCode.toFileStream(qrStream, qr, {
+    await QRCode.toFileStream(qrStream, qr, {
       type: "png",
       width: 200,
       errorCorrectionLevel: "H",
