@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { socket } from '@/utils/socket';
 import storageService from '@/utils/storageService';
 import { OrderPublicFields, SOCKET_EVENTS } from '@edenjiga/delivery-common';

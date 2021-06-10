@@ -17,7 +17,7 @@ if (fs.existsSync(SESSION_FILE_PATH)) {
 }
 
 // Use the saved values
-let client = new Client({
+const client = new Client({
   session: sessionData,
   restartOnAuthFail: true,
   puppeteer: {
@@ -59,20 +59,13 @@ client.on("message", async function (message) {
   const privateMessage = await message.getChat();
 
   const messages = await privateMessage.fetchMessages({ limit: 10 });
-  console.log(
-    messages.length,
-    differenceInHours(
-      messages[messages.length - 1].timestamp,
-      messages[messages.length - 2].timestamp
-    )
-  );
+
   if (
     messages.length === 1 ||
     //check if have been pass more that 1 hour between two messages
-    differenceInHours(
-      messages[messages.length - 1].timestamp,
-      messages[messages.length - 2].timestamp
-    ) > 0
+    messages[messages.length - 1].timestamp -
+      messages[messages.length - 2].timestamp >
+      3600
   ) {
     client.sendMessage(
       message.from,
@@ -102,4 +95,4 @@ client.initialize();
 const getQR = () => qr;
 const getStatus = () => client.getState();
 
-export { getQR, getStatus };
+export { getQR, getStatus, client };

@@ -1,42 +1,20 @@
 import "dotenv/config";
-import QRCode from "qrcode";
 import cors from "cors";
-import { PassThrough } from "stream";
-import { getQR, getStatus } from "./whatsappClient";
 
 import express from "express";
+import router from "./routes";
 
 const app = express();
 
 app.use(cors({}));
 
-app.get("/whatsapp/qr", async (req, res, next) => {
-  try {
-    const qrStream = new PassThrough();
-    const qr = getQR();
-    await QRCode.toFileStream(qrStream, qr, {
-      type: "png",
-      width: 200,
-      errorCorrectionLevel: "H",
-    });
+app.use(router);
 
-    qrStream.pipe(res);
-  } catch (err) {
-    console.error(err);
-    next(err);
-  }
-});
-app.get("/whatsapp/status", async (req, res, next) => {
-  try {
-    const status = await getStatus();
-    res.send(status);
-  } catch (err) {
-    console.error(err);
-    next(err);
-  }
+app.use((error: Error, req: Express.Request, res: any, next: any) => {
+  console.log(error.message);
+  res.status(400).send({
+    errors: [{ message: "Something went wrong" }],
+  });
 });
 
-app.use((error: any, req: Express.Request, res: any, next: any) => {
-  return res.status(500).send({ error: error.message });
-});
 export default app;
