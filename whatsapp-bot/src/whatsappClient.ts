@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Product } from "@edenjiga/delivery-common";
 import fs from "fs";
-import { differenceInHours } from "date-fns";
 import qrcode from "qrcode-terminal";
 import { Client } from "whatsapp-web.js";
 
@@ -59,6 +58,8 @@ client.on("message", async function (message) {
   const privateMessage = await message.getChat();
 
   const messages = await privateMessage.fetchMessages({ limit: 10 });
+
+  console.log("Mensaje recibido", message.body);
 
   if (
     messages.length === 1 ||

@@ -19,6 +19,16 @@ spec:
           env:
             - name: PRODUCT_API_URL
               value: http://products-srv:1337
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_CLUSTER_ID
+              value: delivery
+            - name: NATS_STREAM_URL
+              value: http://nats-srv:4222
+            - name: CHAT_REPORT_ID
+              value: 573135986305-1623269530@g.us
 
       imagePullSecrets:
         - name: registry-credentials
