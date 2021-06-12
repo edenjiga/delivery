@@ -2,6 +2,7 @@ import { Product } from '@edenjiga/delivery-common';
 
 export const Products: Product[] = [
   {
+    isReturnable: false,
     unitsInStock: 2,
     _id: '5fe76bf3240ea4000e0522c2',
     description: 'some description',
@@ -84,6 +85,7 @@ export const Products: Product[] = [
     discountValue: 200,
   },
   {
+    isReturnable: false,
     unitsInStock: 2,
     _id: '5fe76c03240ea4000e0522c4',
     name: 'GENERAL',

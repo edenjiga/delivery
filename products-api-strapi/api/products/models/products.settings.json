@@ -48,6 +48,11 @@
         "MECCATOS",
         "OTHERS"
       ]
+    },
+    "isReturnable": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

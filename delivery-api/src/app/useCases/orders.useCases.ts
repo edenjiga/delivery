@@ -52,6 +52,18 @@ export class OrdersUseCases {
     private wompiService: WompiService,
   ) {}
 
+  private calulateDelivery(products: Array<Product>): number {
+    const {
+      simpleDeliveryValue,
+      doubleDeliveryValue,
+    } = this.settingsService.getDeliveryValue();
+
+    //Check if the some product is need to be pick up after
+    return products.some(({ isReturnable }) => isReturnable)
+      ? doubleDeliveryValue
+      : simpleDeliveryValue;
+  }
+
   async getOrders(user, params) {
     const optionsFields = [
       'select',
@@ -85,7 +97,6 @@ export class OrdersUseCases {
 
   public async createOrder(user: IUserDoc, data: CreateOrderDto) {
     const isStoreOpen = await this.settingsService.isStoreOpen();
-    const deliveryValue = this.settingsService.getDeliveryValue();
 
     if (!isStoreOpen) {
       throw new StoreCloseError();
@@ -102,7 +113,6 @@ export class OrdersUseCases {
 
     const products = await this.productsServices.getByIds(productsIds);
     //verify the product unit available
-
     if (!products) {
       throw new ProductOutStockError();
     }
@@ -115,6 +125,8 @@ export class OrdersUseCases {
     } = this.calculateTotalAndTotalDiscountAndTotalWithDiscount(
       productsWithUnit,
     );
+
+    const deliveryValue = this.calulateDelivery(products);
 
     if (price !== totalWithDiscount + deliveryValue) {
       throw new BadPriceError();

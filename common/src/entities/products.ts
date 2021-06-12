@@ -54,4 +54,5 @@ export interface Product {
   id: string;
   finalPrice: number;
   discountValue: number;
+  isReturnable: boolean;
 }

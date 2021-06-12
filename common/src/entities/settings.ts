@@ -1,5 +1,8 @@
 export class GetSettingsResponse {
   isStoreOpen: boolean;
   nativeAppVersion: string;
-  deliveryValue: number;
+  deliveryValue: {
+    simpleDeliveryValue: number;
+    doubleDeliveryValue: number;
+  };
 }

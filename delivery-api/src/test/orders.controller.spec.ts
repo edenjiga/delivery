@@ -41,6 +41,7 @@ import {
   PaymentNotCompletedError,
 } from '@/shared/errors/payments.error';
 import { Publisher } from '@nestjs-plugins/nestjs-nats-streaming-transport';
+import deliveryValues from '@/constants/deliveryValues';
 describe('orders controller', () => {
   let app: INestApplication;
 
@@ -197,13 +198,13 @@ describe('orders controller', () => {
     beforeEach(() => {
       defaultData = {
         products: Products.map(({ _id }) => ({ id: _id, unitsPurchased: 2 })),
-        deliveryValue: 3000,
+        deliveryValue: deliveryValues.simpleDeliveryValue,
         price:
           Products.reduce(
             (prevValue, { finalPrice }) => prevValue + finalPrice * 2,
 
             0,
-          ) + 3000,
+          ) + deliveryValues.simpleDeliveryValue,
         payment: { paymentMethod: PAYMENT_METHODS.CASH },
         address: {
           name: 'name',
@@ -494,6 +495,70 @@ describe('orders controller', () => {
               product,
               unitsPurchased: 2,
             })),
+            payment: {
+              paymentMethod: defaultData.payment.paymentMethod,
+              status: PAYMENT_STATUS.NOT_PAID,
+              creditCard: {
+                name: creditCard.name,
+                paymentSourceId: creditCard.paymentSourceId,
+              },
+            },
+          });
+        });
+
+        it('return a order when one product is returnable', async () => {
+          const creditCard = {
+            name: 'VISA-4242',
+            status: CREDIT_CARD_STATUS.ACTIVE,
+            paymentSourceId: '123',
+            expiresAt: new Date(),
+          };
+
+          const { token, user } = await global.createUserAndGenerateJwtToken(
+            app,
+            {
+              creditCards: [creditCard],
+            },
+          );
+
+          const payment: IPayment = {
+            ...defaultData.payment,
+            creditCard: { name: creditCard.name },
+          };
+
+          const returnableProduct: Product = {
+            ...Products[0],
+            isReturnable: true,
+          };
+
+          const bodyToSend: CreateOrderDto = {
+            ...defaultData,
+            payment,
+            products: [{ unitsPurchased: 1, id: returnableProduct._id }],
+            price:
+              returnableProduct.finalPrice + deliveryValues.doubleDeliveryValue,
+          };
+
+          productsDataSource.getProducts.mockResolvedValue([returnableProduct]);
+
+          const header = global.createHeaderWithAuthorization(token);
+          const { status, body } = await request(app.getHttpServer())
+            .post('/orders')
+            .set(header)
+            .send(bodyToSend);
+
+          expect(status).toEqual(201);
+          expect(body).toHaveProperty('_id');
+
+          // check the price
+
+          expect(body).toMatchObject({
+            discountValue: returnableProduct.discountValue,
+            price:
+              returnableProduct.finalPrice + deliveryValues.doubleDeliveryValue,
+            userId: user._id.toString(),
+            status: ORDER_STATUS.CREATED,
+            productsWithUnit: [{}],
             payment: {
               paymentMethod: defaultData.payment.paymentMethod,
               status: PAYMENT_STATUS.NOT_PAID,

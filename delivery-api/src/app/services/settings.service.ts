@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { daysSchedules } from '@edenjiga/delivery-common';
+import { daysSchedules, GetSettingsResponse } from '@edenjiga/delivery-common';
 import { SettingsRepository } from '@/data/repository/settings.respository';
+import deliveryValues from '@/constants/deliveryValues';
 @Injectable()
 export class SettingsService {
   constructor(private settingsRepository: SettingsRepository) {}
 
-  getDeliveryValue(): number {
-    return 0;
+  getDeliveryValue(): GetSettingsResponse['deliveryValue'] {
+    return deliveryValues;
   }
 
   public async isStoreOpen(): Promise<boolean> {
