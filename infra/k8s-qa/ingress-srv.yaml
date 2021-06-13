@@ -8,13 +8,13 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   tls:
-    - secretName: edgarjimenezg-com-tls
+    - secretName: kanguroo-com-tls
       hosts:
-        - qa.edgarjimenezg.com
-        - qa.dashboard.edgarjimenezg.com
-        - qa.strapi.edgarjimenezg.com
+        - qa.kanguroo.xyz
+        - qa.dashboard.kanguroo.xyz
+        - qa.strapi.kanguroo.xyz
   rules:
-    - host: qa.edgarjimenezg.com
+    - host: qa.kanguroo.xyz
       http:
         paths:
           - path: /socket.io
@@ -25,13 +25,13 @@ spec:
             backend:
               serviceName: delivery-api-srv
               servicePort: 8000
-    - host: qa.strapi.edgarjimenezg.com
+    - host: qa.strapi.kanguroo.xyz
       http:
         paths:
           - backend:
               serviceName: products-srv
               servicePort: 1337
-    - host: qa.dashboard.edgarjimenezg.com
+    - host: qa.dashboard.kanguroo.xyz
       http:
         paths:
           - backend:

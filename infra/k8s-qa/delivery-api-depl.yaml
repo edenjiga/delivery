@@ -27,7 +27,10 @@ spec:
             - name: PRODUCT_API_URL
               value: http://products-srv:1337
             - name: MONGO_URL
-              value: mongodb://mongo-0.mongo,mongo-1.mongo:27017/?replicaSet=rs0
+              valueFrom:
+                secretKeyRef:
+                  name: delivery-secrets
+                  key: MONGO_URL
             - name: AWS_REGION
               valueFrom:
                 secretKeyRef:
@@ -96,10 +99,7 @@ spec:
               value: http://nats-srv:4222
 
             - name: REDIS_URL
-              valueFrom:
-                secretKeyRef:
-                  name: delivery-secrets
-                  key: REDIS_URL
+              value: http://redis-srv:6379
 
       imagePullSecrets:
         - name: registry-credentials

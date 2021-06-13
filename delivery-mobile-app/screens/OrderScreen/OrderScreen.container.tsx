@@ -25,15 +25,19 @@ export default ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const { address } = useAddress();
   const { showModal } = useModal();
-  const { deliveryValue = 3000 } = useSettings();
+  const { deliveryValue: deliveryValues } = useSettings();
 
   const { user, cart } = useSelector<RootState, RootState>((state) => state);
   const { loadingStatus, data: userData } = user;
   const [paymentMethodSelected, setPaymentMethodSelected] = useState(
     PAYMENT_METHODS.CASH,
   );
-
   const productsWithQuanty = useMemo(() => Object.values(cart), [cart]);
+  const deliveryValue = productsWithQuanty.some(
+    ({ product }) => product.isReturnable,
+  )
+    ? deliveryValues!.doubleDeliveryValue
+    : deliveryValues!.simpleDeliveryValue;
 
   const { subTotal, totalDiscount } = useMemo(() => {
     return productsWithQuanty.reduce(
