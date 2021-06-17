@@ -28,6 +28,10 @@ async function setAddress(address: Address): Promise<void> {
   cache.address = address;
 }
 
+async function clearAddress(): Promise<void> {
+  await SecureStore.deleteItemAsync(Storage.USER_ADDRESS);
+}
+
 async function clearToken(): Promise<void> {
   await SecureStore.deleteItemAsync(Storage.TOKEN_KEY);
 }
@@ -44,6 +48,7 @@ async function initialize(): Promise<void> {
 }
 
 const storageService = {
+  clearAddress,
   getAddress,
   getToken,
   setAddress,

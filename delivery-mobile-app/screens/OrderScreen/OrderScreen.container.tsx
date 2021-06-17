@@ -71,9 +71,24 @@ export default ({ navigation }: Props) => {
         goTo,
       });
     }
+
+    //Check if the app have a address in memory
+    if (!address.name) {
+      if (!userData.address?.length) {
+        return navigation.replace(SCREEN_NAMES.ADD_ADDRESS, {
+          goTo,
+        });
+      } else {
+        return navigation.replace(SCREEN_NAMES.SELECT_ADDRESS, {
+          goTo,
+        });
+      }
+    }
   }, [
+    address,
     loadingStatus,
     navigation,
+    userData.address?.length,
     userData.email,
     userData.identification,
     userData.name,

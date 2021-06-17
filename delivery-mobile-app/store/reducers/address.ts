@@ -14,12 +14,13 @@ const initialState: Address = {
   },
 };
 
-const reducer = createReducer<Address, Action>(initialState).handleAction(
-  addressActions.setAddress,
-  (state, action) => {
+const reducer = createReducer<Address, Action>(initialState)
+  .handleAction(addressActions.setAddress, (state, action) => {
     const { payload } = action;
     return { ...state, ...payload };
-  },
-);
+  })
+  .handleAction(addressActions.clearAddress, () => {
+    return initialState;
+  });
 
 export default reducer;

@@ -51,14 +51,18 @@ export type ProductWithQuantity = {
 };
 
 export type RootStackParamList = {
-  [ADD_ADDRESS]: undefined;
+  [ADD_ADDRESS]: {
+    goTo?: SCREEN_NAMES;
+  };
   [ROOT]: undefined;
   [LOCATION]: undefined;
   [LOGIN]: { goTo?: SCREEN_NAMES };
   [ORDER]: undefined;
   [MY_ORDERS]: undefined;
   [PRODUCT_DETAIL]: { product: Product };
-  [SELECT_ADDRESS]: undefined;
+  [SELECT_ADDRESS]: {
+    goTo?: SCREEN_NAMES;
+  };
   [SEARCH_PRODUCT_BY_CATEGORY]: {
     category: PRODUCT_CATEGORY;
   };

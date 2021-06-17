@@ -46,6 +46,4 @@ const getEnvVars = (env = Constants.manifest.releaseChannel) => {
   };
 };
 
-console.log(getEnvVars());
-
 export default getEnvVars;
