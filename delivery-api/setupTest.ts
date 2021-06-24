@@ -15,6 +15,7 @@ import {
   PAYMENT_METHODS,
   UserPublicFields,
 } from '@edenjiga/delivery-common';
+import deliveryValues from '@/constants/deliveryValues';
 
 jest.mock('redis', () => redisMock);
 
@@ -138,7 +139,7 @@ global.createHeaderWithAuthorization = (token) => ({
 });
 
 global.createOrder = async (app, token, order?) => {
-  const deliveryValue = 3000;
+  const deliveryValue = deliveryValues.simpleDeliveryValue;
   const defaultOrder: CreateOrderDto = {
     products: Products.map(({ _id }) => ({ id: _id, unitsPurchased: 2 })),
     deliveryValue,
@@ -171,7 +172,7 @@ global.createOrder = async (app, token, order?) => {
 };
 
 global.createOrderInDb = async (order) => {
-  const deliveryValue = 3000;
+  const deliveryValue = deliveryValues.simpleDeliveryValue;
   const defaultOrder: CreateOrderDto = {
     products: Products.map(({ _id }) => ({ id: _id, unitsPurchased: 2 })),
     deliveryValue,

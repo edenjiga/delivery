@@ -1,7 +1,9 @@
 import { Text, View } from '@/components/Themed';
 import Colors from '@/constants/Colors';
+import RequestStatus from '@/constants/RequestStatus';
 import SCREEN_NAMES from '@/constants/screenNames';
 import useAddress from '@/hooks/useAddress';
+import useUserFromRedux from '@/hooks/useUserFromRedux';
 import { RootStackParamList } from '@/types';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -10,15 +12,15 @@ import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 const AddressSelected: FC = () => {
   const { address } = useAddress();
-
+  const { loadingStatus } = useUserFromRedux();
   const navigation = useNavigation<
     StackNavigationProp<RootStackParamList, SCREEN_NAMES.ROOT>
   >();
   const onPress = useCallback(() => {
-    navigation.navigate(SCREEN_NAMES.SELECT_ADDRESS);
+    navigation.navigate(SCREEN_NAMES.SELECT_ADDRESS, {});
   }, [navigation]);
 
-  return (
+  return loadingStatus === RequestStatus.REQUEST_LOADED ? (
     <View style={style.container}>
       <TouchableOpacity onPress={onPress} style={style.touchable}>
         <View style={style.headerLocation}>
@@ -31,6 +33,8 @@ const AddressSelected: FC = () => {
         </View>
       </TouchableOpacity>
     </View>
+  ) : (
+    <View></View>
   );
 };
 
@@ -39,22 +43,22 @@ const style = StyleSheet.create({
     borderBottomColor: Colors.lineGrey,
     borderBottomWidth: 1,
   },
-  touchable: {
-    paddingVertical: 15,
-  },
   headerLocation: {
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
     paddingHorizontal: 10,
   },
   marker: {
-    width: 20,
     height: 20,
     marginRight: 5,
+    width: 20,
   },
   markerText: {
     color: Colors.darkGrey,
     marginTop: 2,
+  },
+  touchable: {
+    paddingVertical: 15,
   },
 });
 

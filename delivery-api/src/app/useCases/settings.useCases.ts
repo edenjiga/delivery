@@ -1,4 +1,6 @@
 import { SettingsService } from '@/services';
+import { GetSettingsResponse } from '@edenjiga/delivery-common';
+
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -10,9 +12,13 @@ export class SettingsUseCases {
     return body;
   }
 
-  public async getSettings() {
+  public async getSettings(): Promise<GetSettingsResponse> {
     const isStoreOpen = await this.settingsService.isStoreOpen();
     const deliveryValue = await this.settingsService.getDeliveryValue();
-    return { isStoreOpen, nativeAppVersion: '1.0.0', deliveryValue };
+    return {
+      isStoreOpen,
+      nativeAppVersion: '1.0.0',
+      deliveryValue,
+    };
   }
 }

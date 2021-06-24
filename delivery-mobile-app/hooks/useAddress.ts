@@ -8,7 +8,6 @@ import * as addressActions from '@/store/actions/address';
 const useAddress = () => {
   const dispatch = useDispatch();
   const address = useSelector<RootState, Address>((state) => state.address);
-
   const setAddress = useCallback(
     async (newAddress: Address) => {
       await storageService.setAddress(newAddress);
@@ -17,7 +16,12 @@ const useAddress = () => {
     [dispatch],
   );
 
-  return { address, setAddress };
+  const clearAddress = useCallback(async () => {
+    await storageService.clearAddress();
+    dispatch(addressActions.clearAddress());
+  }, [dispatch]);
+
+  return { address, setAddress, clearAddress };
 };
 
 export default useAddress;

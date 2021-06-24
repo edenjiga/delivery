@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whatsapp-bot-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whatsapp-bot
+  template:
+    metadata:
+      labels:
+        app: whatsapp-bot
+    spec:
+      containers:
+        - name: whatsapp-bot
+          image: registry.gitlab.com/edenjiga1/delivery-app/whatsapp-bot:qa
+          imagePullPolicy: Always
+          env:
+            - name: PRODUCT_API_URL
+              value: http://products-srv:1337
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_CLUSTER_ID
+              value: delivery
+            - name: NATS_STREAM_URL
+              value: http://nats-srv:4222
+            - name: CHAT_REPORT_ID
+              value: 573135986305-1623269530@g.us
+
+      imagePullSecrets:
+        - name: registry-credentials
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whatsapp-bot-srv
+spec:
+  selector:
+    app: whatsapp-bot
+  ports:
+    - name: whatsapp-bot
+      protocol: TCP
+      port: 1000
+      targetPort: 1000

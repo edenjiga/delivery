@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 
 import { HandleErrorMessage } from '@/utils/errorMessages';
 import useModal from '@/hooks/useModal';
@@ -8,25 +8,37 @@ import { updateUserRequest } from '@/utils/user';
 import { Address } from '@edenjiga/delivery-common';
 import { StackNavigationProp } from '@react-navigation/stack';
 import AddAddressScreen from './AddAddressScreen';
+import { RouteProp } from '@react-navigation/native';
+import SCREEN_NAMES from '@/constants/screenNames';
+import useAddress from '@/hooks/useAddress';
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
+  route: RouteProp<RootStackParamList, SCREEN_NAMES.ADD_ADDRESS>;
 };
-const AddAddressScreenContainer: FC<Props> = ({ navigation }) => {
+const AddAddressScreenContainer: FC<Props> = ({ navigation, route }) => {
   const { data: user } = useUserFromRedux();
   const { showModal } = useModal();
+  const { setAddress } = useAddress();
+
+  const { goTo } = useMemo(() => route.params, [route.params]);
 
   const onSubmit = useCallback(
     async (address: Address) => {
       const mergedAddress = [...(user.address || []), address];
       try {
         await updateUserRequest({ address: mergedAddress });
-        navigation.goBack();
+
+        if (goTo) {
+          setAddress(address);
+          return navigation.replace(goTo);
+        }
+        return navigation.goBack();
       } catch (error) {
         const message = HandleErrorMessage(error.message);
         showModal({ text: message });
       }
     },
-    [navigation, showModal, user.address],
+    [goTo, navigation, setAddress, showModal, user.address],
   );
 
   return <AddAddressScreen onSubmit={onSubmit} />;

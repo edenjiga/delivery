@@ -41,11 +41,7 @@ function RootNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName={
-        isEmpty(storageService.getAddress())
-          ? SCREEN_NAMES.LOCATION
-          : SCREEN_NAMES.ROOT
-      }
+      initialRouteName={SCREEN_NAMES.ROOT}
     >
       <Stack.Screen
         name={SCREEN_NAMES.ADD_ADDRESS}

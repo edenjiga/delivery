@@ -16,6 +16,7 @@ import { setSettings } from '@/store/actions/settings';
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
   const [appVersionMatch, setAppVersionMatch] = useState(true);
+  // const {} = useModal()
   const dispatch = useDispatch();
 
   const fetchSettings = async () => {
